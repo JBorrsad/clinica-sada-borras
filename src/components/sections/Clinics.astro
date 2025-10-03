@@ -1,0 +1,212 @@
+---
+import { CONTACT_INFO } from '../../utils/constants';
+---
+
+<section class="clinics section" id="clinicas">
+	<div class="container">
+		<div class="section-header text-center">
+			<h2>Nuestras Clínicas</h2>
+			<p class="section-subtitle">Te esperamos en nuestros centros de Pamplona y Tafalla</p>
+		</div>
+		
+		<div class="clinics-grid">
+			<article class="clinic-card">
+				<div class="clinic-image-placeholder" data-location="pamplona">
+					<img 
+						src="/img/IMG_7719-Large-1024x768.jpeg"
+						alt="Clínica Dental Sada Borrás en Pamplona"
+						width="600"
+						height="400"
+						loading="lazy"
+					/>
+					<div class="clinic-badge">Pamplona</div>
+				</div>
+				<div class="clinic-content">
+					<h3>{CONTACT_INFO.pamplona.name}</h3>
+					<address>
+						<div class="clinic-info">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<div>
+								<p><strong>{CONTACT_INFO.pamplona.address}</strong></p>
+								<p>C.P. {CONTACT_INFO.pamplona.postalCode} - {CONTACT_INFO.pamplona.city}</p>
+							</div>
+						</div>
+						
+						<div class="clinic-info">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+							<div>
+								<p><strong>Tel:</strong> <a href={`tel:+34${CONTACT_INFO.pamplona.phone.replace(/\s/g, '')}`}>{CONTACT_INFO.pamplona.phone}</a></p>
+								<p><strong>Móvil:</strong> <a href={`tel:+34${CONTACT_INFO.pamplona.mobile.replace(/\s/g, '')}`}>{CONTACT_INFO.pamplona.mobile}</a></p>
+							</div>
+						</div>
+						
+						<div class="clinic-info">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+							<div>
+								<p><a href={`mailto:${CONTACT_INFO.pamplona.email}`}>{CONTACT_INFO.pamplona.email}</a></p>
+							</div>
+						</div>
+					</address>
+				</div>
+			</article>
+			
+			<article class="clinic-card">
+				<div class="clinic-image-placeholder" data-location="tafalla">
+					<img 
+						src="/img/IMG_7725-Large-1024x768.jpeg"
+						alt="Clínica Dental Sada Borrás en Tafalla"
+						width="600"
+						height="400"
+						loading="lazy"
+					/>
+					<div class="clinic-badge">Tafalla</div>
+				</div>
+				<div class="clinic-content">
+					<h3>{CONTACT_INFO.tafalla.name}</h3>
+					<address>
+						<div class="clinic-info">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<div>
+								<p><strong>{CONTACT_INFO.tafalla.address}</strong></p>
+								<p>C.P. {CONTACT_INFO.tafalla.postalCode} - {CONTACT_INFO.tafalla.city}</p>
+							</div>
+						</div>
+						
+						<div class="clinic-info">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+							<div>
+								<p><strong>Tel:</strong> <a href={`tel:+34${CONTACT_INFO.tafalla.phone.replace(/\s/g, '')}`}>{CONTACT_INFO.tafalla.phone}</a></p>
+							</div>
+						</div>
+						
+						<div class="clinic-info">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+							<div>
+								<p><a href={`mailto:${CONTACT_INFO.tafalla.email}`}>{CONTACT_INFO.tafalla.email}</a></p>
+							</div>
+						</div>
+					</address>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+
+<style>
+	.clinics {
+		background: var(--color-bg-light);
+	}
+	
+	.clinics-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+		gap: var(--spacing-md);
+	}
+	
+	.clinic-card {
+		background: white;
+		border-radius: var(--border-radius-lg);
+		overflow: hidden;
+		box-shadow: var(--shadow-md);
+		transition: var(--transition);
+	}
+	
+	.clinic-card:hover {
+		transform: translateY(-8px);
+		box-shadow: var(--shadow-lg);
+	}
+	
+	.clinic-image-placeholder {
+		position: relative;
+		width: 100%;
+		height: 300px;
+		background: var(--color-primary-light);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+	
+	.clinic-image-placeholder img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	
+	.clinic-badge {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		background: var(--color-primary);
+		color: white;
+		padding: 0.5rem 1rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		font-size: var(--font-size-sm);
+	}
+	
+	.clinic-content {
+		padding: 2rem;
+	}
+	
+	.clinic-content h3 {
+		font-size: var(--font-size-xl);
+		color: var(--color-secondary);
+		margin-bottom: 1.5rem;
+	}
+	
+	.clinic-content address {
+		font-style: normal;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+	
+	.clinic-info {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+	}
+	
+	.clinic-info svg {
+		color: var(--color-primary);
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+	
+	.clinic-info p {
+		margin: 0;
+		line-height: 1.5;
+	}
+	
+	.clinic-info a {
+		color: var(--color-text);
+	}
+	
+	.clinic-info a:hover {
+		color: var(--color-primary);
+	}
+	
+	@media (max-width: 767px) {
+		.clinics-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+

@@ -1,0 +1,199 @@
+---
+// Hero section con contenido optimizado para SEO
+---
+
+<section class="hero" id="inicio">
+	<div class="hero-bg">
+		<img 
+			src="/img/IMG_7699-Large-1024x768.jpeg" 
+			alt="Interior moderno de Clínica Dental Sada Borrás en Pamplona"
+			loading="eager"
+		/>
+	</div>
+	<div class="hero-overlay"></div>
+	<div class="container hero-content">
+		<div class="hero-text">
+			<h1>Clínica Dental en Pamplona y Tafalla</h1>
+			<p class="hero-subtitle">Llevamos más de 20 años cuidando sonrisas en Navarra. Tu salud dental es nuestra prioridad.</p>
+			<div class="hero-badges">
+				<span class="badge">
+					<img src="/img/PADI.png" alt="Programa PADI" width="60" height="60" />
+					<span>Programa PADI</span>
+				</span>
+				<span class="badge">
+					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+					</svg>
+					<span>20+ años</span>
+				</span>
+				<span class="badge">
+					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<circle cx="12" cy="12" r="10"/>
+						<path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+						<line x1="9" y1="9" x2="9.01" y2="9"/>
+						<line x1="15" y1="9" x2="15.01" y2="9"/>
+					</svg>
+					<span>Sedación consciente</span>
+				</span>
+			</div>
+			<div class="hero-cta">
+				<a href="#contacto" class="btn btn-primary">Pedir cita</a>
+				<a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		min-height: 600px;
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+	}
+	
+	.hero-bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+	}
+	
+	.hero-bg img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0, 191, 166, 0.85) 0%, rgba(26, 26, 46, 0.85) 100%);
+		z-index: 1;
+	}
+	
+	.hero-content {
+		position: relative;
+		z-index: 2;
+		padding: var(--spacing-xl) 0;
+	}
+	
+	.hero-text {
+		max-width: 700px;
+		color: white;
+	}
+	
+	.hero h1 {
+		font-size: var(--font-size-3xl);
+		color: white;
+		margin-bottom: 1.5rem;
+		line-height: 1.2;
+	}
+	
+	.hero-subtitle {
+		font-size: var(--font-size-lg);
+		margin-bottom: 2rem;
+		opacity: 0.95;
+	}
+	
+	.hero-badges {
+		display: flex;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+		flex-wrap: wrap;
+	}
+	
+	.badge {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: rgba(255, 255, 255, 0.15);
+		padding: 0.75rem 1.25rem;
+		border-radius: var(--border-radius);
+		backdrop-filter: blur(10px);
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+	}
+	
+	.badge svg {
+		color: var(--color-primary-light);
+	}
+	
+	.badge img {
+		width: auto;
+		height: 40px;
+	}
+	
+	.hero-cta {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	
+	.btn {
+		padding: 1rem 2rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		font-size: var(--font-size-base);
+		transition: var(--transition);
+		display: inline-block;
+		text-align: center;
+	}
+	
+	.btn-primary {
+		background: var(--color-primary);
+		color: white;
+	}
+	
+	.btn-primary:hover {
+		background: var(--color-primary-dark);
+		transform: translateY(-3px);
+		box-shadow: var(--shadow-lg);
+	}
+	
+	.btn-secondary {
+		background: white;
+		color: var(--color-secondary);
+	}
+	
+	.btn-secondary:hover {
+		background: var(--color-primary-light);
+		color: var(--color-primary-dark);
+		transform: translateY(-3px);
+		box-shadow: var(--shadow-lg);
+	}
+	
+	@media (max-width: 767px) {
+		.hero {
+			min-height: 500px;
+		}
+		
+		.hero h1 {
+			font-size: 2rem;
+		}
+		
+		.hero-subtitle {
+			font-size: var(--font-size-base);
+		}
+		
+		.hero-badges {
+			gap: 1rem;
+		}
+		
+		.badge {
+			padding: 0.5rem 1rem;
+			font-size: 0.875rem;
+		}
+		
+		.btn {
+			width: 100%;
+		}
+	}
+</style>
+

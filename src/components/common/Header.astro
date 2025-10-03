@@ -1,0 +1,196 @@
+---
+import { NAV_ITEMS } from '../../utils/constants';
+---
+
+<header class="header">
+	<div class="container">
+		<nav class="nav" aria-label="Navegación principal">
+			<a href="/" class="logo" aria-label="Clínica Dental Sada Borrás - Inicio">
+				<img 
+					src="/icons/logo-dental-1.png" 
+					alt="Logo Clínica Dental Sada Borrás" 
+					width="200"
+					height="35"
+				/>
+			</a>
+			
+			<button class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			
+			<ul class="nav-list">
+				{NAV_ITEMS.map(item => (
+					<li>
+						<a href={item.href}>{item.label}</a>
+					</li>
+				))}
+			</ul>
+			
+			<a href="#contacto" class="btn-cta">Pedir cita</a>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		background: var(--color-bg);
+		box-shadow: var(--shadow-sm);
+		z-index: 1000;
+		padding: 1rem 0;
+	}
+	
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+	}
+	
+	.logo img {
+		display: block;
+		width: auto;
+		height: 35px;
+	}
+	
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 4px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 8px;
+	}
+	
+	.menu-toggle span {
+		display: block;
+		width: 25px;
+		height: 3px;
+		background: var(--color-secondary);
+		border-radius: 2px;
+		transition: var(--transition);
+	}
+	
+	.nav-list {
+		display: flex;
+		gap: 2rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		flex: 1;
+		justify-content: center;
+	}
+	
+	.nav-list a {
+		color: var(--color-secondary);
+		font-weight: 500;
+		position: relative;
+		padding: 0.5rem 0;
+	}
+	
+	.nav-list a::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: var(--color-primary);
+		transition: width var(--transition);
+	}
+	
+	.nav-list a:hover::after {
+		width: 100%;
+	}
+	
+	.btn-cta {
+		background: var(--color-primary);
+		color: white;
+		padding: 0.75rem 1.5rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		transition: var(--transition);
+		white-space: nowrap;
+	}
+	
+	.btn-cta:hover {
+		background: var(--color-primary-dark);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+	
+	/* Responsive */
+	@media (max-width: 1024px) {
+		.nav-list {
+			gap: 1.5rem;
+		}
+	}
+	
+	@media (max-width: 767px) {
+		.menu-toggle {
+			display: flex;
+		}
+		
+		.nav-list {
+			position: fixed;
+			top: 70px;
+			left: 0;
+			right: 0;
+			background: var(--color-bg);
+			flex-direction: column;
+			gap: 0;
+			padding: 1rem;
+			box-shadow: var(--shadow-md);
+			transform: translateY(-100%);
+			opacity: 0;
+			pointer-events: none;
+			transition: var(--transition);
+		}
+		
+		.nav-list.active {
+			transform: translateY(0);
+			opacity: 1;
+			pointer-events: auto;
+		}
+		
+		.nav-list li {
+			border-bottom: 1px solid var(--color-border);
+		}
+		
+		.nav-list a {
+			display: block;
+			padding: 1rem;
+		}
+		
+		.btn-cta {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	const menuToggle = document.querySelector('.menu-toggle');
+	const navList = document.querySelector('.nav-list');
+	
+	if (menuToggle && navList) {
+		menuToggle.addEventListener('click', () => {
+			const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+			menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+			navList.classList.toggle('active');
+		});
+		
+		// Cerrar menú al hacer clic en un enlace
+		const navLinks = navList.querySelectorAll('a');
+		navLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				navList.classList.remove('active');
+				menuToggle.setAttribute('aria-expanded', 'false');
+			});
+		});
+	}
+</script>
+

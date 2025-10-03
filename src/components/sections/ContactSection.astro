@@ -1,0 +1,309 @@
+---
+// Sección de contacto con formulario
+---
+
+<section class="contact section" id="contacto">
+	<div class="container">
+		<div class="section-header text-center">
+			<h2>Contacta con Nosotros</h2>
+			<p class="section-subtitle">Estamos aquí para ayudarte. Escríbenos y te responderemos lo antes posible.</p>
+		</div>
+		
+		<div class="contact-grid">
+			<div class="contact-form-wrapper">
+				<form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+					<input type="hidden" name="form-name" value="contact" />
+					<p class="hidden">
+						<label>
+							No rellenar si eres humano: <input name="bot-field" />
+						</label>
+					</p>
+					
+					<div class="form-group">
+						<label for="name">Nombre completo <span class="required">*</span></label>
+						<input 
+							type="text" 
+							id="name" 
+							name="name" 
+							required 
+							autocomplete="name"
+							placeholder="Tu nombre"
+						/>
+					</div>
+					
+					<div class="form-group">
+						<label for="email">Correo electrónico <span class="required">*</span></label>
+						<input 
+							type="email" 
+							id="email" 
+							name="email" 
+							required 
+							autocomplete="email"
+							placeholder="tu@email.com"
+						/>
+					</div>
+					
+					<div class="form-group">
+						<label for="phone">Teléfono</label>
+						<input 
+							type="tel" 
+							id="phone" 
+							name="phone" 
+							autocomplete="tel"
+							placeholder="123 456 789"
+						/>
+					</div>
+					
+					<div class="form-group">
+						<label for="message">Mensaje <span class="required">*</span></label>
+						<textarea 
+							id="message" 
+							name="message" 
+							rows="5" 
+							required
+							placeholder="¿En qué podemos ayudarte?"
+						></textarea>
+					</div>
+					
+					<div class="form-group checkbox-group">
+						<label class="checkbox-label">
+							<input type="checkbox" name="privacy" required />
+							<span>Acepto los <a href="/avisos-legales" target="_blank">avisos legales</a> y la <a href="/politica-privacidad" target="_blank">política de privacidad</a> <span class="required">*</span></span>
+						</label>
+					</div>
+					
+					<button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button>
+				</form>
+			</div>
+			
+			<div class="contact-info-wrapper">
+				<div class="contact-info-card">
+					<h3>Información de contacto</h3>
+					
+					<div class="info-item">
+						<div class="info-icon">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+						</div>
+						<div>
+							<h4>Teléfonos</h4>
+							<p>Pamplona: <a href="tel:+34948172617">948 172 617</a></p>
+							<p>Tafalla: <a href="tel:+34948702057">948 702 057</a></p>
+						</div>
+					</div>
+					
+					<div class="info-item">
+						<div class="info-icon">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+						</div>
+						<div>
+							<h4>Correo electrónico</h4>
+							<p><a href="mailto:admin@clinicaborras.es">admin@clinicaborras.es</a></p>
+							<p><a href="mailto:tafalla@clinicasadaborras.com">tafalla@clinicasadaborras.com</a></p>
+						</div>
+					</div>
+					
+					<div class="info-item">
+						<div class="info-icon">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<circle cx="12" cy="12" r="10"></circle>
+								<polyline points="12 6 12 12 16 14"></polyline>
+							</svg>
+						</div>
+						<div>
+							<h4>Horario</h4>
+							<p>Lunes a viernes</p>
+							<p>9:00 - 20:00</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.contact {
+		background: white;
+	}
+	
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr;
+		gap: var(--spacing-lg);
+		margin-top: var(--spacing-lg);
+	}
+	
+	.contact-form-wrapper {
+		background: var(--color-bg-light);
+		padding: 2.5rem;
+		border-radius: var(--border-radius-lg);
+	}
+	
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+	
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	
+	.form-group label {
+		font-weight: 600;
+		color: var(--color-secondary);
+		font-size: var(--font-size-sm);
+	}
+	
+	.required {
+		color: var(--color-primary);
+	}
+	
+	.form-group input,
+	.form-group textarea {
+		padding: 0.875rem 1rem;
+		border: 2px solid var(--color-border);
+		border-radius: var(--border-radius);
+		font-family: var(--font-primary);
+		font-size: var(--font-size-base);
+		transition: var(--transition);
+	}
+	
+	.form-group input:focus,
+	.form-group textarea:focus {
+		outline: none;
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 3px var(--color-primary-light);
+	}
+	
+	.form-group textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+	
+	.checkbox-group {
+		margin-top: 0.5rem;
+	}
+	
+	.checkbox-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		cursor: pointer;
+		font-weight: 400;
+	}
+	
+	.checkbox-label input[type="checkbox"] {
+		margin-top: 4px;
+		width: 18px;
+		height: 18px;
+		cursor: pointer;
+	}
+	
+	.checkbox-label a {
+		text-decoration: underline;
+	}
+	
+	.btn-block {
+		width: 100%;
+	}
+	
+	.hidden {
+		display: none;
+	}
+	
+	.contact-info-wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.contact-info-card {
+		background: var(--color-secondary);
+		color: white;
+		padding: 2.5rem;
+		border-radius: var(--border-radius-lg);
+		height: 100%;
+	}
+	
+	.contact-info-card h3 {
+		color: white;
+		margin-bottom: 2rem;
+	}
+	
+	.info-item {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+	
+	.info-item:last-child {
+		margin-bottom: 0;
+	}
+	
+	.info-icon {
+		width: 48px;
+		height: 48px;
+		background: var(--color-primary);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+	
+	.info-icon svg {
+		color: white;
+	}
+	
+	.info-item h4 {
+		color: var(--color-primary);
+		font-size: var(--font-size-base);
+		margin-bottom: 0.5rem;
+	}
+	
+	.info-item p {
+		margin: 0.25rem 0;
+		font-size: var(--font-size-sm);
+		opacity: 0.9;
+	}
+	
+	.info-item a {
+		color: white;
+	}
+	
+	.info-item a:hover {
+		color: var(--color-primary-light);
+	}
+	
+	@media (max-width: 1024px) {
+		.contact-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.contact-form-wrapper {
+			padding: 2rem;
+		}
+		
+		.contact-info-card {
+			padding: 2rem;
+		}
+	}
+	
+	@media (max-width: 767px) {
+		.contact-form-wrapper {
+			padding: 1.5rem;
+		}
+		
+		.contact-info-card {
+			padding: 1.5rem;
+		}
+	}
+</style>
+

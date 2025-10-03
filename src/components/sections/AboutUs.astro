@@ -1,0 +1,182 @@
+---
+// Sección "Quiénes somos" con contenido optimizado para SEO
+---
+
+<section class="about section" id="sobre-nosotros">
+	<div class="container">
+		<div class="about-grid">
+			<div class="about-image">
+				<img 
+					src="/img/IMG_7761-Large-768x1024.jpeg" 
+					alt="Instalaciones de la Clínica Dental Sada Borrás"
+					width="600"
+					height="800"
+					loading="lazy"
+				/>
+			</div>
+			<div class="about-content">
+				<h2>Clínica Dental<br/><span class="highlight">Sada Borrás</span></h2>
+				<p class="lead">Más de dos décadas dedicados a mejorar la salud dental de familias en Pamplona y Tafalla.</p>
+				
+				<p>Nuestra clínica dental nace del compromiso de dos profesionales con amplia formación y experiencia: <strong>José Manuel Borrás Amblar</strong> y <strong>Pilar Sada Garralda</strong>. Ambos licenciados en Medicina y Cirugía, especializados en Estomatología, han construido un centro de referencia en Navarra.</p>
+				
+				<p>José Manuel Borrás cuenta con formación especializada en Implantología y Rehabilitación Oral por la European School de Nueva York, además de un posgrado en Periodoncia por la New York University. Pilar Sada, licenciada por la Universidad de Navarra, aporta su experiencia y cercanía en el trato con cada paciente.</p>
+				
+				<div class="about-features">
+					<div class="feature">
+						<div class="feature-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+								<circle cx="9" cy="7" r="4"></circle>
+								<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+								<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+							</svg>
+						</div>
+						<div>
+							<h3>Equipo experto</h3>
+							<p>Profesionales con formación internacional y actualización continua</p>
+						</div>
+					</div>
+					
+					<div class="feature">
+						<div class="feature-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+								<polyline points="22 4 12 14.01 9 11.01"></polyline>
+							</svg>
+						</div>
+						<div>
+							<h3>Tecnología avanzada</h3>
+							<p>Equipamiento de última generación para diagnósticos precisos</p>
+						</div>
+					</div>
+					
+					<div class="feature">
+						<div class="feature-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+							</svg>
+						</div>
+						<div>
+							<h3>Atención personalizada</h3>
+							<p>Cada paciente recibe un tratamiento adaptado a sus necesidades</p>
+						</div>
+					</div>
+				</div>
+				
+				<p class="about-cta-text">Ofrecemos todos los servicios necesarios para mejorar su sonrisa y su salud dental, desde implantología y estética dental hasta odontopediatría y tratamientos de estética facial.</p>
+				
+				<a href="#contacto" class="btn btn-primary">Conoce nuestro equipo</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about {
+		background: var(--color-bg-light);
+	}
+	
+	.about-grid {
+		display: grid;
+		grid-template-columns: 1fr 1.2fr;
+		gap: var(--spacing-lg);
+		align-items: center;
+	}
+	
+	.about-image {
+		border-radius: var(--border-radius-lg);
+		overflow: hidden;
+		box-shadow: var(--shadow-lg);
+	}
+	
+	.about-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+	
+	.about-content h2 {
+		margin-bottom: 1rem;
+	}
+	
+	.highlight {
+		color: var(--color-primary);
+	}
+	
+	.lead {
+		font-size: var(--font-size-lg);
+		color: var(--color-text-light);
+		margin-bottom: 1.5rem;
+		font-weight: 500;
+	}
+	
+	.about-features {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin: 2rem 0;
+		padding: 2rem;
+		background: white;
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow-sm);
+	}
+	
+	.feature {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+	}
+	
+	.feature-icon {
+		flex-shrink: 0;
+		width: 50px;
+		height: 50px;
+		background: var(--color-primary-light);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-primary);
+	}
+	
+	.feature h3 {
+		font-size: var(--font-size-lg);
+		margin-bottom: 0.5rem;
+		color: var(--color-secondary);
+	}
+	
+	.feature p {
+		margin: 0;
+		color: var(--color-text-light);
+	}
+	
+	.about-cta-text {
+		font-weight: 500;
+		color: var(--color-secondary);
+		margin: 1.5rem 0;
+	}
+	
+	@media (max-width: 1024px) {
+		.about-grid {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-md);
+		}
+		
+		.about-image {
+			order: 2;
+		}
+		
+		.about-content {
+			order: 1;
+		}
+	}
+	
+	@media (max-width: 767px) {
+		.about-features {
+			padding: 1.5rem;
+		}
+	}
+</style>
+

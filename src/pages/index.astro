@@ -1,0 +1,27 @@
+---
+import MainLayout from '../components/layout/MainLayout.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import AboutUs from '../components/sections/AboutUs.astro';
+import Services from '../components/sections/Services.astro';
+import Clinics from '../components/sections/Clinics.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+
+const title = 'Clínica Dental en Pamplona y Tafalla | Sada Borrás - 20 Años de Experiencia';
+const description = 'Clínica dental en Pamplona y Tafalla con más de 20 años de experiencia. Especialistas en implantes, ortodoncia y odontopediatría. Primera consulta gratuita. ☎️ 948 172 617';
+const keywords = 'clínica dental Pamplona, dentista Pamplona, implantes dentales Pamplona, odontopediatría Pamplona, clínica dental Tafalla, dentista Tafalla, ortodoncia Navarra, estética dental';
+---
+
+<MainLayout title={title} description={description} keywords={keywords}>
+	<Header />
+	<main id="main-content">
+		<Hero />
+		<AboutUs />
+		<Services />
+		<Clinics />
+		<ContactSection />
+	</main>
+	<Footer />
+</MainLayout>
+

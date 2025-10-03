@@ -1,0 +1,92 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	keywords?: string;
+}
+
+const { title, description, keywords } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/png" href="/icons/cropped-logo-dental-2-32x32.png" />
+	<meta name="generator" content={Astro.generator} />
+	
+	<!-- SEO Meta Tags -->
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	{keywords && <meta name="keywords" content={keywords} />}
+	<meta name="author" content="Clínica Dental Sada Borrás" />
+	
+	<!-- Open Graph -->
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="es_ES" />
+	<meta property="og:site_name" content="Clínica Dental Sada Borrás" />
+	
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	
+	<!-- Schema.org Structured Data -->
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Dentist",
+		"name": "Clínica Dental Sada Borrás",
+		"image": "https://sadaborras.com/icons/logo-dental-1.png",
+		"@id": "https://sadaborras.com",
+		"url": "https://sadaborras.com",
+		"telephone": "+34948172617",
+		"priceRange": "€€",
+		"address": [
+			{
+				"@type": "PostalAddress",
+				"streetAddress": "Avenida Pío XII, 8, bajo",
+				"addressLocality": "Pamplona",
+				"addressRegion": "Navarra",
+				"postalCode": "31008",
+				"addressCountry": "ES"
+			},
+			{
+				"@type": "PostalAddress",
+				"streetAddress": "Diputación Foral, 2 - 2º C y D",
+				"addressLocality": "Tafalla",
+				"addressRegion": "Navarra",
+				"postalCode": "31300",
+				"addressCountry": "ES"
+			}
+		],
+		"geo": {
+			"@type": "GeoCoordinates",
+			"latitude": 42.8125,
+			"longitude": -1.6458
+		},
+		"openingHoursSpecification": {
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": [
+				"Monday",
+				"Tuesday",
+				"Wednesday",
+				"Thursday",
+				"Friday"
+			],
+			"opens": "09:00",
+			"closes": "20:00"
+		}
+	})} />
+	
+	<link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body>
+	<a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
+	<slot />
+</body>
+</html>
+
