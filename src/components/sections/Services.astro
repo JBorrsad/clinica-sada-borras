@@ -1,5 +1,6 @@
 ---
 import { SERVICES } from '../../utils/constants';
+import { asset } from '../../utils/assets';
 ---
 
 <section class="services section" id="servicios">
@@ -14,7 +15,7 @@ import { SERVICES } from '../../utils/constants';
 				<article class="service-card">
 					<div class="service-icon">
 						<img 
-							src={`/icons/${service.icon}`}
+							src={asset(`/icons/${service.icon}`)}
 							alt={`Icono de ${service.title}`}
 							width="80"
 							height="80"

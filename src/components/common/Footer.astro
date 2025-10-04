@@ -1,5 +1,6 @@
 ---
 import { CONTACT_INFO } from '../../utils/constants';
+import { asset } from '../../utils/assets';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -11,7 +12,7 @@ const currentYear = new Date().getFullYear();
 				<h3>Clínica Dental</h3>
 				<p>Más de 20 años cuidando sonrisas en Pamplona y Tafalla.</p>
 				<img 
-					src="/icons/logo-dental-1.png" 
+					src={asset("/icons/logo-dental-1.png")}
 					alt="Logo Clínica Dental Sada Borrás" 
 					width="180"
 					height="32"

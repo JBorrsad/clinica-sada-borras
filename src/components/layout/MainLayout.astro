@@ -1,4 +1,6 @@
 ---
+import { asset } from '../../utils/assets';
+
 interface Props {
 	title: string;
 	description: string;
@@ -14,7 +16,7 @@ const currentYear = new Date().getFullYear();
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" type="image/png" href="/icons/cropped-logo-dental-2-32x32.png" />
+	<link rel="icon" type="image/png" href={asset("/icons/cropped-logo-dental-2-32x32.png")} />
 	<meta name="generator" content={Astro.generator} />
 	
 	<!-- SEO Meta Tags -->

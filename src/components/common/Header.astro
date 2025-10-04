@@ -1,13 +1,14 @@
 ---
 import { NAV_ITEMS } from '../../utils/constants';
+import { asset } from '../../utils/assets';
 ---
 
 <header class="header">
 	<div class="container">
 		<nav class="nav" aria-label="Navegación principal">
-			<a href="/" class="logo" aria-label="Clínica Dental Sada Borrás - Inicio">
+			<a href={asset("/")} class="logo" aria-label="Clínica Dental Sada Borrás - Inicio">
 				<img 
-					src="/icons/logo-dental-1.png" 
+					src={asset("/icons/logo-dental-1.png")}
 					alt="Logo Clínica Dental Sada Borrás" 
 					width="200"
 					height="35"

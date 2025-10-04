@@ -1,6 +1,7 @@
 ---
 import type { ReviewsData } from '../../types/reviews';
 import { loadReviews, ratingToStars, formatDateSpanish, truncateText, getInitials } from '../../lib/reviews';
+import { asset } from '../../utils/assets';
 
 // Cargar datos de reseñas
 const reviewsData: ReviewsData = await loadReviews();
@@ -30,7 +31,7 @@ const allReviews = reviewsData.places.flatMap(place =>
 				<div class="clinic-info">
 					<div class="clinic-logo">
 						<img 
-							src="/icons/logo-dental-2.png" 
+							src={asset("/icons/logo-dental-2.png")}
 							alt="Logo Clínica Dental Sada Borrás" 
 							width="80" 
 							height="80"

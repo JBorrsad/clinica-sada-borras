@@ -1,5 +1,6 @@
 ---
 import { CONTACT_INFO } from '../../utils/constants';
+import { asset } from '../../utils/assets';
 ---
 
 <section class="clinics section" id="clinicas">
@@ -13,7 +14,7 @@ import { CONTACT_INFO } from '../../utils/constants';
 			<article class="clinic-card">
 				<div class="clinic-image-placeholder" data-location="pamplona">
 					<img 
-						src="/img/IMG_7719-Large-1024x768.jpeg"
+						src={asset("/img/IMG_7719-Large-1024x768.jpeg")}
 						alt="Clínica Dental Sada Borrás en Pamplona"
 						width="600"
 						height="400"
@@ -61,7 +62,7 @@ import { CONTACT_INFO } from '../../utils/constants';
 			<article class="clinic-card">
 				<div class="clinic-image-placeholder" data-location="tafalla">
 					<img 
-						src="/img/IMG_7725-Large-1024x768.jpeg"
+						src={asset("/img/IMG_7725-Large-1024x768.jpeg")}
 						alt="Clínica Dental Sada Borrás en Tafalla"
 						width="600"
 						height="400"
