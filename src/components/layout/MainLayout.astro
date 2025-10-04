@@ -37,6 +37,11 @@ const currentYear = new Date().getFullYear();
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	
+	<!-- Estilos globales -->
+	<style is:global>
+		@import '../styles/global.css';
+	</style>
+	
 	<!-- Schema.org Structured Data -->
 	<script type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
