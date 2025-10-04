@@ -12,33 +12,14 @@
 	</div>
 	<div class="hero-overlay"></div>
 	<div class="container hero-content">
-		<div class="hero-text">
-			<h1>Clínica Dental en Pamplona y Tafalla</h1>
-			<p class="hero-subtitle">Llevamos más de 20 años cuidando sonrisas en Navarra. Tu salud dental es nuestra prioridad.</p>
-			<div class="hero-badges">
-				<span class="badge">
-					<img src="/img/PADI.png" alt="Programa PADI" width="60" height="60" />
-					<span>Programa PADI</span>
-				</span>
-				<span class="badge">
-					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-					</svg>
-					<span>20+ años</span>
-				</span>
-				<span class="badge">
-					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<circle cx="12" cy="12" r="10"/>
-						<path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-						<line x1="9" y1="9" x2="9.01" y2="9"/>
-						<line x1="15" y1="9" x2="15.01" y2="9"/>
-					</svg>
-					<span>Sedación consciente</span>
-				</span>
-			</div>
+		<div class="hero-left">
+			<h1>Tu Clínica Dental de Confianza en Pamplona y Tafalla</h1>
+			<p class="hero-services">Implantología · Estética Dental · Odontopediatría</p>
+		</div>
+		<div class="hero-right">
+			<p class="hero-description">Llevamos más de 20 años cuidando sonrisas en Navarra. Cuidamos cada aspecto de tu experiencia dental con un trato cercano, profesional y adaptado a ti en unas instalaciones modernas equipadas con tecnología avanzada.</p>
 			<div class="hero-cta">
-				<a href="#contacto" class="btn btn-primary">Pedir cita</a>
-				<a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+				<a href="#contacto" class="btn btn-primary">¡PIDE CITA!</a>
 			</div>
 		</div>
 	</div>
@@ -54,7 +35,7 @@
 	}
 	
 	.hero-bg {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -69,7 +50,7 @@
 	}
 	
 	.hero-overlay {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -82,10 +63,18 @@
 		position: relative;
 		z-index: 2;
 		padding: var(--spacing-xl) 0;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4rem;
+		align-items: start;
 	}
 	
-	.hero-text {
-		max-width: 700px;
+	.hero-right {
+		padding-top: 7rem;
+		color: white;
+	}
+	
+	.hero-left {
 		color: white;
 	}
 	
@@ -96,44 +85,25 @@
 		line-height: 1.2;
 	}
 	
-	.hero-subtitle {
+	.hero-services {
 		font-size: var(--font-size-lg);
-		margin-bottom: 2rem;
+		color: var(--color-primary);
+		font-weight: 500;
 		opacity: 0.95;
 	}
 	
-	.hero-badges {
-		display: flex;
-		gap: 1.5rem;
+	.hero-description {
+		font-size: var(--font-size-base);
 		margin-bottom: 2rem;
-		flex-wrap: wrap;
-	}
-	
-	.badge {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		background: rgba(255, 255, 255, 0.15);
-		padding: 0.75rem 1.25rem;
-		border-radius: var(--border-radius);
-		backdrop-filter: blur(10px);
-		font-size: var(--font-size-sm);
-		font-weight: 500;
-	}
-	
-	.badge svg {
-		color: var(--color-primary-light);
-	}
-	
-	.badge img {
-		width: auto;
-		height: 40px;
+		opacity: 0.9;
+		line-height: 1.7;
 	}
 	
 	.hero-cta {
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+		margin-top: 1.5rem;
 	}
 	
 	.btn {
@@ -157,38 +127,31 @@
 		box-shadow: var(--shadow-lg);
 	}
 	
-	.btn-secondary {
-		background: white;
-		color: var(--color-secondary);
-	}
-	
-	.btn-secondary:hover {
-		background: var(--color-primary-light);
-		color: var(--color-primary-dark);
-		transform: translateY(-3px);
-		box-shadow: var(--shadow-lg);
-	}
 	
 	@media (max-width: 767px) {
 		.hero {
 			min-height: 500px;
 		}
 		
+		.hero-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		
+		.hero-right {
+			padding-top: 0;
+		}
+		
 		.hero h1 {
 			font-size: 2rem;
 		}
 		
-		.hero-subtitle {
+		.hero-services {
 			font-size: var(--font-size-base);
 		}
 		
-		.hero-badges {
-			gap: 1rem;
-		}
-		
-		.badge {
-			padding: 0.5rem 1rem;
-			font-size: 0.875rem;
+		.hero-description {
+			font-size: 0.9375rem;
 		}
 		
 		.btn {

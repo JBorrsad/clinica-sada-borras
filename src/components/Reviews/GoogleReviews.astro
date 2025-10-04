@@ -1,0 +1,668 @@
+---
+import type { ReviewsData } from '../../types/reviews';
+import { loadReviews, ratingToStars, formatDateSpanish, truncateText, getInitials } from '../../lib/reviews';
+
+// Cargar datos de reseñas
+const reviewsData: ReviewsData = await loadReviews();
+
+// Obtener el primer lugar (o usar datos por defecto si no hay datos)
+const primaryPlace = reviewsData.places[0] || {
+	place_id: '',
+	name: 'Clínica Dental Sada Borrás',
+	rating: 0,
+	userRatingCount: 0,
+	googleMapsUri: '',
+	writeReviewUri: '',
+	reviews: []
+};
+
+// Combinar todas las reseñas de todos los lugares
+const allReviews = reviewsData.places.flatMap(place => 
+	place.reviews.map(review => ({ ...review, placeName: place.name }))
+);
+---
+
+<section class="google-reviews section" aria-labelledby="reviews-heading">
+	<div class="container">
+		<div class="reviews-grid">
+			<!-- Panel izquierdo: Resumen de la clínica -->
+			<div class="reviews-summary">
+				<div class="clinic-info">
+					<div class="clinic-logo">
+						<img 
+							src="/icons/logo-dental-2.png" 
+							alt="Logo Clínica Dental Sada Borrás" 
+							width="80" 
+							height="80"
+							loading="lazy"
+						/>
+					</div>
+					<h3 id="reviews-heading" class="clinic-name">{primaryPlace.name}</h3>
+					
+					<div class="rating-display">
+						<div class="stars-large" aria-label={`Calificación de ${primaryPlace.rating} de 5 estrellas`}>
+							{ratingToStars(primaryPlace.rating)}
+						</div>
+						<span class="rating-text">
+							{primaryPlace.rating > 0 ? `${primaryPlace.rating.toFixed(1)} de 5` : 'Sin calificaciones'}
+						</span>
+					</div>
+					
+					<p class="review-count">
+						{primaryPlace.userRatingCount > 0 
+							? `${primaryPlace.userRatingCount} reseñas en Google`
+							: 'Sé el primero en reseñarnos'
+						}
+					</p>
+					
+					{primaryPlace.writeReviewUri && (
+						<a 
+							href={primaryPlace.writeReviewUri}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="write-review-btn"
+						>
+							Escribe una reseña
+						</a>
+					)}
+				</div>
+			</div>
+			
+			<!-- Panel derecho: Carrusel de reseñas -->
+			<div class="reviews-carousel">
+				{allReviews.length > 0 ? (
+					<>
+						<div class="carousel-container">
+							<button 
+								class="carousel-arrow prev"
+								aria-label="Reseñas anteriores"
+								aria-controls="reviews-track"
+							>
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="15,18 9,12 15,6"></polyline>
+								</svg>
+							</button>
+							
+							<div 
+								class="reviews-track"
+								id="reviews-track"
+								role="region"
+								aria-label="Reseñas de Google"
+								tabindex="0"
+							>
+								{allReviews.slice(0, 10).map((review) => (
+									<article class="review-card">
+										<header class="review-header">
+											<div class="author-info">
+												<div class="author-avatar" aria-hidden="true">
+													{getInitials(review.author)}
+												</div>
+												<div class="author-details">
+													<div class="author-name">{review.author}</div>
+													<time class="review-date" datetime={review.time}>
+														{formatDateSpanish(review.time)}
+													</time>
+												</div>
+											</div>
+											<div class="google-logo" aria-label="Reseña verificada por Google">
+												<svg width="16" height="16" viewBox="0 0 24 24">
+													<path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+													<path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+													<path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+													<path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+												</svg>
+											</div>
+										</header>
+										
+										<div class="review-rating">
+											<div class="stars" aria-label={`${review.rating} de 5 estrellas`}>
+												{ratingToStars(review.rating)}
+											</div>
+											<span class="verified-badge">✓ Verificado</span>
+										</div>
+										
+										<blockquote class="review-text">
+											{truncateText(review.text, 200)}
+										</blockquote>
+										
+										<footer class="review-footer">
+											<a 
+												href={review.deep_link}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="view-on-google"
+											>
+												Ver en Google
+												<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+													<path d="M7 17L17 7"></path>
+													<path d="M7 7h10v10"></path>
+												</svg>
+											</a>
+										</footer>
+									</article>
+								))}
+							</div>
+							
+							<button 
+								class="carousel-arrow next"
+								aria-label="Siguientes reseñas"
+								aria-controls="reviews-track"
+							>
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="9,18 15,12 9,6"></polyline>
+								</svg>
+							</button>
+						</div>
+					</>
+				) : (
+					<div class="no-reviews">
+						<div class="no-reviews-icon">
+							<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+								<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+								<circle cx="9" cy="7" r="4"></circle>
+								<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+								<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+							</svg>
+						</div>
+						<h4>¡Sé el primero en reseñarnos!</h4>
+						<p>Ayúdanos a construir nuestra reputación en Google compartiendo tu experiencia con nosotros.</p>
+						{primaryPlace.writeReviewUri && (
+							<a 
+								href={primaryPlace.writeReviewUri}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="write-review-btn"
+							>
+								Escribe una reseña
+							</a>
+						)}
+					</div>
+				)}
+			</div>
+		</div>
+		
+		<!-- Atribución -->
+		<div class="reviews-attribution">
+			<p>
+				Datos y marca © Google · Fuente: 
+				{primaryPlace.googleMapsUri && (
+					<a href={primaryPlace.googleMapsUri} target="_blank" rel="noopener noreferrer">
+						Google Maps
+					</a>
+				)}
+			</p>
+		</div>
+	</div>
+</section>
+
+<script>
+	/**
+	 * Carrusel de reseñas con navegación por flechas
+	 * JavaScript progresivo - funciona sin JS
+	 */
+	class ReviewsCarousel {
+		track: HTMLElement | null;
+		prevBtn: HTMLButtonElement | null;
+		nextBtn: HTMLButtonElement | null;
+		cards: NodeListOf<Element>;
+		currentIndex: number;
+		cardsPerView: number;
+
+		constructor() {
+			this.track = document.getElementById('reviews-track');
+			this.prevBtn = document.querySelector('.carousel-arrow.prev') as HTMLButtonElement;
+			this.nextBtn = document.querySelector('.carousel-arrow.next') as HTMLButtonElement;
+			this.cards = document.querySelectorAll('.review-card');
+			this.currentIndex = 0;
+			this.cardsPerView = 0;
+			
+			if (!this.track || this.cards.length === 0) return;
+			
+			this.cardsPerView = this.getCardsPerView();
+			this.init();
+		}
+		
+		init() {
+			this.setupEventListeners();
+			this.updateCarousel();
+		}
+		
+		getCardsPerView() {
+			if (window.innerWidth <= 768) return 1;
+			if (window.innerWidth <= 1024) return 2;
+			return 3;
+		}
+		
+		setupEventListeners() {
+			this.prevBtn?.addEventListener('click', () => this.prevSlide());
+			this.nextBtn?.addEventListener('click', () => this.nextSlide());
+			
+			// Navegación con teclado
+			this.track?.addEventListener('keydown', (e: KeyboardEvent) => {
+				if (e.key === 'ArrowLeft') {
+					e.preventDefault();
+					this.prevSlide();
+				} else if (e.key === 'ArrowRight') {
+					e.preventDefault();
+					this.nextSlide();
+				}
+			});
+			
+			// Redimensionamiento
+			window.addEventListener('resize', () => {
+				this.cardsPerView = this.getCardsPerView();
+				this.updateCarousel();
+			});
+		}
+		
+		prevSlide() {
+			if (this.currentIndex > 0) {
+				this.currentIndex--;
+			} else {
+				this.currentIndex = Math.max(0, this.cards.length - this.cardsPerView);
+			}
+			this.updateCarousel();
+		}
+		
+		nextSlide() {
+			const maxIndex = Math.max(0, this.cards.length - this.cardsPerView);
+			if (this.currentIndex < maxIndex) {
+				this.currentIndex++;
+			} else {
+				this.currentIndex = 0;
+			}
+			this.updateCarousel();
+		}
+		
+		updateCarousel() {
+			if (!this.track) return;
+			
+			const cardWidth = 100 / this.cardsPerView;
+			const translateX = -(this.currentIndex * cardWidth);
+			
+			this.track.style.transform = `translateX(${translateX}%)`;
+			
+			// Actualizar estado de botones
+			this.updateButtonStates();
+		}
+		
+		updateButtonStates() {
+			const maxIndex = Math.max(0, this.cards.length - this.cardsPerView);
+			
+			if (this.prevBtn) {
+				this.prevBtn.disabled = this.currentIndex === 0;
+				this.prevBtn.setAttribute('aria-disabled', this.currentIndex === 0 ? 'true' : 'false');
+			}
+			
+			if (this.nextBtn) {
+				this.nextBtn.disabled = this.currentIndex >= maxIndex;
+				this.nextBtn.setAttribute('aria-disabled', this.currentIndex >= maxIndex ? 'true' : 'false');
+			}
+		}
+	}
+	
+	// Inicializar carrusel cuando el DOM esté listo
+	document.addEventListener('DOMContentLoaded', () => {
+		new ReviewsCarousel();
+	});
+</script>
+
+<style>
+	@import '../styles/tokens.css';
+	
+	.google-reviews {
+		background: var(--color-bg-light);
+		padding: var(--spacing-4xl) 0;
+		position: relative;
+		z-index: var(--z-dropdown);
+	}
+	
+	.reviews-grid {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: var(--spacing-2xl);
+		align-items: start;
+		margin-bottom: var(--spacing-xl);
+	}
+	
+	/* Panel izquierdo: Resumen */
+	.reviews-summary {
+		background: var(--color-bg-white);
+		padding: var(--spacing-2xl);
+		border-radius: var(--border-radius-lg);
+		box-shadow: var(--shadow-lg);
+		text-align: center;
+	}
+	
+	.clinic-logo img {
+		border-radius: var(--border-radius-full);
+		margin-bottom: var(--spacing-lg);
+		box-shadow: var(--shadow-md);
+	}
+	
+	.clinic-name {
+		font-family: var(--font-family-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: var(--font-weight-bold);
+		color: var(--color-secondary);
+		margin-bottom: var(--spacing-lg);
+		line-height: var(--line-height-tight);
+	}
+	
+	.rating-display {
+		margin-bottom: var(--spacing-md);
+	}
+	
+	.stars-large {
+		font-size: var(--font-size-3xl);
+		color: #ffc107;
+		margin-bottom: var(--spacing-sm);
+		line-height: 1;
+	}
+	
+	.rating-text {
+		display: block;
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-text);
+		margin-bottom: var(--spacing-sm);
+	}
+	
+	.review-count {
+		color: var(--color-text-light);
+		font-size: var(--font-size-sm);
+		margin-bottom: var(--spacing-xl);
+	}
+	
+	.write-review-btn {
+		display: inline-block;
+		background: transparent;
+		border: 2px solid var(--color-primary);
+		color: var(--color-primary);
+		padding: var(--spacing-md) var(--spacing-xl);
+		border-radius: var(--border-radius);
+		font-weight: var(--font-weight-semibold);
+		text-decoration: none;
+		transition: var(--transition);
+		font-size: var(--font-size-sm);
+	}
+	
+	.write-review-btn:hover {
+		background: var(--color-primary);
+		color: white;
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+	
+	/* Panel derecho: Carrusel */
+	.reviews-carousel {
+		position: relative;
+	}
+	
+	.carousel-container {
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.reviews-track {
+		display: flex;
+		transition: transform var(--transition-slow);
+		gap: var(--spacing-lg);
+		scroll-snap-type: x mandatory;
+		overflow-x: auto;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	
+	.reviews-track::-webkit-scrollbar {
+		display: none;
+	}
+	
+	.review-card {
+		flex: 0 0 33.333%;
+		background: var(--color-bg-white);
+		border-radius: var(--border-radius-lg);
+		padding: var(--spacing-xl);
+		box-shadow: var(--shadow-md);
+		scroll-snap-align: start;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.review-header {
+		display: flex;
+		align-items: center;
+		margin-bottom: var(--spacing-lg);
+	}
+	
+	.author-info {
+		display: flex;
+		align-items: center;
+		flex: 1;
+	}
+	
+	.author-avatar {
+		width: 48px;
+		height: 48px;
+		border-radius: var(--border-radius-full);
+		background: var(--color-primary);
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: var(--font-weight-bold);
+		font-size: var(--font-size-lg);
+		margin-right: var(--spacing-md);
+		flex-shrink: 0;
+	}
+	
+	.author-name {
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-text);
+		margin-bottom: var(--spacing-xs);
+	}
+	
+	.review-date {
+		font-size: var(--font-size-sm);
+		color: var(--color-text-light);
+	}
+	
+	.google-logo {
+		margin-left: var(--spacing-md);
+		flex-shrink: 0;
+	}
+	
+	.review-rating {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-sm);
+		margin-bottom: var(--spacing-lg);
+	}
+	
+	.stars {
+		color: #ffc107;
+		font-size: var(--font-size-base);
+	}
+	
+	.verified-badge {
+		background: #4285f4;
+		color: white;
+		font-size: var(--font-size-xs);
+		padding: var(--spacing-xs) var(--spacing-sm);
+		border-radius: var(--border-radius-sm);
+		font-weight: var(--font-weight-medium);
+	}
+	
+	.review-text {
+		color: var(--color-text);
+		line-height: var(--line-height-relaxed);
+		font-size: var(--font-size-sm);
+		margin: 0 0 var(--spacing-lg) 0;
+		flex: 1;
+		font-style: italic;
+	}
+	
+	.review-footer {
+		margin-top: auto;
+	}
+	
+	.view-on-google {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-sm);
+		color: var(--color-primary);
+		text-decoration: none;
+		font-weight: var(--font-weight-medium);
+		font-size: var(--font-size-sm);
+		transition: var(--transition);
+	}
+	
+	.view-on-google:hover {
+		color: var(--color-primary-dark);
+		text-decoration: underline;
+	}
+	
+	.carousel-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: var(--color-bg-white);
+		border: 2px solid var(--color-border);
+		border-radius: var(--border-radius-full);
+		width: 48px;
+		height: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: var(--transition);
+		z-index: var(--z-fixed);
+		color: var(--color-text);
+	}
+	
+	.carousel-arrow:hover:not(:disabled) {
+		background: var(--color-primary);
+		color: white;
+		border-color: var(--color-primary);
+		transform: translateY(-50%) scale(1.1);
+	}
+	
+	.carousel-arrow:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+	
+	.carousel-arrow.prev {
+		left: -24px;
+	}
+	
+	.carousel-arrow.next {
+		right: -24px;
+	}
+	
+	/* Estado sin reseñas */
+	.no-reviews {
+		text-align: center;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+		background: var(--color-bg-white);
+		border-radius: var(--border-radius-lg);
+		box-shadow: var(--shadow-md);
+	}
+	
+	.no-reviews-icon {
+		color: var(--color-primary);
+		margin-bottom: var(--spacing-lg);
+		display: flex;
+		justify-content: center;
+	}
+	
+	.no-reviews h4 {
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-secondary);
+		margin-bottom: var(--spacing-md);
+	}
+	
+	.no-reviews p {
+		color: var(--color-text-light);
+		margin-bottom: var(--spacing-xl);
+		line-height: var(--line-height-relaxed);
+	}
+	
+	/* Atribución */
+	.reviews-attribution {
+		text-align: center;
+		padding-top: var(--spacing-xl);
+		border-top: 1px solid var(--color-border);
+	}
+	
+	.reviews-attribution p {
+		font-size: var(--font-size-xs);
+		color: var(--color-text-muted);
+		margin: 0;
+	}
+	
+	.reviews-attribution a {
+		color: var(--color-text-light);
+		text-decoration: none;
+	}
+	
+	.reviews-attribution a:hover {
+		text-decoration: underline;
+	}
+	
+	/* Responsive */
+	@media (max-width: 1024px) {
+		.reviews-grid {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-xl);
+		}
+		
+		.review-card {
+			flex: 0 0 50%;
+		}
+		
+		.carousel-arrow {
+			display: none;
+		}
+	}
+	
+	@media (max-width: 768px) {
+		.google-reviews {
+			padding: var(--spacing-2xl) 0;
+		}
+		
+		.reviews-summary {
+			padding: var(--spacing-xl);
+		}
+		
+		.clinic-name {
+			font-size: var(--font-size-xl);
+		}
+		
+		.review-card {
+			flex: 0 0 100%;
+			padding: var(--spacing-lg);
+		}
+		
+		.reviews-track {
+			gap: var(--spacing-md);
+		}
+		
+		.no-reviews {
+			padding: var(--spacing-2xl) var(--spacing-lg);
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.author-avatar {
+			width: 40px;
+			height: 40px;
+			font-size: var(--font-size-base);
+		}
+		
+		.stars-large {
+			font-size: var(--font-size-2xl);
+		}
+	}
+</style>

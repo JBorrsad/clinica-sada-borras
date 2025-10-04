@@ -46,7 +46,9 @@ import { SERVICES } from '../../utils/constants';
 
 <style>
 	.services {
-		background: white;
+		background: var(--color-bg-light);
+		position: relative;
+		z-index: 10;
 	}
 	
 	.section-header {
@@ -56,6 +58,7 @@ import { SERVICES } from '../../utils/constants';
 	.section-header h2 {
 		font-size: var(--font-size-2xl);
 		margin-bottom: 1rem;
+		color: var(--color-secondary);
 	}
 	
 	.section-subtitle {
@@ -158,7 +161,7 @@ import { SERVICES } from '../../utils/constants';
 	.services-cta {
 		margin-top: var(--spacing-lg);
 		padding: 2rem;
-		background: var(--color-bg-light);
+		background: white;
 		border-radius: var(--border-radius-lg);
 	}
 	

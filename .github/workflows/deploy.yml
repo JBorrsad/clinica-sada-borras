@@ -1,0 +1,119 @@
+name: Deploy
+
+on:
+  # Ejecución manual
+  workflow_dispatch:
+
+  # Ejecución en cada push a main (deploy)
+  push:
+    branches: [main]
+
+  # Ejecución en pull requests (para testing)
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - "content/**"
+
+  # Actualización diaria (00:00 Madrid)
+  schedule:
+    # 00:00 CET (UTC+1) = 23:00 UTC
+    - cron: "0 23 * * *"
+    # 00:00 CEST (UTC+2) = 22:00 UTC
+    - cron: "0 22 * * *"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify secrets configuration
+        run: |
+          if [ -z "${{ secrets.GOOGLE_MAPS_API_KEY }}" ]; then
+            echo "❌ GOOGLE_MAPS_API_KEY no está configurada"
+            exit 1
+          fi
+          if [ -z "${{ secrets.GOOGLE_PLACE_IDS }}" ]; then
+            echo "❌ GOOGLE_PLACE_IDS no está configurada"
+            exit 1
+          fi
+          echo "✅ Secrets configurados correctamente"
+
+      - name: Fetch Google Reviews
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          GOOGLE_PLACE_IDS: ${{ secrets.GOOGLE_PLACE_IDS }}
+        run: |
+          echo "🚀 Obteniendo reseñas de Google Places..."
+          echo "📍 Place IDs configurados: $GOOGLE_PLACE_IDS"
+          node scripts/fetch-google-reviews.mjs
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet content/reviews/google.json; then
+            echo "No hay cambios en las reseñas"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Se detectaron cambios en las reseñas"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add content/reviews/google.json
+          git commit -m "feat(reviews): update Google reviews data [skip ci]"
+          git push
+
+      - name: Upload reviews as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-reviews-data
+          path: content/reviews/google.json
+          retention-days: 1
+
+      - name: Build Astro site
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          echo "🏗️  Construyendo sitio con Astro..."
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
+      - name: Summary
+        run: |
+          echo "📊 Resumen de la ejecución:"
+          echo "- Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "- Evento: ${{ github.event_name }}"
+          echo "- Rama: ${{ github.ref_name }}"
+          echo "- Cambios en reseñas: ${{ steps.changes.outputs.changed }}"
+          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "🌐 Sitio desplegado en: https://${{ github.repository_owner }}.github.io/clinica-sada-borras"
+          fi
+          if [ -f content/reviews/google.json ]; then
+            echo "- Lugares procesados: $(jq '.places | length' content/reviews/google.json)"
+            echo "- Total reseñas: $(jq '[.places[].reviews | length] | add' content/reviews/google.json)"
+          fi

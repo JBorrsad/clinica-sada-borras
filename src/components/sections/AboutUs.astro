@@ -1,182 +1,772 @@
 ---
-// Sección "Quiénes somos" con contenido optimizado para SEO
+// Nueva sección "Sobre nosotros" con carrusel horizontal estilo Apple/iOS
 ---
 
 <section class="about section" id="sobre-nosotros">
 	<div class="container">
-		<div class="about-grid">
-			<div class="about-image">
-				<img 
-					src="/img/IMG_7761-Large-768x1024.jpeg" 
-					alt="Instalaciones de la Clínica Dental Sada Borrás"
-					width="600"
-					height="800"
-					loading="lazy"
-				/>
-			</div>
 			<div class="about-content">
-				<h2>Clínica Dental<br/><span class="highlight">Sada Borrás</span></h2>
+			<h2>Clínica Dental Sada Borrás</h2>
 				<p class="lead">Más de dos décadas dedicados a mejorar la salud dental de familias en Pamplona y Tafalla.</p>
 				
-				<p>Nuestra clínica dental nace del compromiso de dos profesionales con amplia formación y experiencia: <strong>José Manuel Borrás Amblar</strong> y <strong>Pilar Sada Garralda</strong>. Ambos licenciados en Medicina y Cirugía, especializados en Estomatología, han construido un centro de referencia en Navarra.</p>
-				
-				<p>José Manuel Borrás cuenta con formación especializada en Implantología y Rehabilitación Oral por la European School de Nueva York, además de un posgrado en Periodoncia por la New York University. Pilar Sada, licenciada por la Universidad de Navarra, aporta su experiencia y cercanía en el trato con cada paciente.</p>
-				
-				<div class="about-features">
-					<div class="feature">
-						<div class="feature-icon">
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-								<circle cx="9" cy="7" r="4"></circle>
-								<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-								<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-							</svg>
+			<div class="carousel-container">
+				<div class="carousel-wrapper">
+					<div class="carousel-track" id="carousel-track">
+						<div class="carousel-slide">
+							<p>Nuestra clínica dental nace del compromiso de dos profesionales con amplia formación y experiencia: José Manuel Borrás Amblar y Pilar Sada Garralda. Ambos licenciados en Medicina y Cirugía, especializados en Estomatología, han construido un centro de referencia en Navarra.</p>
 						</div>
-						<div>
-							<h3>Equipo experto</h3>
-							<p>Profesionales con formación internacional y actualización continua</p>
-						</div>
-					</div>
-					
-					<div class="feature">
-						<div class="feature-icon">
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-								<polyline points="22 4 12 14.01 9 11.01"></polyline>
-							</svg>
-						</div>
-						<div>
-							<h3>Tecnología avanzada</h3>
-							<p>Equipamiento de última generación para diagnósticos precisos</p>
-						</div>
-					</div>
-					
-					<div class="feature">
-						<div class="feature-icon">
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-							</svg>
-						</div>
-						<div>
-							<h3>Atención personalizada</h3>
-							<p>Cada paciente recibe un tratamiento adaptado a sus necesidades</p>
+						<div class="carousel-slide">
+							<p>José Manuel Borrás cuenta con formación especializada en Implantología y Rehabilitación Oral por la European School de Nueva York, además de un posgrado en Periodoncia por la New York University. Pilar Sada, licenciada por la Universidad de Navarra, aporta su experiencia y cercanía en el trato con cada paciente.</p>
 						</div>
 					</div>
 				</div>
 				
-				<p class="about-cta-text">Ofrecemos todos los servicios necesarios para mejorar su sonrisa y su salud dental, desde implantología y estética dental hasta odontopediatría y tratamientos de estética facial.</p>
-				
-				<a href="#contacto" class="btn btn-primary">Conoce nuestro equipo</a>
+				<div class="carousel-indicators">
+					<button class="indicator active" data-slide="0" aria-label="Ir a la primera frase"></button>
+					<button class="indicator" data-slide="1" aria-label="Ir a la segunda frase"></button>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
+<section class="testimonials section">
+	<div class="container">
+		<div class="testimonials-grid">
+			<div class="testimonials-summary">
+				<div class="clinic-logo">
+					<img src="/icons/logo-dental-2.png" alt="Logo Clínica Dental Sada Borrás" width="60" height="60" />
+				</div>
+				<h3>Clínica Dental Sada Borrás</h3>
+				<div class="google-rating">
+					<div class="stars">
+						<span class="star filled">★</span>
+						<span class="star filled">★</span>
+						<span class="star filled">★</span>
+						<span class="star filled">★</span>
+						<span class="star filled">★</span>
+					</div>
+					<span class="rating-text">4.9 de 5</span>
+				</div>
+				<p class="review-count">Reseñas Google</p>
+				<button class="write-review-btn" onclick="window.open('https://share.google/LUWrvgN99nKLmdVJy', '_blank')">
+					Escribe una reseña
+				</button>
+			</div>
+			
+			<div class="testimonials-carousel">
+				<button class="carousel-arrow prev" id="testimonials-prev" aria-label="Reseña anterior">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<polyline points="15,18 9,12 15,6"></polyline>
+					</svg>
+				</button>
+				
+				<div class="testimonials-track" id="testimonials-track">
+					<div class="testimonial-card">
+						<div class="testimonial-placeholder">
+							<div class="placeholder-icon">
+								<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+									<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+									<circle cx="9" cy="7" r="4"></circle>
+									<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+									<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+								</svg>
+							</div>
+							<h4>¡Sé el primero en reseñarnos!</h4>
+							<p>Ayúdanos a construir nuestra reputación en Google compartiendo tu experiencia con nosotros.</p>
+							<button class="write-review-btn-small" onclick="window.open('https://share.google/LUWrvgN99nKLmdVJy', '_blank')">
+								Escribe una reseña
+							</button>
+						</div>
+					</div>
+					
+					<div class="testimonial-card">
+						<div class="testimonial-placeholder">
+							<div class="placeholder-icon">
+								<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+									<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+									<polyline points="22 4 12 14.01 9 11.01"></polyline>
+								</svg>
+							</div>
+							<h4>Tu opinión nos importa</h4>
+							<p>Las reseñas de nuestros pacientes nos ayudan a mejorar continuamente nuestros servicios.</p>
+							<button class="write-review-btn-small" onclick="window.open('https://share.google/LUWrvgN99nKLmdVJy', '_blank')">
+								Escribe una reseña
+							</button>
+						</div>
+					</div>
+					
+					<div class="testimonial-card">
+						<div class="testimonial-placeholder">
+							<div class="placeholder-icon">
+								<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+									<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+								</svg>
+							</div>
+							<h4>Calidad y confianza</h4>
+							<p>Más de 20 años de experiencia cuidando sonrisas en Pamplona y Tafalla.</p>
+							<button class="write-review-btn-small" onclick="window.open('https://share.google/LUWrvgN99nKLmdVJy', '_blank')">
+								Escribe una reseña
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				<button class="carousel-arrow next" id="testimonials-next" aria-label="Siguiente reseña">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<polyline points="9,18 15,12 9,6"></polyline>
+					</svg>
+				</button>
+			</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	class Carousel {
+		track: HTMLElement | null;
+		indicators: NodeListOf<Element>;
+		slides: NodeListOf<Element>;
+		currentSlide: number;
+		totalSlides: number;
+		autoPlayInterval: number | null;
+		autoPlayDelay: number;
+		isTransitioning: boolean;
+
+		constructor() {
+			this.track = document.getElementById('carousel-track');
+			this.indicators = document.querySelectorAll('.indicator');
+			this.slides = document.querySelectorAll('.carousel-slide');
+			this.currentSlide = 0;
+			this.totalSlides = this.slides.length;
+			this.autoPlayInterval = null;
+			this.autoPlayDelay = 7000;
+			this.isTransitioning = false;
+			
+			this.init();
+		}
+		
+		init() {
+			this.setupEventListeners();
+			this.startAutoPlay();
+		}
+		
+		setupEventListeners() {
+			// Event listeners para indicadores
+			this.indicators.forEach((indicator: Element, index: number) => {
+				indicator.addEventListener('click', () => this.goToSlide(index));
+			});
+			
+			// Touch events para móvil
+			let startX = 0;
+			let startY = 0;
+			let isScrolling = false;
+			
+			this.track?.addEventListener('touchstart', (e: TouchEvent) => {
+				startX = e.touches[0].clientX;
+				startY = e.touches[0].clientY;
+				isScrolling = false;
+			}, { passive: true });
+			
+			this.track?.addEventListener('touchmove', (e: TouchEvent) => {
+				if (!isScrolling) {
+					const deltaX = Math.abs(e.touches[0].clientX - startX);
+					const deltaY = Math.abs(e.touches[0].clientY - startY);
+					isScrolling = deltaY > deltaX;
+				}
+				
+				if (!isScrolling) {
+					e.preventDefault();
+				}
+			}, { passive: false });
+			
+			this.track?.addEventListener('touchend', (e: TouchEvent) => {
+				if (!isScrolling) {
+					const endX = e.changedTouches[0].clientX;
+					const deltaX = startX - endX;
+					
+					if (Math.abs(deltaX) > 50) {
+						if (deltaX > 0) {
+							this.nextSlide();
+						} else {
+							this.prevSlide();
+						}
+					}
+				}
+			}, { passive: true });
+			
+			// Pausar auto-play al hacer hover
+			this.track?.addEventListener('mouseenter', () => this.pauseAutoPlay());
+			this.track?.addEventListener('mouseleave', () => this.startAutoPlay());
+		}
+		
+		goToSlide(targetSlide: number, direction: string = 'auto') {
+			if (this.isTransitioning || targetSlide === this.currentSlide) return;
+			
+			this.isTransitioning = true;
+			this.pauseAutoPlay();
+			
+			// Determinar dirección de la animación
+			if (direction === 'auto') {
+				direction = targetSlide > this.currentSlide ? 'right' : 'left';
+			}
+			
+			// Actualizar indicadores
+			this.indicators.forEach((indicator: Element) => indicator.classList.remove('active'));
+			this.indicators[targetSlide].classList.add('active');
+			
+			// Aplicar animación del track
+			if (this.track) {
+				this.track.style.transform = `translateX(-${targetSlide * 50}%)`;
+			}
+			
+			// Resetear transición y actualizar slide actual
+			setTimeout(() => {
+				this.currentSlide = targetSlide;
+				this.isTransitioning = false;
+				this.startAutoPlay();
+			}, 600);
+		}
+		
+		nextSlide() {
+			const nextSlide = (this.currentSlide + 1) % this.totalSlides;
+			this.goToSlide(nextSlide, 'right');
+		}
+		
+		prevSlide() {
+			const prevSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
+			this.goToSlide(prevSlide, 'left');
+		}
+		
+		startAutoPlay() {
+			this.pauseAutoPlay();
+			this.autoPlayInterval = window.setInterval(() => {
+				this.nextSlide();
+			}, this.autoPlayDelay);
+		}
+		
+		pauseAutoPlay() {
+			if (this.autoPlayInterval) {
+				clearInterval(this.autoPlayInterval);
+				this.autoPlayInterval = null;
+			}
+		}
+	}
+	
+	// Inicializar carrusel cuando el DOM esté listo
+	document.addEventListener('DOMContentLoaded', () => {
+		new Carousel();
+		new TestimonialsCarousel();
+	});
+
+	class TestimonialsCarousel {
+		track: HTMLElement | null;
+		cards: NodeListOf<Element>;
+		prevBtn: HTMLElement | null;
+		nextBtn: HTMLElement | null;
+		currentIndex: number;
+		cardsPerView: number;
+		totalCards: number;
+
+		constructor() {
+			this.track = document.getElementById('testimonials-track');
+			this.cards = document.querySelectorAll('.testimonial-card');
+			this.prevBtn = document.getElementById('testimonials-prev');
+			this.nextBtn = document.getElementById('testimonials-next');
+			this.currentIndex = 0;
+			this.cardsPerView = 3;
+			this.totalCards = this.cards.length;
+
+			this.init();
+		}
+
+		init() {
+			this.updateCardsPerView();
+			this.setupEventListeners();
+			this.updateCarousel();
+		}
+
+		updateCardsPerView() {
+			if (window.innerWidth <= 768) {
+				this.cardsPerView = 1;
+			} else if (window.innerWidth <= 1024) {
+				this.cardsPerView = 2;
+			} else {
+				this.cardsPerView = 3;
+			}
+		}
+
+		setupEventListeners() {
+			this.prevBtn?.addEventListener('click', () => this.prevSlide());
+			this.nextBtn?.addEventListener('click', () => this.nextSlide());
+
+			window.addEventListener('resize', () => {
+				this.updateCardsPerView();
+				this.updateCarousel();
+			});
+		}
+
+		prevSlide() {
+			if (this.currentIndex > 0) {
+				this.currentIndex--;
+			} else {
+				this.currentIndex = this.totalCards - this.cardsPerView;
+			}
+			this.updateCarousel();
+		}
+
+		nextSlide() {
+			if (this.currentIndex < this.totalCards - this.cardsPerView) {
+				this.currentIndex++;
+			} else {
+				this.currentIndex = 0;
+			}
+			this.updateCarousel();
+		}
+
+		updateCarousel() {
+			if (this.track) {
+				const cardWidth = 100 / this.cardsPerView;
+				const translateX = -(this.currentIndex * cardWidth);
+				this.track.style.transform = `translateX(${translateX}%)`;
+			}
+		}
+	}
+</script>
+
 <style>
 	.about {
 		background: var(--color-bg-light);
-	}
-	
-	.about-grid {
-		display: grid;
-		grid-template-columns: 1fr 1.2fr;
-		gap: var(--spacing-lg);
+		min-height: 50vh;
+		display: flex;
 		align-items: center;
+		position: relative;
+		z-index: 10;
 	}
 	
-	.about-image {
-		border-radius: var(--border-radius-lg);
-		overflow: hidden;
-		box-shadow: var(--shadow-lg);
-	}
-	
-	.about-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
+	.about-content {
+		max-width: 800px;
+		margin: 0 auto;
+		text-align: center;
+		padding: var(--spacing-xl) 0;
 	}
 	
 	.about-content h2 {
-		margin-bottom: 1rem;
-	}
-	
-	.highlight {
-		color: var(--color-primary);
+		font-size: var(--font-size-3xl);
+		color: var(--color-secondary);
+		margin-bottom: 1.5rem;
+		font-weight: 700;
 	}
 	
 	.lead {
 		font-size: var(--font-size-lg);
 		color: var(--color-text-light);
-		margin-bottom: 1.5rem;
+		margin-bottom: 2rem;
 		font-weight: 500;
+		line-height: 1.6;
 	}
 	
-	.about-features {
+	.carousel-container {
+		margin-top: 2rem;
+	}
+	
+	.carousel-wrapper {
+		overflow: hidden;
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(10px);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+		margin-bottom: 2rem;
+		position: relative;
+	}
+	
+	.carousel-track {
 		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-		margin: 2rem 0;
-		padding: 2rem;
-		background: white;
-		border-radius: var(--border-radius);
-		box-shadow: var(--shadow-sm);
+		width: 200%;
+		transform: translateX(0%);
+		transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 	}
 	
-	.feature {
-		display: flex;
-		gap: 1rem;
-		align-items: flex-start;
-	}
-	
-	.feature-icon {
+	.carousel-slide {
+		width: 50%;
 		flex-shrink: 0;
-		width: 50px;
-		height: 50px;
-		background: var(--color-primary-light);
+		padding: 2rem;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
+	
+	
+	.carousel-slide p {
+		font-size: var(--font-size-base);
+		color: var(--color-text);
+		line-height: 1.7;
+		margin: 0;
+		text-align: center;
+	}
+	
+	.carousel-indicators {
+		display: flex;
+		justify-content: center;
+		gap: 12px;
+		margin-top: 1.5rem;
+	}
+	
+	.indicator {
+		width: 8px;
+		height: 8px;
 		border-radius: 50%;
+		border: none;
+		background: rgba(0, 0, 0, 0.3);
+		cursor: pointer;
+		transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		position: relative;
+	}
+	
+	.indicator::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: transparent;
+		transition: background 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+	
+	.indicator:hover::before {
+		background: rgba(0, 0, 0, 0.1);
+	}
+	
+	.indicator.active {
+		background: var(--color-primary);
+		transform: scale(1.2);
+	}
+	
+	.indicator.active::before {
+		background: rgba(0, 191, 166, 0.2);
+	}
+	
+	@media (max-width: 767px) {
+		.about {
+			min-height: 40vh;
+		}
+		
+		.about-content {
+			padding: var(--spacing-lg) 0;
+		}
+		
+		.about-content h2 {
+			font-size: var(--font-size-2xl);
+		}
+		
+		.lead {
+			font-size: var(--font-size-base);
+		}
+		
+		.carousel-wrapper {
+			margin: 0 1rem 2rem 1rem;
+		}
+		
+		.carousel-slide {
+			padding: 1.5rem;
+		}
+		
+		.carousel-slide p {
+			text-align: center;
+			font-size: 0.9375rem;
+			line-height: 1.6;
+		}
+		
+		.carousel-indicators {
+			margin-top: 1rem;
+		}
+		
+		.indicator {
+			width: 10px;
+			height: 10px;
+		}
+		
+		.indicator::before {
+			width: 24px;
+			height: 24px;
+		}
+	}
+
+	/* Estilos para la sección de testimonios */
+	.testimonials {
+		background: white;
+		padding: var(--spacing-xl) 0;
+		position: relative;
+		z-index: 10;
+	}
+
+	.testimonials-grid {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: var(--spacing-lg);
+		align-items: start;
+	}
+
+	.testimonials-summary {
+		background: var(--color-bg-light);
+		padding: 2rem;
+		border-radius: 12px;
+		text-align: center;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	}
+
+	.clinic-logo img {
+		border-radius: 50%;
+		margin-bottom: 1rem;
+	}
+
+	.testimonials-summary h3 {
+		font-size: var(--font-size-lg);
+		color: var(--color-secondary);
+		margin-bottom: 1rem;
+		font-weight: 700;
+	}
+
+	.google-rating {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--color-primary);
-	}
-	
-	.feature h3 {
-		font-size: var(--font-size-lg);
+		gap: 0.5rem;
 		margin-bottom: 0.5rem;
-		color: var(--color-secondary);
 	}
-	
-	.feature p {
-		margin: 0;
+
+	.stars {
+		display: flex;
+		gap: 2px;
+	}
+
+	.star {
+		color: #ddd;
+		font-size: 1.2rem;
+	}
+
+	.star.filled {
+		color: #ffc107;
+	}
+
+	.rating-text {
+		font-weight: 600;
+		color: var(--color-text);
+		font-size: var(--font-size-sm);
+	}
+
+	.review-count {
+		color: var(--color-text-light);
+		font-size: var(--font-size-sm);
+		margin-bottom: 1.5rem;
+	}
+
+	.write-review-btn {
+		background: transparent;
+		border: 2px solid var(--color-primary);
+		color: var(--color-primary);
+		padding: 0.75rem 1.5rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		cursor: pointer;
+		transition: var(--transition);
+		font-size: var(--font-size-sm);
+	}
+
+	.write-review-btn:hover {
+		background: var(--color-primary);
+		color: white;
+	}
+
+	.testimonials-carousel {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.testimonials-track {
+		display: flex;
+		transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		gap: 1rem;
+	}
+
+	.testimonial-card {
+		flex: 0 0 33.333%;
+		background: white;
+		border-radius: 12px;
+		padding: 1.5rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		margin-right: 1rem;
+	}
+
+	.testimonial-header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
+
+	.user-avatar {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--color-primary);
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 600;
+		margin-right: 0.75rem;
+		font-size: 1.1rem;
+	}
+
+	.user-info {
+		flex: 1;
+	}
+
+	.user-name {
+		font-weight: 600;
+		color: var(--color-text);
+		margin-bottom: 0.25rem;
+	}
+
+	.review-date {
+		font-size: var(--font-size-sm);
 		color: var(--color-text-light);
 	}
 	
-	.about-cta-text {
+	.google-logo {
+		margin-left: auto;
+	}
+
+	.testimonial-rating {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.verified-badge {
+		background: #4285f4;
+		color: white;
+		font-size: var(--font-size-xs);
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
 		font-weight: 500;
+	}
+
+	.testimonial-text {
+		color: var(--color-text);
+		line-height: 1.6;
+		font-size: var(--font-size-sm);
+		margin: 0;
+	}
+
+	.testimonial-placeholder {
+		text-align: center;
+		padding: 2rem 1rem;
+	}
+
+	.placeholder-icon {
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.testimonial-placeholder h4 {
 		color: var(--color-secondary);
-		margin: 1.5rem 0;
+		font-size: var(--font-size-lg);
+		margin-bottom: 1rem;
+		font-weight: 600;
+	}
+
+	.testimonial-placeholder p {
+		color: var(--color-text-light);
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+		font-size: var(--font-size-sm);
+	}
+
+	.write-review-btn-small {
+		background: var(--color-primary);
+		color: white;
+		border: none;
+		padding: 0.75rem 1.5rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		cursor: pointer;
+		transition: var(--transition);
+		font-size: var(--font-size-sm);
+	}
+
+	.write-review-btn-small:hover {
+		background: var(--color-primary-dark);
+		transform: translateY(-2px);
+	}
+
+	.carousel-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: white;
+		border: 2px solid var(--color-border);
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: var(--transition);
+		z-index: 2;
+	}
+
+	.carousel-arrow:hover {
+		background: var(--color-primary);
+		color: white;
+		border-color: var(--color-primary);
+	}
+
+	.carousel-arrow.prev {
+		left: -20px;
+	}
+
+	.carousel-arrow.next {
+		right: -20px;
 	}
 	
 	@media (max-width: 1024px) {
-		.about-grid {
+		.testimonials-grid {
 			grid-template-columns: 1fr;
 			gap: var(--spacing-md);
 		}
 		
-		.about-image {
-			order: 2;
-		}
-		
-		.about-content {
-			order: 1;
+		.testimonial-card {
+			flex: 0 0 50%;
 		}
 	}
-	
-	@media (max-width: 767px) {
-		.about-features {
+
+	@media (max-width: 768px) {
+		.testimonials {
+			padding: var(--spacing-lg) 0;
+		}
+
+		.testimonials-summary {
 			padding: 1.5rem;
+		}
+
+		.testimonial-card {
+			flex: 0 0 100%;
+			padding: 1rem;
+		}
+
+		.carousel-arrow {
+			display: none;
+		}
+
+		.testimonials-track {
+			gap: 0.5rem;
 		}
 	}
 </style>
-
