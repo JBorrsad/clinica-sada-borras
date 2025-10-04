@@ -127,7 +127,7 @@ function normalizeReview(apiReview, placeId) {
  * @returns {Promise<Object>} - Datos del lugar normalizados
  */
 async function fetchPlaceData(placeId, apiKey) {
-  const url = `${API_BASE_URL}/${placeId}?fields=${FIELDS}`;
+  const url = `${API_BASE_URL}/${placeId}?fields=${FIELDS}&languageCode=es`;
 
   console.log(`📡 Obteniendo datos para lugar: ${placeId}`);
 
@@ -136,6 +136,7 @@ async function fetchPlaceData(placeId, apiKey) {
       headers: {
         "X-Goog-Api-Key": apiKey,
         "Content-Type": "application/json",
+        "Accept-Language": "es-ES,es;q=0.9",
       },
     });
 
