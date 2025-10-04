@@ -48,8 +48,8 @@ jobs:
             echo "❌ GOOGLE_MAPS_API_KEY no está configurada"
             exit 1
           fi
-          if [ -z "${{ secrets.GOOGLE_PLACE_IDS }}" ]; then
-            echo "❌ GOOGLE_PLACE_IDS no está configurada"
+          if [ -z "${{ secrets.GOOGLE_PLACE_ID_1 }}" ] && [ -z "${{ secrets.GOOGLE_PLACE_ID_2 }}" ]; then
+            echo "❌ Ningún GOOGLE_PLACE_ID está configurado"
             exit 1
           fi
           echo "✅ Secrets configurados correctamente"
@@ -57,10 +57,24 @@ jobs:
       - name: Fetch Google Reviews
         env:
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-          GOOGLE_PLACE_IDS: ${{ secrets.GOOGLE_PLACE_IDS }}
+          GOOGLE_PLACE_ID_1: ${{ secrets.GOOGLE_PLACE_ID_1 }}
+          GOOGLE_PLACE_ID_2: ${{ secrets.GOOGLE_PLACE_ID_2 }}
         run: |
           echo "🚀 Obteniendo reseñas de Google Places..."
-          echo "📍 Place IDs configurados: $GOOGLE_PLACE_IDS"
+          # Construir la lista de place IDs
+          PLACE_IDS=""
+          if [ -n "$GOOGLE_PLACE_ID_1" ]; then
+            PLACE_IDS="$GOOGLE_PLACE_ID_1"
+          fi
+          if [ -n "$GOOGLE_PLACE_ID_2" ]; then
+            if [ -n "$PLACE_IDS" ]; then
+              PLACE_IDS="$PLACE_IDS,$GOOGLE_PLACE_ID_2"
+            else
+              PLACE_IDS="$GOOGLE_PLACE_ID_2"
+            fi
+          fi
+          echo "📍 Place IDs configurados: $PLACE_IDS"
+          export GOOGLE_PLACE_IDS="$PLACE_IDS"
           node scripts/fetch-google-reviews.mjs
 
       - name: Check for changes
