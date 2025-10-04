@@ -66,44 +66,58 @@ function formatDate(dateStr: string): string {
 				)}
 			</div>
 			
-			<!-- Panel derecho: Lista de reseñas -->
-			<div class="reviews-list">
+			<!-- Panel derecho: Carrusel de reseñas -->
+			<div class="reviews-carousel-wrapper">
 				{allReviews.length > 0 ? (
 					<>
-						{allReviews.slice(0, 10).map((review) => (
-							<article class="review-card">
-								<div class="review-header">
-									<div class="author-avatar">
-										{getInitials(review.author)}
+						<button class="carousel-btn prev" id="reviews-prev" aria-label="Reseñas anteriores">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polyline points="15,18 9,12 15,6"></polyline>
+							</svg>
+						</button>
+						
+						<div class="reviews-list" id="reviews-list">
+							{allReviews.slice(0, 10).map((review) => (
+								<article class="review-card">
+									<div class="review-header">
+										<div class="author-avatar">
+											{getInitials(review.author)}
+										</div>
+										<div class="author-info">
+											<h4 class="author-name">{review.author}</h4>
+											<time class="review-date" datetime={review.time}>
+												{formatDate(review.time)}
+											</time>
+										</div>
+										<svg class="google-icon" width="24" height="24" viewBox="0 0 24 24">
+											<path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+											<path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+											<path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+											<path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+										</svg>
 									</div>
-									<div class="author-info">
-										<h4 class="author-name">{review.author}</h4>
-										<time class="review-date" datetime={review.time}>
-											{formatDate(review.time)}
-										</time>
+									
+									<div class="review-rating">
+										<div class="stars">
+											{"★".repeat(review.rating)}
+										</div>
+										<svg class="verified-icon" width="16" height="16" viewBox="0 0 24 24" fill="#4285F4">
+											<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+										</svg>
 									</div>
-									<svg class="google-icon" width="24" height="24" viewBox="0 0 24 24">
-										<path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-										<path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-										<path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-										<path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-									</svg>
-								</div>
-								
-								<div class="review-rating">
-									<div class="stars">
-										{"★".repeat(review.rating)}
-									</div>
-									<svg class="verified-icon" width="16" height="16" viewBox="0 0 24 24" fill="#4285F4">
-										<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-									</svg>
-								</div>
-								
-								{review.text && (
-									<p class="review-text">{review.text}</p>
-								)}
-							</article>
-						))}
+									
+									{review.text && (
+										<p class="review-text">{review.text}</p>
+									)}
+								</article>
+							))}
+						</div>
+						
+						<button class="carousel-btn next" id="reviews-next" aria-label="Siguientes reseñas">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polyline points="9,18 15,12 9,6"></polyline>
+							</svg>
+						</button>
 					</>
 				) : (
 					<div class="no-reviews">
@@ -142,8 +156,11 @@ function formatDate(dateStr: string): string {
 		border-radius: 12px;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 		text-align: center;
-		position: sticky;
-		top: calc(var(--header-height) + var(--spacing-md));
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: fit-content;
 	}
 
 	.clinic-logo {
@@ -205,41 +222,67 @@ function formatDate(dateStr: string): string {
 		border-color: var(--color-primary);
 	}
 
-	/* Panel Derecho - Lista de Reseñas */
+	/* Panel Derecho - Carrusel de Reseñas */
+	.reviews-carousel-wrapper {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.carousel-btn {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: white;
+		border: 1px solid #dadce0;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: var(--transition);
+		z-index: 10;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	}
+
+	.carousel-btn:hover {
+		background: #f8f9fa;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+	}
+
+	.carousel-btn.prev {
+		left: -20px;
+	}
+
+	.carousel-btn.next {
+		right: -20px;
+	}
+
+	.carousel-btn:disabled {
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+
 	.reviews-list {
 		display: flex;
 		gap: 1rem;
-		overflow-x: auto;
+		overflow-x: hidden;
 		scroll-behavior: smooth;
-		padding-bottom: 1rem;
-		-webkit-overflow-scrolling: touch;
-		scrollbar-width: thin;
-		scrollbar-color: #dadce0 transparent;
-	}
-
-	.reviews-list::-webkit-scrollbar {
-		height: 8px;
-	}
-
-	.reviews-list::-webkit-scrollbar-track {
-		background: transparent;
-	}
-
-	.reviews-list::-webkit-scrollbar-thumb {
-		background: #dadce0;
-		border-radius: 4px;
+		padding: 0.5rem 0;
 	}
 
 	.review-card {
 		background: white;
 		border-radius: 8px;
 		padding: 1.5rem;
-		min-width: 320px;
-		max-width: 400px;
+		width: 320px;
 		flex-shrink: 0;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 		border: 1px solid #e8eaed;
 		transition: var(--transition);
+		display: flex;
+		flex-direction: column;
 	}
 
 	.review-card:hover {
@@ -335,9 +378,12 @@ function formatDate(dateStr: string): string {
 			gap: var(--spacing-md);
 		}
 
-		.reviews-summary {
-			position: relative;
-			top: 0;
+		.carousel-btn {
+			display: none;
+		}
+
+		.reviews-list {
+			overflow-x: auto;
 		}
 	}
 
@@ -351,7 +397,7 @@ function formatDate(dateStr: string): string {
 		}
 
 		.review-card {
-			min-width: 280px;
+			width: 280px;
 			padding: 1.25rem;
 		}
 
@@ -361,3 +407,62 @@ function formatDate(dateStr: string): string {
 		}
 	}
 </style>
+
+<script>
+	class ReviewsCarousel {
+		container: HTMLElement | null;
+		prevBtn: HTMLButtonElement | null;
+		nextBtn: HTMLButtonElement | null;
+		scrollAmount: number;
+
+		constructor() {
+			this.container = document.getElementById('reviews-list');
+			this.prevBtn = document.getElementById('reviews-prev') as HTMLButtonElement;
+			this.nextBtn = document.getElementById('reviews-next') as HTMLButtonElement;
+			this.scrollAmount = 340; // Ancho de tarjeta (320px) + gap (20px)
+
+			this.init();
+		}
+
+		init() {
+			if (!this.container || !this.prevBtn || !this.nextBtn) return;
+
+			this.prevBtn.addEventListener('click', () => this.scroll('left'));
+			this.nextBtn.addEventListener('click', () => this.scroll('right'));
+
+			// Actualizar estado de botones al hacer scroll
+			this.container.addEventListener('scroll', () => this.updateButtons());
+			this.updateButtons();
+		}
+
+		scroll(direction: 'left' | 'right') {
+			if (!this.container) return;
+
+			const scrollLeft = direction === 'left' 
+				? this.container.scrollLeft - this.scrollAmount
+				: this.container.scrollLeft + this.scrollAmount;
+
+			this.container.scrollTo({
+				left: scrollLeft,
+				behavior: 'smooth'
+			});
+		}
+
+		updateButtons() {
+			if (!this.container || !this.prevBtn || !this.nextBtn) return;
+
+			const isAtStart = this.container.scrollLeft <= 0;
+			const isAtEnd = this.container.scrollLeft >= this.container.scrollWidth - this.container.clientWidth - 10;
+
+			this.prevBtn.disabled = isAtStart;
+			this.nextBtn.disabled = isAtEnd;
+		}
+	}
+
+	// Inicializar carrusel
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', () => new ReviewsCarousel());
+	} else {
+		new ReviewsCarousel();
+	}
+</script>
