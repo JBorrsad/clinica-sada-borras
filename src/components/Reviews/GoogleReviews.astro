@@ -14,9 +14,10 @@ const averageRating = totalCount > 0 ? (totalRating / totalCount) : 0;
 // Obtener el primer lugar para el writeReviewUri
 const primaryPlace = reviewsData.places[0];
 
-// Combinar todas las reseñas de todos los lugares y ordenar por fecha
+// Combinar todas las reseñas de todos los lugares, filtrar y ordenar por fecha
 const allReviews = reviewsData.places
 	.flatMap(place => place.reviews.map(review => ({ ...review, placeName: place.name })))
+	.filter(review => review.rating >= 3 && review.text && review.text.trim().length > 0)
 	.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
 
 // Función para formatear fecha como YYYY-MM-DD
@@ -34,16 +35,18 @@ function formatDate(dateStr: string): string {
 		<div class="reviews-grid">
 			<!-- Panel izquierdo: Resumen de la clínica -->
 			<div class="reviews-summary">
-				<div class="clinic-logo">
-					<img 
-						src={asset("/icons/logo-dental-2.png")}
-						alt="Logo Clínica Dental Sada Borrás" 
-						width="80" 
-						height="80"
-						loading="lazy"
-					/>
+				<div class="clinic-header">
+					<div class="clinic-logo">
+						<img 
+							src={asset("/icons/logo-dental-2.png")}
+							alt="Logo Clínica Dental Sada Borrás" 
+							width="60" 
+							height="60"
+							loading="lazy"
+						/>
+					</div>
+					<h3 id="reviews-heading" class="clinic-name">Clínica Dental Sada Borrás</h3>
 				</div>
-				<h3 id="reviews-heading" class="clinic-name">Clínica Dental Sada Borrás</h3>
 				
 				<div class="rating-display">
 					<div class="stars-large">
@@ -97,14 +100,18 @@ function formatDate(dateStr: string): string {
 										</svg>
 									</div>
 									
-									<div class="review-rating">
-										<div class="stars">
-											{"★".repeat(review.rating)}
-										</div>
-										<svg class="verified-icon" width="16" height="16" viewBox="0 0 24 24" fill="#4285F4">
-											<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-										</svg>
+								<div class="review-rating">
+									<div class="stars">
+										{"★".repeat(review.rating)}
 									</div>
+									<img 
+										src={asset("/icons/google-verified-1.svg")}
+										alt="Verificado por Google"
+										class="verified-icon"
+										width="16"
+										height="16"
+									/>
+								</div>
 									
 									{review.text && (
 										<p class="review-text">{review.text}</p>
@@ -144,56 +151,63 @@ function formatDate(dateStr: string): string {
 
 	.reviews-grid {
 		display: grid;
-		grid-template-columns: 280px 1fr;
+		grid-template-columns: 280px minmax(0, 1fr);
 		gap: 1.5rem;
-		align-items: start;
+		align-items: stretch;
 	}
 
 	/* Panel Izquierdo */
 	.reviews-summary {
-		background: white;
-		padding: 2rem;
-		border-radius: 12px;
-		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-		text-align: center;
+		background: transparent;
+		padding: 1.5rem;
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
+		height: 280px;
+	}
+
+	.clinic-header {
+		display: flex;
 		align-items: center;
-		justify-content: center;
-		height: fit-content;
+		gap: 1rem;
+		margin-bottom: 0.75rem;
 	}
 
 	.clinic-logo {
-		margin-bottom: 1rem;
+		flex-shrink: 0;
 	}
 
 	.clinic-logo img {
-		border-radius: 50%;
+		width: 60px;
+		height: 60px;
+		object-fit: contain;
 	}
 
 	.clinic-name {
-		font-size: var(--font-size-lg);
+		font-size: var(--font-size-base);
 		font-weight: 600;
 		color: var(--color-secondary);
-		margin-bottom: 1rem;
+		line-height: 1.3;
+		text-align: left;
+		margin: 0;
 	}
 
 	.rating-display {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.75rem;
+		gap: 0.5rem;
 		margin-bottom: 0.5rem;
 	}
 
 	.stars-large {
 		color: #FFB400;
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		letter-spacing: 2px;
 	}
 
 	.rating-number {
-		font-size: 1.75rem;
+		font-size: 1.5rem;
 		font-weight: 700;
 		color: var(--color-secondary);
 	}
@@ -201,31 +215,38 @@ function formatDate(dateStr: string): string {
 	.review-count {
 		color: var(--color-text-light);
 		font-size: var(--font-size-sm);
-		margin-bottom: 1.5rem;
+		text-align: center;
+		margin-bottom: auto;
 	}
 
 	.write-review-btn {
-		display: inline-block;
+		display: block;
+		width: 100%;
 		background: white;
-		border: 1px solid #dadce0;
-		color: var(--color-primary);
-		padding: 0.75rem 1.5rem;
+		border: 1px solid #202124;
+		color: #202124;
+		padding: 0.625rem 1rem;
 		border-radius: 4px;
 		font-weight: 500;
 		text-decoration: none;
 		transition: var(--transition);
 		font-size: var(--font-size-sm);
+		text-align: center;
+		margin-top: auto;
 	}
 
 	.write-review-btn:hover {
 		background: #f8f9fa;
-		border-color: var(--color-primary);
 	}
 
 	/* Panel Derecho - Carrusel de Reseñas */
 	.reviews-carousel-wrapper {
 		position: relative;
-		padding: 0 50px;
+		padding: 0 60px;
+		overflow: visible;
+		min-width: 0;
+		width: calc(100% + 157px);
+		margin-left: 0;
 	}
 
 	.carousel-btn {
@@ -242,7 +263,7 @@ function formatDate(dateStr: string): string {
 		justify-content: center;
 		cursor: pointer;
 		transition: all 0.2s ease;
-		z-index: 10;
+		z-index: 100;
 		box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 	}
 
@@ -269,18 +290,23 @@ function formatDate(dateStr: string): string {
 	.reviews-list {
 		display: flex;
 		gap: 1rem;
-		overflow-x: hidden;
+		overflow-x: auto;
 		overflow-y: visible;
 		scroll-behavior: smooth;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	
+	.reviews-list::-webkit-scrollbar {
+		display: none;
 	}
 
 	.review-card {
 		background: white;
 		border-radius: 8px;
 		padding: 1.5rem;
-		width: calc(33.333% - 0.75rem);
+		width: 280px;
 		min-width: 280px;
-		max-width: 350px;
 		height: 280px;
 		flex-shrink: 0;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
