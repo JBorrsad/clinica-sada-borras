@@ -90,9 +90,9 @@ function normalizeReview(apiReview, placeId) {
       // Intentar parsear como timestamp con seconds
       if (publishTime.seconds) {
         time = new Date(publishTime.seconds * 1000).toISOString().split("T")[0];
-      } 
+      }
       // Intentar parsear como string ISO
-      else if (typeof publishTime === 'string') {
+      else if (typeof publishTime === "string") {
         time = new Date(publishTime).toISOString().split("T")[0];
       }
       // Si tiene el formato completo de objeto Date
@@ -103,7 +103,7 @@ function normalizeReview(apiReview, placeId) {
   } catch (error) {
     console.warn(`⚠️  Error parseando fecha de reseña, usando fecha actual`);
   }
-  
+
   // Fallback a fecha actual si no se pudo parsear
   if (!time) {
     time = new Date().toISOString().split("T")[0];
