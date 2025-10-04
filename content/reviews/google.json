@@ -1,4 +1,88 @@
 {
-  "last_updated": "2025-10-04T04:12:26.757Z",
-  "places": []
+  "last_updated": "2025-10-04T05:23:52.217Z",
+  "places": [
+    {
+      "place_id": "ChIJPZNNn_d3Wg0RxOoLrfHRghk",
+      "name": "CLINICA BORRAS",
+      "rating": 5,
+      "userRatingCount": 2,
+      "googleMapsUri": "https://maps.google.com/?cid=1838262433841146564&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+      "writeReviewUri": "https://search.google.com/local/writereview?placeid=ChIJPZNNn_d3Wg0RxOoLrfHRghk",
+      "reviews": [
+        {
+          "id": "ChZDSUhNMG9nS0VJQ0FnSUR2MjlXeEVnEAE",
+          "rating": 5,
+          "text": "",
+          "time": "2024-12-24",
+          "author": "Javier Sancho",
+          "author_uri": "https://www.google.com/maps/contrib/116331370617441944756/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJPZNNn_d3Wg0RxOoLrfHRghk&reviewId=ChZDSUhNMG9nS0VJQ0FnSUR2MjlXeEVnEAE"
+        },
+        {
+          "id": "ChdDSUhNMG9nS0VJQ0FnSUR1cnBuUG93RRAB",
+          "rating": 5,
+          "text": "",
+          "time": "2022-08-21",
+          "author": "Hthh",
+          "author_uri": "https://www.google.com/maps/contrib/106765256709767617683/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJPZNNn_d3Wg0RxOoLrfHRghk&reviewId=ChdDSUhNMG9nS0VJQ0FnSUR1cnBuUG93RRAB"
+        }
+      ]
+    },
+    {
+      "place_id": "ChIJvU47BVx3Wg0RKYHweIB2OQo",
+      "name": "Sada Borras",
+      "rating": 4.6,
+      "userRatingCount": 14,
+      "googleMapsUri": "https://maps.google.com/?cid=736750308208705833&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+      "writeReviewUri": "https://search.google.com/local/writereview?placeid=ChIJvU47BVx3Wg0RKYHweIB2OQo",
+      "reviews": [
+        {
+          "id": "ChZDSUhNMG9nS0VJQ0FnSURiOUwyU2NREAE",
+          "rating": 5,
+          "text": "I had a problem while on vacation and they fixed it quickly and very well. Very good professionals, and excellent treatment. I recommend without hesitation.",
+          "time": "2024-08-02",
+          "author": "Silvia",
+          "author_uri": "https://www.google.com/maps/contrib/101197619696511461220/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChZDSUhNMG9nS0VJQ0FnSURiOUwyU2NREAE"
+        },
+        {
+          "id": "ChZDSUhNMG9nS0VJQ0FnSUNkdWNxZktnEAE",
+          "rating": 5,
+          "text": "Very good professionals\nI went with a major problem, and they solved it with all the care in the world. Pilar and her team are wonderful.\nI also had a cleaning and left delighted.\nThey offer Botox treatments for certain conditions.\nWithout a doubt, the best dentists.",
+          "time": "2024-02-16",
+          "author": "Ale Ramirez",
+          "author_uri": "https://www.google.com/maps/contrib/105394241891119918120/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChZDSUhNMG9nS0VJQ0FnSUNkdWNxZktnEAE"
+        },
+        {
+          "id": "ChdDSUhNMG9nS0VJQ0FnSUNOMFlLUjR3RRAB",
+          "rating": 5,
+          "text": "I'm delighted with Pilar's treatment and professionalism. She advises and supports you throughout the entire process (in my case,\nimplants, whitening, and appliances) so you can rest easy and everything goes perfectly.\nI'm delighted with the result. Thank you!!!",
+          "time": "2024-01-15",
+          "author": "Cristina guruceaga eguillor",
+          "author_uri": "https://www.google.com/maps/contrib/110788533262584501410/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChdDSUhNMG9nS0VJQ0FnSUNOMFlLUjR3RRAB"
+        },
+        {
+          "id": "ChdDSUhNMG9nS0VJQ0FnSUMxaE5hWDRRRRAB",
+          "rating": 5,
+          "text": "Excellent care, great professionalism, and complete trust.\nI've been trusting Pilar and her team for six years, and I'm delighted! Since I've been in their hands, I've stopped having problems with an infection, and my mouth is better than ever.\nGreat professionals and team.",
+          "time": "2023-12-22",
+          "author": "Patri B",
+          "author_uri": "https://www.google.com/maps/contrib/105859135083199321958/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChdDSUhNMG9nS0VJQ0FnSUMxaE5hWDRRRRAB"
+        },
+        {
+          "id": "ChZDSUhNMG9nS0VJQ0FnSURKNHFyQlVREAE",
+          "rating": 5,
+          "text": "Thank you very much Uxue C. for your professionalism, it is incredible but in more than 30 years I have never been advised as much as you before. No one has had so much care and dedication, and I value every second invested in the process, and every word. You have talked to me about sleep, breathing, swallowing, all reasoned and meaningful. Thanks again and congratulations for your talent.\n\nThank you so much Uxue C. for your professionalism, it is awesome but in over 30 years I have never received such good advice as you.  No one has taken such care and dedication, and I appreciate every second invested in the process, and every word.  You talked to me about sleep, breathing, swallowing, all discussed and reasoned.  Thanks again and congratulations on your talent.",
+          "time": "2023-07-13",
+          "author": "D. Z.",
+          "author_uri": "https://www.google.com/maps/contrib/115186191245585966302/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChZDSUhNMG9nS0VJQ0FnSURKNHFyQlVREAE"
+        }
+      ]
+    }
+  ]
 }

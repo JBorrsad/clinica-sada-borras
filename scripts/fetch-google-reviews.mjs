@@ -83,10 +83,31 @@ function buildDeepLink(review, placeId) {
  * @returns {Object} - Reseña normalizada
  */
 function normalizeReview(apiReview, placeId) {
-  const publishTime = apiReview.publishTime;
-  const time = publishTime
-    ? new Date(publishTime.seconds * 1000).toISOString().split("T")[0]
-    : new Date().toISOString().split("T")[0];
+  let time;
+  try {
+    const publishTime = apiReview.publishTime;
+    if (publishTime) {
+      // Intentar parsear como timestamp con seconds
+      if (publishTime.seconds) {
+        time = new Date(publishTime.seconds * 1000).toISOString().split("T")[0];
+      } 
+      // Intentar parsear como string ISO
+      else if (typeof publishTime === 'string') {
+        time = new Date(publishTime).toISOString().split("T")[0];
+      }
+      // Si tiene el formato completo de objeto Date
+      else {
+        time = new Date(publishTime).toISOString().split("T")[0];
+      }
+    }
+  } catch (error) {
+    console.warn(`⚠️  Error parseando fecha de reseña, usando fecha actual`);
+  }
+  
+  // Fallback a fecha actual si no se pudo parsear
+  if (!time) {
+    time = new Date().toISOString().split("T")[0];
+  }
 
   return {
     id: extractReviewId(apiReview.name),
@@ -212,10 +233,8 @@ async function main() {
   );
 }
 
-// Ejecutar si es llamado directamente
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch((error) => {
-    console.error("💥 Error fatal:", error.message);
-    process.exit(1);
-  });
-}
+// Ejecutar siempre
+main().catch((error) => {
+  console.error("💥 Error fatal:", error.message);
+  process.exit(1);
+});
