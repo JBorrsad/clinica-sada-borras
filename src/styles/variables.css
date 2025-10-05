@@ -1,57 +1,58 @@
 /* Variables de diseño - Paleta extraída del template */
 :root {
-	/* Colores */
-	--color-primary: #00BFA6;
-	--color-primary-dark: #009688;
-	--color-primary-light: #E0F7F4;
-	--color-secondary: #1A1A2E;
-	--color-accent: #00D4B8;
-	--color-text: #333333;
-	--color-text-light: #666666;
-	--color-bg: #FFFFFF;
-	--color-bg-light: #F8FFFE;
-	--color-border: #E5E5E5;
-	
-	/* Tipografía */
-	--font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-	--font-size-base: 16px;
-	--font-size-sm: 14px;
-	--font-size-lg: 18px;
-	--font-size-xl: 24px;
-	--font-size-2xl: 32px;
-	--font-size-3xl: 42px;
-	--line-height-base: 1.6;
-	--line-height-heading: 1.2;
-	
-	/* Espaciado */
-	--spacing-xs: 0.5rem;
-	--spacing-sm: 1rem;
-	--spacing-md: 2rem;
-	--spacing-lg: 4rem;
-	--spacing-xl: 6rem;
-	--spacing-2xl: 8rem;
-	
-	/* Otros */
-	--border-radius: 8px;
-	--border-radius-lg: 12px;
-	--transition: 300ms ease;
-	--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-	--shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-	--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
-	
-	/* Contenedor */
-	--container-max-width: 1200px;
-	--container-padding: 1.5rem;
+  /* Colores */
+  --color-primary: #00bfa6;
+  --color-primary-dark: #009688;
+  --color-primary-light: #e0f7f4;
+  --color-secondary: #1a1a2e;
+  --color-accent: #00d4b8;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #ffffff;
+  --color-bg-light: #d8f5f0;
+  --color-border: #e5e5e5;
+  --color-divider: #e8e8e8;
+
+  /* Tipografía */
+  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 42px;
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+
+  /* Espaciado */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  --spacing-2xl: 8rem;
+
+  /* Otros */
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  --transition: 300ms ease;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* Contenedor */
+  --container-max-width: 1200px;
+  --container-padding: 1.5rem;
 }
 
 /* Breakpoints */
 @media (max-width: 767px) {
-	:root {
-		--font-size-2xl: 28px;
-		--font-size-3xl: 36px;
-		--spacing-lg: 3rem;
-		--spacing-xl: 4rem;
-		--container-padding: 1rem;
-	}
+  :root {
+    --font-size-2xl: 28px;
+    --font-size-3xl: 36px;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    --container-padding: 1rem;
+  }
 }
-
