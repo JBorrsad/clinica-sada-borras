@@ -122,8 +122,11 @@ Después de configurar los secrets:
 # Instalar dependencias
 npm install
 
-# Desarrollo (http://localhost:4321)
+# Desarrollo con fetch automático de reseñas (http://localhost:4321)
 npm run dev
+
+# Desarrollo sin fetch (más rápido)
+npm run dev:no-fetch
 
 # Build de producción (actualiza reseñas automáticamente)
 npm run build

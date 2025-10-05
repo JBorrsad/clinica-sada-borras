@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 // Configuración
 const API_BASE_URL = "https://places.googleapis.com/v1/places";
 const FIELDS = "displayName,rating,userRatingCount,googleMapsUri,reviews";
-const MAX_REVIEWS_PER_PLACE = 10;
+const MAX_REVIEWS_PER_PLACE = 50; // Aumentado para obtener más reseñas
 
 /**
  * Obtiene variables de entorno con validación
@@ -147,11 +147,18 @@ async function fetchPlaceData(placeId, apiKey) {
 
     const data = await response.json();
 
-    // Normalizar reseñas
+    // Normalizar reseñas y filtrar las que no tienen texto
     const reviews = (data.reviews || [])
-      .slice(0, MAX_REVIEWS_PER_PLACE)
       .map((review) => normalizeReview(review, placeId))
-      .sort((a, b) => new Date(b.time) - new Date(a.time)); // Más recientes primero
+      .filter((review) => review.text && review.text.trim().length > 0) // Solo reseñas con texto
+      .slice(0, MAX_REVIEWS_PER_PLACE)
+      .sort((a, b) => {
+        // Ordenar por rating (5★ primero) y luego por fecha
+        if (b.rating !== a.rating) {
+          return b.rating - a.rating;
+        }
+        return new Date(b.time) - new Date(a.time);
+      });
 
     return {
       place_id: placeId,

@@ -12,7 +12,12 @@ Este sitio se despliega automáticamente en GitHub Pages cada vez que se hace pu
 
 ```bash
 npm install
+
+# Desarrollo con fetch automático de reseñas
 npm run dev
+
+# Desarrollo sin fetch (más rápido)
+npm run dev:no-fetch
 ```
 
 ## Build

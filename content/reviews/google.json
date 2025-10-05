@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-10-05T14:35:05.211Z",
+  "last_updated": "2025-10-05T16:03:51.647Z",
   "places": [
     {
       "place_id": "ChIJvU47BVx3Wg0RKYHweIB2OQo",
@@ -63,26 +63,7 @@
       "userRatingCount": 2,
       "googleMapsUri": "https://maps.google.com/?cid=1838262433841146564&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
       "writeReviewUri": "https://search.google.com/local/writereview?placeid=ChIJPZNNn_d3Wg0RxOoLrfHRghk",
-      "reviews": [
-        {
-          "id": "ChZDSUhNMG9nS0VJQ0FnSUR2MjlXeEVnEAE",
-          "rating": 5,
-          "text": "",
-          "time": "2024-12-24",
-          "author": "Javier Sancho",
-          "author_uri": "https://www.google.com/maps/contrib/116331370617441944756/reviews",
-          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJPZNNn_d3Wg0RxOoLrfHRghk&reviewId=ChZDSUhNMG9nS0VJQ0FnSUR2MjlXeEVnEAE"
-        },
-        {
-          "id": "ChdDSUhNMG9nS0VJQ0FnSUR1cnBuUG93RRAB",
-          "rating": 5,
-          "text": "",
-          "time": "2022-08-21",
-          "author": "Hthh",
-          "author_uri": "https://www.google.com/maps/contrib/106765256709767617683/reviews",
-          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJPZNNn_d3Wg0RxOoLrfHRghk&reviewId=ChdDSUhNMG9nS0VJQ0FnSUR1cnBuUG93RRAB"
-        }
-      ]
+      "reviews": []
     }
   ]
 }

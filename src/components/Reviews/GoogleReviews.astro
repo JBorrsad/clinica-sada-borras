@@ -14,11 +14,19 @@ const averageRating = totalCount > 0 ? (totalRating / totalCount) : 0;
 // Obtener el primer lugar para el writeReviewUri
 const primaryPlace = reviewsData.places[0];
 
-// Combinar todas las reseñas de todos los lugares, filtrar y ordenar por fecha
+// Combinar todas las reseñas de todos los lugares, filtrar y ordenar
+// Criterios: 1) Solo reseñas con texto, 2) Rating mínimo de 3★, 3) Ordenar por rating (5★ primero), 4) Dentro de cada rating, ordenar por fecha (más nuevas primero)
 const allReviews = reviewsData.places
 	.flatMap(place => place.reviews.map(review => ({ ...review, placeName: place.name })))
-	.filter(review => review.rating >= 3 && review.text && review.text.trim().length > 0)
-	.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
+	.filter(review => review.text && review.text.trim().length > 0 && review.rating >= 3)
+	.sort((a, b) => {
+		// Primero ordenar por rating (de mayor a menor)
+		if (b.rating !== a.rating) {
+			return b.rating - a.rating;
+		}
+		// Si tienen el mismo rating, ordenar por fecha (más recientes primero)
+		return new Date(b.time).getTime() - new Date(a.time).getTime();
+	});
 
 // Función para formatear fecha como YYYY-MM-DD
 function formatDate(dateStr: string): string {
@@ -134,10 +142,6 @@ function formatDate(dateStr: string): string {
 			</div>
 		</div>
 		
-		<!-- Atribución -->
-		<div class="reviews-attribution">
-			<p>Datos y marca © Google</p>
-		</div>
 	</div>
 </section>
 

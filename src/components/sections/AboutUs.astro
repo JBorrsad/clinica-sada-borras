@@ -31,215 +31,148 @@ import { asset } from '../../utils/assets';
 </section>
 
 <script>
-	class Carousel {
-		track: HTMLElement | null;
-		indicators: NodeListOf<Element>;
-		slides: NodeListOf<Element>;
-		currentSlide: number;
-		totalSlides: number;
-		autoPlayInterval: number | null;
-		autoPlayDelay: number;
-		isTransitioning: boolean;
+	// Encapsular en IIFE para evitar conflictos con otros carruseles
+	(() => {
+		class AboutUsCarousel {
+			track: HTMLElement | null;
+			indicators: NodeListOf<Element>;
+			slides: NodeListOf<Element>;
+			currentSlide: number;
+			totalSlides: number;
+			autoPlayInterval: number | null;
+			autoPlayDelay: number;
+			isTransitioning: boolean;
 
-		constructor() {
-			this.track = document.getElementById('carousel-track');
-			this.indicators = document.querySelectorAll('.indicator');
-			this.slides = document.querySelectorAll('.carousel-slide');
-			this.currentSlide = 0;
-			this.totalSlides = this.slides.length;
-			this.autoPlayInterval = null;
-			this.autoPlayDelay = 7000;
-			this.isTransitioning = false;
-			
-			this.init();
-		}
-		
-		init() {
-			this.setupEventListeners();
-			this.startAutoPlay();
-		}
-		
-		setupEventListeners() {
-			// Event listeners para indicadores
-			this.indicators.forEach((indicator: Element, index: number) => {
-				indicator.addEventListener('click', () => this.goToSlide(index));
-			});
-			
-			// Touch events para móvil
-			let startX = 0;
-			let startY = 0;
-			let isScrolling = false;
-			
-			this.track?.addEventListener('touchstart', (e: TouchEvent) => {
-				startX = e.touches[0].clientX;
-				startY = e.touches[0].clientY;
-				isScrolling = false;
-			}, { passive: true });
-			
-			this.track?.addEventListener('touchmove', (e: TouchEvent) => {
-				if (!isScrolling) {
-					const deltaX = Math.abs(e.touches[0].clientX - startX);
-					const deltaY = Math.abs(e.touches[0].clientY - startY);
-					isScrolling = deltaY > deltaX;
-				}
+			constructor() {
+				this.track = document.getElementById('carousel-track');
+				this.indicators = document.querySelectorAll('#sobre-nosotros .indicator');
+				this.slides = document.querySelectorAll('#sobre-nosotros .carousel-slide');
+				this.currentSlide = 0;
+				this.totalSlides = this.slides.length;
+				this.autoPlayInterval = null;
+				this.autoPlayDelay = 7000;
+				this.isTransitioning = false;
 				
-				if (!isScrolling) {
-					e.preventDefault();
+				// Solo inicializar si los elementos existen
+				if (this.track && this.slides.length > 0) {
+					this.init();
 				}
-			}, { passive: false });
+			}
 			
-			this.track?.addEventListener('touchend', (e: TouchEvent) => {
-				if (!isScrolling) {
-					const endX = e.changedTouches[0].clientX;
-					const deltaX = startX - endX;
+			init() {
+				this.setupEventListeners();
+				this.startAutoPlay();
+			}
+			
+			setupEventListeners() {
+				// Event listeners para indicadores
+				this.indicators.forEach((indicator: Element, index: number) => {
+					indicator.addEventListener('click', () => this.goToSlide(index));
+				});
+			
+				// Touch events para móvil
+				let startX = 0;
+				let startY = 0;
+				let isScrolling = false;
+			
+				this.track?.addEventListener('touchstart', (e: TouchEvent) => {
+					startX = e.touches[0].clientX;
+					startY = e.touches[0].clientY;
+					isScrolling = false;
+				}, { passive: true });
+			
+				this.track?.addEventListener('touchmove', (e: TouchEvent) => {
+					if (!isScrolling) {
+						const deltaX = Math.abs(e.touches[0].clientX - startX);
+						const deltaY = Math.abs(e.touches[0].clientY - startY);
+						isScrolling = deltaY > deltaX;
+					}
 					
-					if (Math.abs(deltaX) > 50) {
-						if (deltaX > 0) {
-							this.nextSlide();
-						} else {
-							this.prevSlide();
+					if (!isScrolling) {
+						e.preventDefault();
+					}
+				}, { passive: false });
+			
+				this.track?.addEventListener('touchend', (e: TouchEvent) => {
+					if (!isScrolling) {
+						const endX = e.changedTouches[0].clientX;
+						const deltaX = startX - endX;
+						
+						if (Math.abs(deltaX) > 50) {
+							if (deltaX > 0) {
+								this.nextSlide();
+							} else {
+								this.prevSlide();
+							}
 						}
 					}
+				}, { passive: true });
+			
+				// Pausar auto-play al hacer hover
+				this.track?.addEventListener('mouseenter', () => this.pauseAutoPlay());
+				this.track?.addEventListener('mouseleave', () => this.startAutoPlay());
+			}
+			
+			goToSlide(targetSlide: number, direction: string = 'auto') {
+				if (this.isTransitioning || targetSlide === this.currentSlide) return;
+				
+				this.isTransitioning = true;
+				this.pauseAutoPlay();
+				
+				// Determinar dirección de la animación
+				if (direction === 'auto') {
+					direction = targetSlide > this.currentSlide ? 'right' : 'left';
 				}
-			}, { passive: true });
-			
-			// Pausar auto-play al hacer hover
-			this.track?.addEventListener('mouseenter', () => this.pauseAutoPlay());
-			this.track?.addEventListener('mouseleave', () => this.startAutoPlay());
-		}
-		
-		goToSlide(targetSlide: number, direction: string = 'auto') {
-			if (this.isTransitioning || targetSlide === this.currentSlide) return;
-			
-			this.isTransitioning = true;
-			this.pauseAutoPlay();
-			
-			// Determinar dirección de la animación
-			if (direction === 'auto') {
-				direction = targetSlide > this.currentSlide ? 'right' : 'left';
+				
+				// Actualizar indicadores
+				this.indicators.forEach((indicator: Element) => indicator.classList.remove('active'));
+				this.indicators[targetSlide].classList.add('active');
+				
+				// Aplicar animación del track
+				if (this.track) {
+					this.track.style.transform = `translateX(-${targetSlide * 50}%)`;
+				}
+				
+				// Resetear transición y actualizar slide actual
+				setTimeout(() => {
+					this.currentSlide = targetSlide;
+					this.isTransitioning = false;
+					this.startAutoPlay();
+				}, 600);
 			}
 			
-			// Actualizar indicadores
-			this.indicators.forEach((indicator: Element) => indicator.classList.remove('active'));
-			this.indicators[targetSlide].classList.add('active');
-			
-			// Aplicar animación del track
-			if (this.track) {
-				this.track.style.transform = `translateX(-${targetSlide * 50}%)`;
+			nextSlide() {
+				const nextSlide = (this.currentSlide + 1) % this.totalSlides;
+				this.goToSlide(nextSlide, 'right');
 			}
 			
-			// Resetear transición y actualizar slide actual
-			setTimeout(() => {
-				this.currentSlide = targetSlide;
-				this.isTransitioning = false;
-				this.startAutoPlay();
-			}, 600);
-		}
-		
-		nextSlide() {
-			const nextSlide = (this.currentSlide + 1) % this.totalSlides;
-			this.goToSlide(nextSlide, 'right');
-		}
-		
-		prevSlide() {
-			const prevSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
-			this.goToSlide(prevSlide, 'left');
-		}
-		
-		startAutoPlay() {
-			this.pauseAutoPlay();
-			this.autoPlayInterval = window.setInterval(() => {
-				this.nextSlide();
-			}, this.autoPlayDelay);
-		}
-		
-		pauseAutoPlay() {
-			if (this.autoPlayInterval) {
-				clearInterval(this.autoPlayInterval);
-				this.autoPlayInterval = null;
+			prevSlide() {
+				const prevSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
+				this.goToSlide(prevSlide, 'left');
+			}
+			
+			startAutoPlay() {
+				this.pauseAutoPlay();
+				this.autoPlayInterval = window.setInterval(() => {
+					this.nextSlide();
+				}, this.autoPlayDelay);
+			}
+			
+			pauseAutoPlay() {
+				if (this.autoPlayInterval) {
+					clearInterval(this.autoPlayInterval);
+					this.autoPlayInterval = null;
+				}
 			}
 		}
-	}
 	
-	// Inicializar carrusel cuando el DOM esté listo
-	document.addEventListener('DOMContentLoaded', () => {
-		new Carousel();
-		new TestimonialsCarousel();
-	});
-
-	class TestimonialsCarousel {
-		track: HTMLElement | null;
-		cards: NodeListOf<Element>;
-		prevBtn: HTMLElement | null;
-		nextBtn: HTMLElement | null;
-		currentIndex: number;
-		cardsPerView: number;
-		totalCards: number;
-
-		constructor() {
-			this.track = document.getElementById('testimonials-track');
-			this.cards = document.querySelectorAll('.testimonial-card');
-			this.prevBtn = document.getElementById('testimonials-prev');
-			this.nextBtn = document.getElementById('testimonials-next');
-			this.currentIndex = 0;
-			this.cardsPerView = 3;
-			this.totalCards = this.cards.length;
-
-			this.init();
+		// Inicializar carrusel cuando el DOM esté listo
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', () => new AboutUsCarousel());
+		} else {
+			new AboutUsCarousel();
 		}
-
-		init() {
-			this.updateCardsPerView();
-			this.setupEventListeners();
-			this.updateCarousel();
-		}
-
-		updateCardsPerView() {
-			if (window.innerWidth <= 768) {
-				this.cardsPerView = 1;
-			} else if (window.innerWidth <= 1024) {
-				this.cardsPerView = 2;
-			} else {
-				this.cardsPerView = 3;
-			}
-		}
-
-		setupEventListeners() {
-			this.prevBtn?.addEventListener('click', () => this.prevSlide());
-			this.nextBtn?.addEventListener('click', () => this.nextSlide());
-
-			window.addEventListener('resize', () => {
-				this.updateCardsPerView();
-				this.updateCarousel();
-			});
-		}
-
-		prevSlide() {
-			if (this.currentIndex > 0) {
-				this.currentIndex--;
-			} else {
-				this.currentIndex = this.totalCards - this.cardsPerView;
-			}
-			this.updateCarousel();
-		}
-
-		nextSlide() {
-			if (this.currentIndex < this.totalCards - this.cardsPerView) {
-				this.currentIndex++;
-			} else {
-				this.currentIndex = 0;
-			}
-			this.updateCarousel();
-		}
-
-		updateCarousel() {
-			if (this.track) {
-				const cardWidth = 100 / this.cardsPerView;
-				const translateX = -(this.currentIndex * cardWidth);
-				this.track.style.transform = `translateX(${translateX}%)`;
-			}
-		}
-	}
+	})();
 </script>
 
 <style>
@@ -434,279 +367,4 @@ import { asset } from '../../utils/assets';
 		}
 	}
 
-	/* Estilos para la sección de testimonios */
-	.testimonials {
-		background: white;
-		padding: var(--spacing-xl) 0;
-		position: relative;
-		z-index: 10;
-	}
-
-	.testimonials-grid {
-		display: grid;
-		grid-template-columns: 1fr 2fr;
-		gap: var(--spacing-lg);
-		align-items: start;
-	}
-
-	.testimonials-summary {
-		background: var(--color-bg-light);
-		padding: 2rem;
-		border-radius: 12px;
-		text-align: center;
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-	}
-
-	.clinic-logo img {
-		border-radius: 50%;
-		margin-bottom: 1rem;
-	}
-
-	.testimonials-summary h3 {
-		font-size: var(--font-size-lg);
-		color: var(--color-secondary);
-		margin-bottom: 1rem;
-		font-weight: 700;
-	}
-
-	.google-rating {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.stars {
-		display: flex;
-		gap: 2px;
-	}
-
-	.star {
-		color: #ddd;
-		font-size: 1.2rem;
-	}
-
-	.star.filled {
-		color: #ffc107;
-	}
-
-	.rating-text {
-		font-weight: 600;
-		color: var(--color-text);
-		font-size: var(--font-size-sm);
-	}
-
-	.review-count {
-		color: var(--color-text-light);
-		font-size: var(--font-size-sm);
-		margin-bottom: 1.5rem;
-	}
-
-	.write-review-btn {
-		background: transparent;
-		border: 2px solid var(--color-primary);
-		color: var(--color-primary);
-		padding: 0.75rem 1.5rem;
-		border-radius: var(--border-radius);
-		font-weight: 600;
-		cursor: pointer;
-		transition: var(--transition);
-		font-size: var(--font-size-sm);
-	}
-
-	.write-review-btn:hover {
-		background: var(--color-primary);
-		color: white;
-	}
-
-	.testimonials-carousel {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.testimonials-track {
-		display: flex;
-		transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-		gap: 1rem;
-	}
-
-	.testimonial-card {
-		flex: 0 0 33.333%;
-		background: white;
-		border-radius: 12px;
-		padding: 1.5rem;
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-		margin-right: 1rem;
-	}
-
-	.testimonial-header {
-		display: flex;
-		align-items: center;
-		margin-bottom: 1rem;
-	}
-
-	.user-avatar {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		background: var(--color-primary);
-		color: white;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-weight: 600;
-		margin-right: 0.75rem;
-		font-size: 1.1rem;
-	}
-
-	.user-info {
-		flex: 1;
-	}
-
-	.user-name {
-		font-weight: 600;
-		color: var(--color-text);
-		margin-bottom: 0.25rem;
-	}
-
-	.review-date {
-		font-size: var(--font-size-sm);
-		color: var(--color-text-light);
-	}
-	
-	.google-logo {
-		margin-left: auto;
-	}
-
-	.testimonial-rating {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 1rem;
-	}
-
-	.verified-badge {
-		background: #4285f4;
-		color: white;
-		font-size: var(--font-size-xs);
-		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
-		font-weight: 500;
-	}
-
-	.testimonial-text {
-		color: var(--color-text);
-		line-height: 1.6;
-		font-size: var(--font-size-sm);
-		margin: 0;
-	}
-
-	.testimonial-placeholder {
-		text-align: center;
-		padding: 2rem 1rem;
-	}
-
-	.placeholder-icon {
-		color: var(--color-primary);
-		margin-bottom: 1rem;
-		display: flex;
-		justify-content: center;
-	}
-
-	.testimonial-placeholder h4 {
-		color: var(--color-secondary);
-		font-size: var(--font-size-lg);
-		margin-bottom: 1rem;
-		font-weight: 600;
-	}
-
-	.testimonial-placeholder p {
-		color: var(--color-text-light);
-		line-height: 1.6;
-		margin-bottom: 1.5rem;
-		font-size: var(--font-size-sm);
-	}
-
-	.write-review-btn-small {
-		background: var(--color-primary);
-		color: white;
-		border: none;
-		padding: 0.75rem 1.5rem;
-		border-radius: var(--border-radius);
-		font-weight: 600;
-		cursor: pointer;
-		transition: var(--transition);
-		font-size: var(--font-size-sm);
-	}
-
-	.write-review-btn-small:hover {
-		background: var(--color-primary-dark);
-		transform: translateY(-2px);
-	}
-
-	.carousel-arrow {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		background: white;
-		border: 2px solid var(--color-border);
-		border-radius: 50%;
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-		transition: var(--transition);
-		z-index: 2;
-	}
-
-	.carousel-arrow:hover {
-		background: var(--color-primary);
-		color: white;
-		border-color: var(--color-primary);
-	}
-
-	.carousel-arrow.prev {
-		left: -20px;
-	}
-
-	.carousel-arrow.next {
-		right: -20px;
-	}
-	
-	@media (max-width: 1024px) {
-		.testimonials-grid {
-			grid-template-columns: 1fr;
-			gap: var(--spacing-md);
-		}
-		
-		.testimonial-card {
-			flex: 0 0 50%;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.testimonials {
-			padding: var(--spacing-lg) 0;
-		}
-
-		.testimonials-summary {
-			padding: 1.5rem;
-		}
-
-		.testimonial-card {
-			flex: 0 0 100%;
-			padding: 1rem;
-		}
-
-		.carousel-arrow {
-			display: none;
-		}
-
-		.testimonials-track {
-			gap: 0.5rem;
-		}
-	}
 </style>

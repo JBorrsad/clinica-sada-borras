@@ -46,14 +46,17 @@ Cuando ejecutas `npm run build`, automáticamente se ejecuta `npm run fetch:revi
 # Obtener reseñas manualmente (sin build)
 npm run fetch:reviews
 
+# Desarrollo con fetch automático de reseñas
+npm run dev
+
+# Desarrollo sin fetch (más rápido, usa JSON existente)
+npm run dev:no-fetch
+
 # Build completo con reseñas actualizadas
 npm run build
 
 # Build sin actualizar reseñas (más rápido, usa JSON existente)
 npm run build:no-fetch
-
-# Desarrollo (no actualiza reseñas, solo sirve el sitio)
-npm run dev
 ```
 
 ## Configuración Necesaria
@@ -138,10 +141,14 @@ Esto ejecutará el workflow manualmente y actualizará las reseñas de inmediato
 
 El script aplica los siguientes criterios automáticamente:
 
-- **Máximo 10 reseñas por lugar** (las más recientes)
-- **Ordenadas por fecha** (más recientes primero)
+- **Solo reseñas con texto**: Las reseñas sin contenido escrito se filtran automáticamente
+- **Rating mínimo**: Solo se muestran reseñas de 3⭐ o más (se ocultan reseñas negativas de 1⭐ y 2⭐)
+- **Ordenación inteligente**:
+  1. Primero por rating (5⭐ → 4⭐ → 3⭐)
+  2. Dentro de cada rating, por fecha (más recientes primero)
+- **Máximo 50 reseñas por lugar** (las que cumplan los criterios)
 - **En español** (languageCode=es en la API)
-- **Con todos los datos** (rating, texto, autor, fecha)
+- **Con datos completos** (rating, texto, autor, fecha)
 
 ## Archivo de Reseñas
 
