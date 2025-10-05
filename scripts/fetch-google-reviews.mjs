@@ -5,6 +5,7 @@
  * Genera content/reviews/google.json para consumo estático
  */
 
+import "dotenv/config";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";

@@ -125,12 +125,29 @@ npm install
 # Desarrollo (http://localhost:4321)
 npm run dev
 
-# Build de producción
+# Build de producción (actualiza reseñas automáticamente)
 npm run build
+
+# Build sin actualizar reseñas (más rápido)
+npm run build:no-fetch
+
+# Obtener reseñas de Google manualmente
+npm run fetch:reviews
 
 # Preview del build
 npm run preview
 ```
+
+### Variables de Entorno para Desarrollo Local
+
+Para actualizar las reseñas localmente, crea un archivo `.env` en la raíz:
+
+```bash
+GOOGLE_MAPS_API_KEY=tu_api_key_aqui
+GOOGLE_PLACE_IDS=place_id_1,place_id_2
+```
+
+Ver [docs/RESEÑAS.md](docs/RESEÑAS.md) para más información sobre la gestión de reseñas.
 
 ---
 

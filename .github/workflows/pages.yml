@@ -5,9 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # 00:00 CET (UTC+1) = 23:00 UTC
+    # Ejecuta diariamente a las 00:00 hora española (medianoche)
+    # 00:00 CET (UTC+1) = 23:00 UTC (invierno)
     - cron: "0 23 * * *"
-    # 00:00 CEST (UTC+2) = 22:00 UTC
+    # 00:00 CEST (UTC+2) = 22:00 UTC (verano)
     - cron: "0 22 * * *"
 
 permissions:
@@ -56,12 +57,12 @@ jobs:
             fi
           fi
           export GOOGLE_PLACE_IDS="$PLACE_IDS"
-          node scripts/fetch-google-reviews.mjs || echo "⚠️  WARN: fetch script skipped/failed (leaving old JSON if exists)"
+          npm run fetch:reviews || echo "⚠️  WARN: fetch script skipped/failed (leaving old JSON if exists)"
 
       - name: Build Astro site
         env:
           NODE_ENV: production
-        run: npm run build
+        run: npm run build:no-fetch
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

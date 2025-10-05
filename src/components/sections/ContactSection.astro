@@ -146,19 +146,19 @@ import { CONTACT_INFO } from '../../utils/constants';
 		grid-template-columns: 1fr auto 1fr;
 		gap: 0;
 		margin-top: var(--spacing-lg);
-		align-items: start;
+		align-items: stretch;
 	}
 	
 	.contact-separator {
 		width: 80px;
-		height: 100%;
-		min-height: 200px;
+		align-self: stretch;
 	}
 	
 	.clinic-contact {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
+		height: 100%;
 	}
 	
 	.clinic-name {
@@ -168,6 +168,7 @@ import { CONTACT_INFO } from '../../utils/constants';
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		margin: 0;
+		min-height: 2rem;
 	}
 	
 	.contact-info {
@@ -178,12 +179,15 @@ import { CONTACT_INFO } from '../../utils/constants';
 		padding: 2rem;
 		border-radius: var(--border-radius-lg);
 		box-shadow: var(--shadow-sm);
+		min-height: 300px;
+		flex: 1;
 	}
 	
 	.info-item {
 		display: flex;
 		gap: 1rem;
 		align-items: flex-start;
+		min-height: 70px;
 	}
 	
 	.info-icon {
