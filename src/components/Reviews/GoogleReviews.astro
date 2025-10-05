@@ -88,8 +88,8 @@ function formatDate(dateStr: string): string {
 						</button>
 						
 						<div class="reviews-list" id="reviews-list">
-							{allReviews.slice(0, 10).map((review) => (
-								<article class="review-card">
+							{allReviews.slice(0, 10).map((review, index) => (
+								<article class="review-card" data-review-id={index}>
 									<div class="review-header">
 										<div class="author-avatar">
 											{getInitials(review.author)}
@@ -122,7 +122,14 @@ function formatDate(dateStr: string): string {
 								</div>
 									
 									{review.text && (
-										<p class="review-text">{review.text}</p>
+										<div class="review-text-wrapper">
+											<p class="review-text">{review.text}</p>
+											{review.text.length > 200 && (
+												<button class="review-toggle-btn" data-action="expand">
+													Leer más
+												</button>
+											)}
+										</div>
 									)}
 								</article>
 							))}
@@ -231,21 +238,23 @@ function formatDate(dateStr: string): string {
 	.write-review-btn {
 		display: block;
 		width: 100%;
-		background: white;
-		border: 1px solid #202124;
-		color: #202124;
-		padding: 0.625rem 1rem;
-		border-radius: 4px;
-		font-weight: 500;
+		background: var(--c-primary);
+		border: none;
+		color: white;
+		padding: 0.75rem 1.5rem;
+		border-radius: var(--rad);
+		font-weight: 600;
 		text-decoration: none;
 		transition: var(--transition);
-		font-size: var(--font-size-sm);
+		font-size: 15px;
 		text-align: center;
 		margin-top: auto;
+		font-family: var(--ff-body);
 	}
 
 	.write-review-btn:hover {
-		background: #f8f9fa;
+		filter: brightness(0.92);
+		transform: translateY(-1px);
 	}
 
 	/* Panel Derecho - Carrusel de Reseñas */
@@ -256,6 +265,7 @@ function formatDate(dateStr: string): string {
 		min-width: 0;
 		width: calc(100% + 157px);
 		margin-left: 0;
+		min-height: 280px;
 	}
 
 	.carousel-btn {
@@ -304,6 +314,7 @@ function formatDate(dateStr: string): string {
 		scroll-behavior: smooth;
 		scrollbar-width: none;
 		-ms-overflow-style: none;
+		align-items: flex-start;
 	}
 	
 	.reviews-list::-webkit-scrollbar {
@@ -320,10 +331,16 @@ function formatDate(dateStr: string): string {
 		flex-shrink: 0;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 		border: 1px solid #e8eaed;
-		transition: var(--transition);
+		transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
+	}
+	
+	.review-card.expanded {
+		height: auto;
+		max-height: 800px;
+		overflow: visible;
 	}
 
 	.review-card:hover {
@@ -391,18 +408,53 @@ function formatDate(dateStr: string): string {
 		flex-shrink: 0;
 	}
 
+	.review-text-wrapper {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+	}
+	
 	.review-text {
 		color: #3c4043;
 		font-size: 14px;
 		line-height: 1.5;
-		margin: 0;
+		margin: 0 0 0.75rem 0;
 		overflow: hidden;
 		display: -webkit-box;
-		-webkit-line-clamp: 6;
+		-webkit-line-clamp: 5;
 		-webkit-box-orient: vertical;
-		flex: 1;
 		font-family: 'Roboto', var(--ff-body);
 		font-weight: 400;
+		word-wrap: break-word;
+	}
+	
+	.review-text.expanded {
+		display: block;
+		-webkit-line-clamp: unset;
+		-webkit-box-orient: unset;
+		overflow: visible;
+		margin-bottom: 0.75rem;
+		text-overflow: clip;
+	}
+	
+	.review-toggle-btn {
+		background: none;
+		border: none;
+		color: #1a73e8;
+		font-size: 13px;
+		font-family: 'Roboto', var(--ff-body);
+		font-weight: 500;
+		cursor: pointer;
+		padding: 0;
+		text-align: left;
+		transition: color 0.2s ease;
+		margin-top: auto;
+		flex-shrink: 0;
+	}
+	
+	.review-toggle-btn:hover {
+		text-decoration: underline;
 	}
 
 	.no-reviews {
@@ -517,10 +569,60 @@ function formatDate(dateStr: string): string {
 		}
 	}
 
-	// Inicializar carrusel
+	class ReviewTextExpander {
+		constructor() {
+			this.init();
+		}
+		
+		init() {
+			const toggleButtons = document.querySelectorAll('.review-toggle-btn');
+			
+			console.log('ReviewTextExpander: Botones encontrados:', toggleButtons.length);
+			
+			toggleButtons.forEach((btn) => {
+				btn.addEventListener('click', (e) => {
+					e.stopPropagation();
+					
+					const button = btn as HTMLButtonElement;
+					const card = button.closest('.review-card') as HTMLElement;
+					const textElement = card?.querySelector('.review-text') as HTMLElement;
+					
+					if (!textElement || !card) {
+						console.log('ReviewTextExpander: No se encontró textElement o card');
+						return;
+					}
+					
+					const action = button.getAttribute('data-action');
+					
+					if (action === 'expand') {
+						// Expandir
+						const fullHeight = textElement.scrollHeight + 200; // altura del texto + espacio para header/rating/button
+						card.style.height = fullHeight + 'px';
+						textElement.classList.add('expanded');
+						card.classList.add('expanded');
+						button.setAttribute('data-action', 'collapse');
+						button.textContent = 'Ocultar';
+					} else {
+						// Colapsar
+						card.style.height = '280px';
+						textElement.classList.remove('expanded');
+						card.classList.remove('expanded');
+						button.setAttribute('data-action', 'expand');
+						button.textContent = 'Leer más';
+					}
+				});
+			});
+		}
+	}
+	
+	// Inicializar carrusel y expansor
 	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', () => new ReviewsCarousel());
+		document.addEventListener('DOMContentLoaded', () => {
+			new ReviewsCarousel();
+			new ReviewTextExpander();
+		});
 	} else {
 		new ReviewsCarousel();
+		new ReviewTextExpander();
 	}
 </script>

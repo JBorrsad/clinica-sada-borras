@@ -15,7 +15,6 @@ import { asset } from '../../utils/assets';
 	<div class="container hero-content">
 		<div class="hero-left">
 			<h1>Tu Clínica Dental de Confianza en Pamplona y Tafalla</h1>
-			<p class="hero-services">Implantología · Estética Dental · Odontopediatría</p>
 		</div>
 		<div class="hero-right">
 			<p class="hero-description">Llevamos más de 20 años cuidando sonrisas en Navarra. Cuidamos cada aspecto de tu experiencia dental con un trato cercano, profesional y adaptado a ti en unas instalaciones modernas equipadas con tecnología avanzada.</p>
@@ -81,25 +80,20 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.hero h1 {
-		font-size: var(--fs-h1);
+		font-size: 40px;
 		color: white;
 		margin-bottom: 1.5rem;
 		line-height: 1.2;
 		font-family: var(--ff-head);
-	}
-	
-	.hero-services {
-		font-size: var(--font-size-lg);
-		color: var(--c-ink-strong);
-		font-weight: 600;
-		font-family: var(--ff-body);
+		font-weight: 700;
 	}
 	
 	.hero-description {
-		font-size: var(--font-size-base);
+		font-size: 19px;
 		margin-bottom: 2rem;
-		opacity: 0.9;
-		line-height: 1.7;
+		opacity: 0.95;
+		line-height: 1.6;
+		color: white;
 	}
 	
 	.hero-cta {
@@ -113,10 +107,11 @@ import { asset } from '../../utils/assets';
 		padding: 1rem 2rem;
 		border-radius: var(--border-radius);
 		font-weight: 600;
-		font-size: var(--font-size-base);
+		font-size: 15px;
 		transition: var(--transition);
 		display: inline-block;
 		text-align: center;
+		font-family: var(--ff-body);
 	}
 	
 	.btn-primary {
@@ -141,20 +136,16 @@ import { asset } from '../../utils/assets';
 			gap: 2rem;
 		}
 		
-		.hero-right {
-			padding-top: 0;
-		}
-		
 		.hero h1 {
-			font-size: 2rem;
-		}
-		
-		.hero-services {
-			font-size: var(--font-size-base);
+			font-size: 32px;
 		}
 		
 		.hero-description {
-			font-size: 0.9375rem;
+			font-size: 17px;
+		}
+		
+		.hero-right {
+			padding-top: 0;
 		}
 		
 		.btn {

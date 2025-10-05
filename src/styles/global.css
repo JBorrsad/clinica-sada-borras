@@ -9,21 +9,20 @@
     "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     sans-serif;
 
-  /* Colores (desde el logo) */
-  --c-ink: #002247;
+  /* Colores de marca */
+  --c-ink: #0e2e55;
   --c-primary: #00a097;
   --c-accent: #3bc6b8;
   --c-bg: #f7fbfb;
-  --c-ink-strong: #090e27;
   --c-gray-700: #4a5568;
   --c-gray-500: #718096;
   --c-gray-200: #e2e8f0;
 
   /* Escala tipográfica responsive */
-  --fs-h1: clamp(2.25rem, 2.2vw + 1.6rem, 3.25rem); /* 36-52px - Hero */
-  --fs-h2: clamp(2rem, 2.5vw + 1.2rem, 2.75rem); /* 32-44px - Secciones */
-  --fs-h3: clamp(1.5rem, 1.5vw + 1rem, 1.875rem); /* 24-30px - Subsecciones */
-  --fs-h4: clamp(1.125rem, 0.8vw + 1rem, 1.375rem); /* 18-22px - Tarjetas */
+  --fs-h1: clamp(2.4rem, 3vw + 1rem, 3.5rem);
+  --fs-h2: clamp(2rem, 1.9vw + 1rem, 2.75rem);
+  --fs-h3: clamp(1.6rem, 1.2vw + 0.9rem, 2rem);
+  --fs-card-title: clamp(1.25rem, 0.7vw + 1.1rem, 1.625rem);
   --fs-body: clamp(1rem, 0.25vw + 0.95rem, 1.125rem);
   --fs-small: clamp(0.875rem, 0.2vw + 0.8rem, 0.9375rem);
 
@@ -46,10 +45,11 @@
   --transition: all 0.3s ease;
 
   /* Compatibilidad con variables antiguas */
+  --c-ink-strong: var(--c-ink);
   --font-primary: var(--ff-body);
   --color-primary: var(--c-primary);
   --color-primary-dark: #008c83;
-  --color-secondary: var(--c-ink-strong);
+  --color-secondary: var(--c-ink);
   --color-text: var(--c-ink);
   --color-text-light: var(--c-gray-700);
   --color-bg: var(--c-bg);
@@ -106,7 +106,7 @@ h4,
 h5,
 h6 {
   font-family: var(--ff-head);
-  color: var(--c-ink-strong);
+  color: var(--c-ink);
   line-height: 1.15;
   letter-spacing: 0.1px;
   margin-bottom: 1rem;
@@ -115,11 +115,13 @@ h6 {
 h1 {
   font-size: var(--fs-h1);
   font-weight: 700;
+  line-height: 1.12;
 }
 
 h2 {
   font-size: var(--fs-h2);
   font-weight: 700;
+  line-height: 1.18;
 }
 
 h3 {
@@ -128,7 +130,7 @@ h3 {
 }
 
 h4 {
-  font-size: var(--fs-h4);
+  font-size: var(--fs-card-title);
   font-weight: 600;
 }
 

@@ -38,10 +38,9 @@ import { asset } from '../../utils/assets';
 	.header {
 		position: sticky;
 		top: 0;
-		background: var(--color-bg);
-		box-shadow: var(--shadow-sm);
+		background: #FFFFFF;
+		box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
 		z-index: 1000;
-		padding: 1rem 0;
 	}
 	
 	.nav {
@@ -49,12 +48,18 @@ import { asset } from '../../utils/assets';
 		align-items: center;
 		justify-content: space-between;
 		gap: 2rem;
+		padding: 1rem 0;
+	}
+	
+	.logo {
+		display: flex;
+		align-items: center;
 	}
 	
 	.logo img {
 		display: block;
 		width: auto;
-		height: 35px;
+		height: 32px;
 	}
 	
 	.menu-toggle {
@@ -84,13 +89,23 @@ import { asset } from '../../utils/assets';
 		padding: 0;
 		flex: 1;
 		justify-content: center;
+		align-items: center;
+	}
+	
+	.nav-list li {
+		margin: 0;
+		padding: 0;
 	}
 	
 	.nav-list a {
-		color: var(--color-secondary);
+		color: var(--c-ink);
 		font-weight: 500;
+		font-family: var(--ff-body);
+		font-size: 0.9375rem;
 		position: relative;
 		padding: 0.5rem 0;
+		display: inline-block;
+		line-height: 1.5;
 	}
 	
 	.nav-list a::after {
@@ -109,13 +124,17 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.btn-cta {
-		background: var(--color-primary);
+		background: var(--c-primary);
 		color: white;
-		padding: 0.75rem 1.5rem;
+		padding: 0.5rem 1rem;
 		border-radius: var(--border-radius);
 		font-weight: 600;
+		font-family: var(--ff-body);
+		font-size: 0.875rem;
 		transition: var(--transition);
 		white-space: nowrap;
+		display: flex;
+		align-items: center;
 	}
 	
 	.btn-cta:hover {
