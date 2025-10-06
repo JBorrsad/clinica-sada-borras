@@ -129,11 +129,13 @@ import { asset } from '../../utils/assets';
 	@media (max-width: 767px) {
 		.hero {
 			min-height: 500px;
+			padding: 0 1rem;
 		}
 		
 		.hero-content {
 			grid-template-columns: 1fr;
 			gap: 2rem;
+			padding: var(--spacing-lg) 0;
 		}
 		
 		.hero h1 {
@@ -149,7 +151,9 @@ import { asset } from '../../utils/assets';
 		}
 		
 		.btn {
-			width: 100%;
+			width: auto;
+			display: inline-block;
+			min-width: 200px;
 		}
 	}
 </style>
