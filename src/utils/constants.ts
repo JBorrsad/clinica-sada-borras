@@ -47,7 +47,7 @@ export const SERVICES = [
 	},
 	{
 		id: 'odontologia-biologica',
-		title: 'Odontología Biológica (RMR)',
+		title: 'Rehabilitación Masticatoria-Respiratoria',
 		icon: 'tesicon5.png',
 		image: '/img/servicios_cards/rmr.png',
 		description: 'Rehabilitamos en niños y adultos las funciones vegetativas primarias: masticación, respiración, deglución y fonación.',
