@@ -480,12 +480,40 @@ function formatDate(dateStr: string): string {
 			gap: var(--spacing-md);
 		}
 
+		.reviews-carousel-wrapper {
+			width: 100%;
+			margin-left: 0;
+			padding: 0 50px;
+		}
+
 		.carousel-btn {
-			display: none;
+			display: flex;
 		}
 
 		.reviews-list {
-			overflow-x: auto;
+			overflow: visible;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+		}
+
+		.review-card {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			top: 0;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+		}
+
+		.review-card.active-mobile {
+			opacity: 1;
+			pointer-events: auto;
+			position: relative;
+			left: auto;
+			transform: none;
 		}
 	}
 
@@ -499,13 +527,30 @@ function formatDate(dateStr: string): string {
 		}
 
 		.review-card {
-			width: 280px;
+			width: 100%;
 			padding: 1.25rem;
 		}
 
 		.rating-display {
 			flex-direction: column;
 			gap: 0.5rem;
+		}
+
+		.reviews-carousel-wrapper {
+			padding: 0 45px;
+		}
+
+		.carousel-btn {
+			width: 40px;
+			height: 40px;
+		}
+
+		.carousel-btn.prev {
+			left: 0;
+		}
+
+		.carousel-btn.next {
+			right: 0;
 		}
 	}
 </style>
@@ -516,12 +561,22 @@ function formatDate(dateStr: string): string {
 		prevBtn: HTMLButtonElement | null;
 		nextBtn: HTMLButtonElement | null;
 		scrollAmount: number;
+		isMobile: boolean;
+		currentIndex: number;
+		cards: NodeListOf<HTMLElement> | null;
+		touchStartX: number;
+		touchEndX: number;
 
 		constructor() {
 			this.container = document.getElementById('reviews-list');
 			this.prevBtn = document.getElementById('reviews-prev') as HTMLButtonElement;
 			this.nextBtn = document.getElementById('reviews-next') as HTMLButtonElement;
 			this.scrollAmount = 340; // Ancho de tarjeta (320px) + gap (20px)
+			this.isMobile = window.innerWidth <= 1024;
+			this.currentIndex = 0;
+			this.cards = null;
+			this.touchStartX = 0;
+			this.touchEndX = 0;
 
 			this.init();
 		}
@@ -529,15 +584,70 @@ function formatDate(dateStr: string): string {
 		init() {
 			if (!this.container || !this.prevBtn || !this.nextBtn) return;
 
-			this.prevBtn.addEventListener('click', () => this.scroll('left'));
-			this.nextBtn.addEventListener('click', () => this.scroll('right'));
+			this.cards = this.container.querySelectorAll('.review-card');
 
-			// Actualizar estado de botones al hacer scroll
-			this.container.addEventListener('scroll', () => this.updateButtons());
-			this.updateButtons();
+			if (this.isMobile) {
+				this.initMobile();
+			} else {
+				this.initDesktop();
+			}
+
+			// Detectar cambios de tamaño de pantalla
+			window.addEventListener('resize', () => {
+				const wasMobile = this.isMobile;
+				this.isMobile = window.innerWidth <= 1024;
+				
+				if (wasMobile !== this.isMobile) {
+					this.cleanup();
+					if (this.isMobile) {
+						this.initMobile();
+					} else {
+						this.initDesktop();
+					}
+				}
+			});
 		}
 
-		scroll(direction: 'left' | 'right') {
+		initDesktop() {
+			if (!this.container) return;
+
+			this.prevBtn?.addEventListener('click', () => this.scrollDesktop('left'));
+			this.nextBtn?.addEventListener('click', () => this.scrollDesktop('right'));
+
+			// Actualizar estado de botones al hacer scroll
+			this.container.addEventListener('scroll', () => this.updateDesktopButtons());
+			this.updateDesktopButtons();
+		}
+
+		initMobile() {
+			if (!this.cards) return;
+
+			// Marcar la primera tarjeta como activa
+			this.cards.forEach((card, index) => {
+				if (index === 0) {
+					card.classList.add('active-mobile');
+				} else {
+					card.classList.remove('active-mobile');
+				}
+			});
+
+			this.prevBtn?.addEventListener('click', () => this.navigateMobile('prev'));
+			this.nextBtn?.addEventListener('click', () => this.navigateMobile('next'));
+
+			// Soporte para swipe
+			this.container?.addEventListener('touchstart', (e) => {
+				this.touchStartX = e.touches[0].clientX;
+			});
+
+			this.container?.addEventListener('touchend', (e) => {
+				this.touchEndX = e.changedTouches[0].clientX;
+				this.handleSwipe();
+			});
+
+			this.updateMobileButtons();
+		}
+
+		scrollDesktop(direction: 'left' | 'right') {
 			if (!this.container) return;
 
 			// Obtener el ancho de una tarjeta + gap
@@ -558,7 +668,42 @@ function formatDate(dateStr: string): string {
 			});
 		}
 
-		updateButtons() {
+		navigateMobile(direction: 'prev' | 'next') {
+			if (!this.cards) return;
+
+			if (direction === 'next' && this.currentIndex < this.cards.length - 1) {
+				this.currentIndex++;
+			} else if (direction === 'prev' && this.currentIndex > 0) {
+				this.currentIndex--;
+			}
+
+			this.cards.forEach((card, index) => {
+				if (index === this.currentIndex) {
+					card.classList.add('active-mobile');
+				} else {
+					card.classList.remove('active-mobile');
+				}
+			});
+
+			this.updateMobileButtons();
+		}
+
+		handleSwipe() {
+			const swipeThreshold = 50; // 50px mínimo para detectar swipe
+			const diff = this.touchStartX - this.touchEndX;
+
+			if (Math.abs(diff) > swipeThreshold) {
+				if (diff > 0) {
+					// Swipe hacia la izquierda = siguiente
+					this.navigateMobile('next');
+				} else {
+					// Swipe hacia la derecha = anterior
+					this.navigateMobile('prev');
+				}
+			}
+		}
+
+		updateDesktopButtons() {
 			if (!this.container || !this.prevBtn || !this.nextBtn) return;
 
 			const isAtStart = this.container.scrollLeft <= 0;
@@ -566,6 +711,31 @@ function formatDate(dateStr: string): string {
 
 			this.prevBtn.disabled = isAtStart;
 			this.nextBtn.disabled = isAtEnd;
+		}
+
+		updateMobileButtons() {
+			if (!this.cards || !this.prevBtn || !this.nextBtn) return;
+
+			this.prevBtn.disabled = this.currentIndex === 0;
+			this.nextBtn.disabled = this.currentIndex === this.cards.length - 1;
+		}
+
+		cleanup() {
+			// Remover event listeners antiguos
+			if (this.prevBtn) {
+				this.prevBtn.replaceWith(this.prevBtn.cloneNode(true));
+				this.prevBtn = document.getElementById('reviews-prev') as HTMLButtonElement;
+			}
+			if (this.nextBtn) {
+				this.nextBtn.replaceWith(this.nextBtn.cloneNode(true));
+				this.nextBtn = document.getElementById('reviews-next') as HTMLButtonElement;
+			}
+			if (this.container) {
+				const newContainer = this.container.cloneNode(true) as HTMLElement;
+				this.container.replaceWith(newContainer);
+				this.container = document.getElementById('reviews-list');
+				this.cards = this.container?.querySelectorAll('.review-card') || null;
+			}
 		}
 	}
 
