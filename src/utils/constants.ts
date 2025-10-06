@@ -41,7 +41,7 @@ export const SERVICES = [
 		id: 'odontopediatria',
 		title: 'Odontopediatría',
 		icon: 'tesicon4.png',
-		image: '/img/servicios_cards/qs01.jpg',
+		image: '/img/servicios_cards/qs02.jpg',
 		description: 'Participamos en el Programa de Atención Dental Infantil (PADI) del Servicio Navarro de Salud, ofreciendo atención dental básica gratuita para niños.',
 		features: ['Programa PADI', 'Selladores de fisuras', 'Tratamiento sin miedo']
 	},
@@ -49,7 +49,7 @@ export const SERVICES = [
 		id: 'odontologia-biologica',
 		title: 'Odontología Biológica (RMR)',
 		icon: 'tesicon5.png',
-		image: '/img/servicios_cards/rmr.jpg',
+		image: '/img/servicios_cards/rmr.png',
 		description: 'Rehabilitamos en niños y adultos las funciones vegetativas primarias: masticación, respiración, deglución y fonación.',
 		features: ['Rehabilitación respiratoria', 'Mejora de la masticación', 'Tratamiento integral']
 	},

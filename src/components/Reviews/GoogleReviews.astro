@@ -236,20 +236,21 @@ function formatDate(dateStr: string): string {
 	}
 
 	.write-review-btn {
-		display: block;
-		width: 100%;
+		display: inline-block;
+		width: auto;
 		background: var(--c-primary);
 		border: none;
 		color: white;
-		padding: 0.75rem 1.5rem;
+		padding: 0.625rem 1.25rem;
 		border-radius: var(--rad);
 		font-weight: 600;
 		text-decoration: none;
 		transition: var(--transition);
-		font-size: 15px;
+		font-size: 14px;
 		text-align: center;
 		margin-top: auto;
 		font-family: var(--ff-body);
+		white-space: nowrap;
 	}
 
 	.write-review-btn:hover {
@@ -481,13 +482,42 @@ function formatDate(dateStr: string): string {
 	@media (max-width: 1024px) {
 		.reviews-grid {
 			grid-template-columns: 1fr;
-			gap: var(--spacing-md);
+			gap: 1.5rem;
+		}
+
+		.reviews-summary {
+			height: auto;
+			padding: 2rem 1.5rem;
+			text-align: center;
+			margin-bottom: 1rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.clinic-header {
+			justify-content: center;
+			margin-bottom: 1.25rem;
+		}
+
+		.rating-display {
+			margin-bottom: 0.75rem;
+		}
+
+		.review-count {
+			margin-bottom: 1.25rem;
+		}
+
+		.write-review-btn {
+			width: auto;
 		}
 
 		.reviews-carousel-wrapper {
 			width: 100%;
 			margin-left: 0;
 			padding: 0 50px;
+			overflow: hidden;
+			min-height: 300px;
 		}
 
 		.carousel-btn {
@@ -495,49 +525,92 @@ function formatDate(dateStr: string): string {
 		}
 
 		.reviews-list {
-			overflow: visible;
-			position: relative;
 			display: flex;
-			justify-content: center;
-			align-items: flex-start;
+			gap: 1rem;
+			transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			will-change: transform;
+			overflow: visible;
 		}
 
 		.review-card {
-			position: absolute;
-			left: 50%;
-			transform: translateX(-50%);
-			top: 0;
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity 0.3s ease;
+			flex: 0 0 100%;
+			min-width: 100%;
+			width: 100%;
+			max-width: 450px;
+			height: 280px;
 		}
 
-		.review-card.active-mobile {
-			opacity: 1;
-			pointer-events: auto;
-			position: relative;
-			left: auto;
-			transform: none;
+		.review-card.expanded {
+			height: auto;
 		}
 	}
 
 	@media (max-width: 768px) {
 		.google-reviews {
-			padding: var(--spacing-lg) 0;
+			padding: var(--spacing-md) 0;
 		}
 
 		.reviews-summary {
-			padding: 1.5rem;
+			padding: 1.5rem 1rem;
+			height: auto;
+			gap: 1rem;
+			margin-bottom: 1.5rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 
-		.review-card {
-			width: 100%;
-			padding: 1.25rem;
+		.clinic-header {
+			margin-bottom: 1rem;
+			justify-content: center;
+		}
+
+		.clinic-logo img {
+			width: 50px;
+			height: 50px;
+		}
+
+		.clinic-name {
+			font-size: 15px;
 		}
 
 		.rating-display {
-			flex-direction: column;
-			gap: 0.5rem;
+			flex-direction: row;
+			gap: 0.75rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.stars-large {
+			font-size: 1.1rem;
+		}
+
+		.rating-number {
+			font-size: 1.75rem;
+		}
+
+		.review-count {
+			margin-bottom: 1rem;
+			font-size: 13px;
+		}
+
+		.write-review-btn {
+			padding: 0.625rem 1.25rem;
+			font-size: 13px;
+			margin-top: 0;
+			width: auto;
+		}
+
+		.review-card {
+			flex: 0 0 100%;
+			min-width: 100%;
+			width: 100%;
+			height: 280px;
+			padding: 1.25rem;
+			max-width: none;
+		}
+
+		.review-card.expanded {
+			height: auto;
 		}
 
 		.reviews-carousel-wrapper {
@@ -624,26 +697,20 @@ function formatDate(dateStr: string): string {
 		}
 
 		initMobile() {
-			if (!this.cards) return;
+			if (!this.cards || !this.container) return;
 
-			// Marcar la primera tarjeta como activa
-			this.cards.forEach((card, index) => {
-				if (index === 0) {
-					card.classList.add('active-mobile');
-				} else {
-					card.classList.remove('active-mobile');
-				}
-			});
+			// Resetear posición inicial
+			this.container.style.transform = 'translateX(0)';
 
 			this.prevBtn?.addEventListener('click', () => this.navigateMobile('prev'));
 			this.nextBtn?.addEventListener('click', () => this.navigateMobile('next'));
 
 			// Soporte para swipe
-			this.container?.addEventListener('touchstart', (e) => {
+			this.container.addEventListener('touchstart', (e) => {
 				this.touchStartX = e.touches[0].clientX;
 			});
 
-			this.container?.addEventListener('touchend', (e) => {
+			this.container.addEventListener('touchend', (e) => {
 				this.touchEndX = e.changedTouches[0].clientX;
 				this.handleSwipe();
 			});
@@ -673,7 +740,7 @@ function formatDate(dateStr: string): string {
 		}
 
 		navigateMobile(direction: 'prev' | 'next') {
-			if (!this.cards) return;
+			if (!this.cards || !this.container) return;
 
 			if (direction === 'next' && this.currentIndex < this.cards.length - 1) {
 				this.currentIndex++;
@@ -681,14 +748,18 @@ function formatDate(dateStr: string): string {
 				this.currentIndex--;
 			}
 
-			this.cards.forEach((card, index) => {
-				if (index === this.currentIndex) {
-					card.classList.add('active-mobile');
-				} else {
-					card.classList.remove('active-mobile');
-				}
-			});
-
+			// Calcular desplazamiento
+			// En móvil cada tarjeta ocupa el 100% del wrapper visible
+			const wrapper = this.container.parentElement;
+			if (!wrapper) return;
+			
+			// El wrapper tiene padding, así que usamos el ancho interno
+			const wrapperPadding = parseInt(getComputedStyle(wrapper).paddingLeft || '0') + parseInt(getComputedStyle(wrapper).paddingRight || '0');
+			const availableWidth = wrapper.offsetWidth - wrapperPadding;
+			const gap = 16; // 1rem en px
+			const displacement = this.currentIndex * (availableWidth + gap);
+			
+			this.container.style.transform = `translateX(-${displacement}px)`;
 			this.updateMobileButtons();
 		}
 
@@ -725,6 +796,9 @@ function formatDate(dateStr: string): string {
 		}
 
 		cleanup() {
+			// Reset index
+			this.currentIndex = 0;
+			
 			// Remover event listeners antiguos
 			if (this.prevBtn) {
 				this.prevBtn.replaceWith(this.prevBtn.cloneNode(true));
