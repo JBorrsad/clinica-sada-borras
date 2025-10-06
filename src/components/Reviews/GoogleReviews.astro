@@ -286,7 +286,7 @@ function formatDate(dateStr: string): string {
 		box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 	}
 
-	.carousel-btn:hover {
+	.carousel-btn:hover:not(:disabled) {
 		background: #f8f9fa;
 		box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 		transform: translateY(-50%) scale(1.05);
@@ -301,9 +301,13 @@ function formatDate(dateStr: string): string {
 	}
 
 	.carousel-btn:disabled {
-		opacity: 0.3;
 		cursor: not-allowed;
 		pointer-events: none;
+		background: white;
+	}
+
+	.carousel-btn:disabled svg {
+		color: #d1d5db;
 	}
 
 	.reviews-list {
