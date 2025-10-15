@@ -854,6 +854,7 @@ const keywords = 'implantes dentales Pamplona, implantología Pamplona, cirugía
 		}
 	}
 
+	/* ====== Solo móvil ≤768px ====== */
 	@media (max-width: 768px) {
 		.page-hero {
 			padding: 3rem 0 2rem;
@@ -867,29 +868,62 @@ const keywords = 'implantes dentales Pamplona, implantología Pamplona, cirugía
 			font-size: 1.125rem;
 		}
 
+		/* 1) Corrección solapes en "Por qué escoger los implantes" */
 		.benefits-layout {
+			display: grid;
 			grid-template-columns: 1fr;
+			gap: var(--spacing-md);
+			position: relative;
+			z-index: auto;
+		}
+
+		.benefits-layout > * {
+			position: static !important;
+			z-index: auto !important;
 		}
 
 		.benefits-image {
+			order: 2;
 			max-height: 250px;
 		}
 
-		.approach-grid {
-			grid-template-columns: 1fr;
+		.benefits-content {
+			order: 1;
+			padding-left: 0;
 		}
 
-		.approach-image {
+		/* 2) Forzar orden texto → imagen en "Nuestro enfoque" */
+		.approach-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: var(--spacing-md);
+		}
+
+		.approach-grid .approach-item {
+			order: 1;
+		}
+
+		.approach-grid .approach-image {
+			order: 2;
 			min-height: 250px;
 		}
 
+		/* 3) CTA al ancho del contenido (no 100%) */
 		.cta-buttons {
-			flex-direction: column;
-			align-items: stretch;
+			display: flex;
+			flex-direction: row;
+			gap: 1rem;
+			flex-wrap: wrap;
+			align-items: flex-start;
 		}
 
-		.btn {
-			width: 100%;
+		.cta-buttons .btn {
+			display: inline-flex !important;
+			width: auto !important;
+			max-width: 100% !important;
+			white-space: nowrap !important;
+			align-self: flex-start;
+			flex: 0 1 auto;
 		}
 
 		.faq-question {
