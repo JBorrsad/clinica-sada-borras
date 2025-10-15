@@ -12,7 +12,7 @@ import { asset } from '../../utils/assets';
 		
 		<div class="services-grid">
 			{SERVICES.map(service => {
-				const serviceUrl = service.id === 'implantologia' ? '/implantologia' : null;
+				const serviceUrl = service.id === 'implantologia' ? `${import.meta.env.BASE_URL}implantologia` : null;
 				const CardTag = serviceUrl ? 'a' : 'article';
 				
 				return (
