@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-10-05T16:03:51.647Z",
+  "last_updated": "2025-10-15T03:25:00.827Z",
   "places": [
     {
       "place_id": "ChIJvU47BVx3Wg0RKYHweIB2OQo",
@@ -9,6 +9,15 @@
       "googleMapsUri": "https://maps.google.com/?cid=736750308208705833&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
       "writeReviewUri": "https://search.google.com/local/writereview?placeid=ChIJvU47BVx3Wg0RKYHweIB2OQo",
       "reviews": [
+        {
+          "id": "Ci9DQUlRQUNvZENodHljRjlvT25SaGFYWXhjRXRCWldvMWMzWlViamRJYVdSUmIxRRAB",
+          "rating": 5,
+          "text": "Llamé de urgencia porque me empezó a doler una muela de repente y me atendieron ese mismo día. El trato fue excelente; Pilar y José son unos profesionales muy atentos y amables. Además, los precios son muy razonables.",
+          "time": "2025-10-04",
+          "author": "Mayaw W",
+          "author_uri": "https://www.google.com/maps/contrib/102895016456593802796/reviews",
+          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=Ci9DQUlRQUNvZENodHljRjlvT25SaGFYWXhjRXRCWldvMWMzWlViamRJYVdSUmIxRRAB"
+        },
         {
           "id": "ChZDSUhNMG9nS0VJQ0FnSURiOUwyU2NREAE",
           "rating": 5,
@@ -44,21 +53,12 @@
           "author": "Patri B",
           "author_uri": "https://www.google.com/maps/contrib/105859135083199321958/reviews",
           "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChdDSUhNMG9nS0VJQ0FnSUMxaE5hWDRRRRAB"
-        },
-        {
-          "id": "ChdDSUhNMG9nS0VJQ0FnSUNoMk5MaDJRRRAB",
-          "rating": 1,
-          "text": "La dentista me realizó un empastes mal hecho en la muela; devido a eso perdí la muela. No quiso acerté cargo del mal trabajo qe realizó,así que  teniendome qe gastar posteriormente 2200 euros en un implante",
-          "time": "2023-02-04",
-          "author": "Juan Antonio Cepero Garcia",
-          "author_uri": "https://www.google.com/maps/contrib/100294172785930382173/reviews",
-          "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChdDSUhNMG9nS0VJQ0FnSUNoMk5MaDJRRRAB"
         }
       ]
     },
     {
       "place_id": "ChIJPZNNn_d3Wg0RxOoLrfHRghk",
-      "name": "CLINICA BORRAS",
+      "name": "Clinica Dental Sada Borrás",
       "rating": 5,
       "userRatingCount": 2,
       "googleMapsUri": "https://maps.google.com/?cid=1838262433841146564&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",

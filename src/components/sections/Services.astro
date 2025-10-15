@@ -11,36 +11,46 @@ import { asset } from '../../utils/assets';
 		</div>
 		
 		<div class="services-grid">
-			{SERVICES.map(service => (
-				<article class="service-card">
-					<div class="service-image">
-						<img 
-							src={asset(service.image)}
-							alt={service.title}
-							width="400"
-							height="100"
-							loading="lazy"
-						/>
-					</div>
-					<div class="service-content">
-						<h3>{service.title}</h3>
-						<p class="service-description">{service.description}</p>
-						<ul class="service-features">
-							{service.features.map(feature => (
-								<li>
-									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-										<polyline points="20 6 9 17 4 12"></polyline>
-									</svg>
-									{feature}
-								</li>
-							))}
-						</ul>
-					</div>
-					<div class="service-read-more">
-						<span>Leer más...</span>
-					</div>
-				</article>
-			))}
+			{SERVICES.map(service => {
+				const serviceUrl = service.id === 'implantologia' ? '/implantologia' : null;
+				const CardTag = serviceUrl ? 'a' : 'article';
+				
+				return (
+					<CardTag 
+						class="service-card" 
+						{...(serviceUrl ? { href: serviceUrl } : {})}
+					>
+						<div class="service-image">
+							<img 
+								src={asset(service.image)}
+								alt={service.title}
+								width="400"
+								height="100"
+								loading="lazy"
+							/>
+						</div>
+						<div class="service-content">
+							<h3>{service.title}</h3>
+							<p class="service-description">{service.description}</p>
+							<ul class="service-features">
+								{service.features.map(feature => (
+									<li>
+										<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+											<polyline points="20 6 9 17 4 12"></polyline>
+										</svg>
+										{feature}
+									</li>
+								))}
+							</ul>
+						</div>
+						{serviceUrl && (
+							<div class="service-read-more">
+								<span>Leer más...</span>
+							</div>
+						)}
+					</CardTag>
+				);
+			})}
 		</div>
 		
 		<div class="services-cta text-center">
@@ -98,6 +108,9 @@ import { asset } from '../../utils/assets';
 		overflow: hidden;
 		cursor: pointer;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		text-decoration: none;
+		color: inherit;
+		display: block;
 	}
 	
 	@media (min-width: 768px) {

@@ -10,7 +10,7 @@ import { asset } from '../../utils/assets';
 				<p class="lead">Más de dos décadas dedicados a mejorar la salud dental de familias en Pamplona y Tafalla.</p>
 				
 			<div class="carousel-container">
-				<div class="carousel-wrapper">
+				<a href="/sobre-nosotros" class="carousel-wrapper">
 					<div class="carousel-track" id="carousel-track">
 						<div class="carousel-slide">
 							<p>Nuestra clínica dental nace del compromiso de dos profesionales con amplia formación y experiencia: José Manuel Borrás Amblar y Pilar Sada Garralda. Ambos licenciados en Medicina y Cirugía, especializados en Estomatología, han construido un centro de referencia en Navarra.</p>
@@ -19,12 +19,16 @@ import { asset } from '../../utils/assets';
 							<p>José Manuel Borrás cuenta con formación especializada en Implantología y Rehabilitación Oral por la European School de Nueva York, además de un posgrado en Periodoncia por la New York University. Pilar Sada, licenciada por la Universidad de Navarra, aporta su experiencia y cercanía en el trato con cada paciente.</p>
 						</div>
 					</div>
-				</div>
+				</a>
 				
 				<div class="carousel-indicators">
 					<button class="indicator active" data-slide="0" aria-label="Ir a la primera frase"></button>
 					<button class="indicator" data-slide="1" aria-label="Ir a la segunda frase"></button>
 				</div>
+			</div>
+			
+			<div class="about-cta">
+				<a href="/sobre-nosotros" class="btn btn-primary">Conoce más sobre nosotros</a>
 			</div>
 		</div>
 	</div>
@@ -67,7 +71,11 @@ import { asset } from '../../utils/assets';
 			setupEventListeners() {
 				// Event listeners para indicadores
 				this.indicators.forEach((indicator: Element, index: number) => {
-					indicator.addEventListener('click', () => this.goToSlide(index));
+					indicator.addEventListener('click', (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						this.goToSlide(index);
+					});
 				});
 			
 				// Touch events para móvil
@@ -109,8 +117,9 @@ import { asset } from '../../utils/assets';
 				}, { passive: true });
 			
 				// Pausar auto-play al hacer hover
-				this.track?.addEventListener('mouseenter', () => this.pauseAutoPlay());
-				this.track?.addEventListener('mouseleave', () => this.startAutoPlay());
+				const carouselWrapper = document.querySelector('#sobre-nosotros .carousel-wrapper');
+				carouselWrapper?.addEventListener('mouseenter', () => this.pauseAutoPlay());
+				carouselWrapper?.addEventListener('mouseleave', () => this.startAutoPlay());
 			}
 			
 			goToSlide(targetSlide: number, direction: string = 'auto') {
@@ -193,7 +202,7 @@ import { asset } from '../../utils/assets';
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: url('/clinica-sada-borras/img/Untitled-2.jpg');
+		background: url('/img/Untitled-2.jpg');
 		background-size: cover;
 		background-position: center;
 		filter: blur(2px);
@@ -256,6 +265,16 @@ import { asset } from '../../utils/assets';
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 		margin-bottom: 2rem;
 		position: relative;
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		cursor: pointer;
+		transition: var(--transition);
+	}
+	
+	.carousel-wrapper:hover {
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+		transform: translateY(-2px);
 	}
 	
 	.carousel-track {
@@ -287,6 +306,8 @@ import { asset } from '../../utils/assets';
 		justify-content: center;
 		gap: 12px;
 		margin-top: 1.5rem;
+		position: relative;
+		z-index: 10;
 	}
 	
 	.indicator {
@@ -298,6 +319,7 @@ import { asset } from '../../utils/assets';
 		cursor: pointer;
 		transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 		position: relative;
+		pointer-events: all;
 	}
 	
 	.indicator::before {
@@ -324,6 +346,36 @@ import { asset } from '../../utils/assets';
 	
 	.indicator.active::before {
 		background: rgba(0, 191, 166, 0.2);
+	}
+	
+	.about-cta {
+		text-align: center;
+		margin-top: 2rem;
+	}
+	
+	.btn {
+		padding: 1rem 2rem;
+		border-radius: var(--rad);
+		font-weight: 600;
+		font-size: var(--font-size-base);
+		transition: var(--transition);
+		display: inline-block;
+		text-align: center;
+		text-decoration: none;
+		border: none;
+		cursor: pointer;
+		font-family: var(--ff-body);
+	}
+	
+	.btn-primary {
+		background: var(--color-primary);
+		color: white;
+	}
+	
+	.btn-primary:hover {
+		background: var(--color-primary-dark);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
 	}
 	
 	@media (max-width: 767px) {
