@@ -6,6 +6,7 @@ import Footer from '../components/common/Footer.astro';
 const title = 'Implantología, Cirugía Oral y Periodoncia — Clínica Dental en Pamplona';
 const description = 'Implantes dentales en Pamplona. Recupera función y estética con seguridad. Cirugía guiada, PRGF y sedación consciente. Primera consulta gratuita.';
 const keywords = 'implantes dentales Pamplona, implantología Pamplona, cirugía oral Pamplona, periodoncia Pamplona, carga inmediata, all-on-4 Pamplona';
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <MainLayout title={title} description={description} keywords={keywords}>
@@ -29,7 +30,7 @@ const keywords = 'implantes dentales Pamplona, implantología Pamplona, cirugía
 					</div>
 					<div class="benefits-layout">
 						<div class="benefits-image">
-							<img src={`${import.meta.env.BASE_URL}img/implantoak.png`} alt="Implante dental" loading="lazy" />
+							<img src={`${baseUrl}img/implantoak.png`} alt="Implante dental" loading="lazy" />
 						</div>
 						<div class="benefits-content">
 							<ul class="benefits-list">

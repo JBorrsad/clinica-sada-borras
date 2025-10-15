@@ -1,6 +1,7 @@
 ---
 import { asset } from '../../utils/assets';
 // Nueva sección "Sobre nosotros" con carrusel horizontal estilo Apple/iOS
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="about section" id="sobre-nosotros">
@@ -10,7 +11,7 @@ import { asset } from '../../utils/assets';
 				<p class="lead">Más de dos décadas dedicados a mejorar la salud dental de familias en Pamplona y Tafalla.</p>
 				
 			<div class="carousel-container">
-				<a href={`${import.meta.env.BASE_URL}sobre-nosotros`} class="carousel-wrapper">
+				<a href={`${baseUrl}sobre-nosotros`} class="carousel-wrapper">
 					<div class="carousel-track" id="carousel-track">
 						<div class="carousel-slide">
 							<p>Nuestra clínica dental nace del compromiso de dos profesionales con amplia formación y experiencia: José Manuel Borrás Amblar y Pilar Sada Garralda. Ambos licenciados en Medicina y Cirugía, especializados en Estomatología, han construido un centro de referencia en Navarra.</p>
@@ -28,7 +29,7 @@ import { asset } from '../../utils/assets';
 			</div>
 			
 			<div class="about-cta">
-				<a href={`${import.meta.env.BASE_URL}sobre-nosotros`} class="btn btn-primary">Conoce más sobre nosotros</a>
+				<a href={`${baseUrl}sobre-nosotros`} class="btn btn-primary">Conoce más sobre nosotros</a>
 			</div>
 		</div>
 	</div>

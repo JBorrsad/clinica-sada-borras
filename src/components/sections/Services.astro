@@ -12,7 +12,8 @@ import { asset } from '../../utils/assets';
 		
 		<div class="services-grid">
 			{SERVICES.map(service => {
-				const serviceUrl = service.id === 'implantologia' ? `${import.meta.env.BASE_URL}implantologia` : null;
+				const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+				const serviceUrl = service.id === 'implantologia' ? `${baseUrl}implantologia` : null;
 				const CardTag = serviceUrl ? 'a' : 'article';
 				
 				return (
