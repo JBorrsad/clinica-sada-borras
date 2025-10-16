@@ -22,6 +22,8 @@ import { asset } from '../../utils/assets';
 					serviceUrl = `${baseUrl}odontopediatria`;
 				} else if (service.id === 'odontologia-biologica') {
 					serviceUrl = `${baseUrl}rmr`;
+				} else if (service.id === 'estetica-facial') {
+					serviceUrl = `${baseUrl}estetica-facial`;
 				}
 				const CardTag = serviceUrl ? 'a' : 'article';
 				
