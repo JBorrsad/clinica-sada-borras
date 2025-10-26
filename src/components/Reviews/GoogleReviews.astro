@@ -265,7 +265,7 @@ function formatDate(dateStr: string): string {
 		padding: 0 60px;
 		overflow: visible;
 		min-width: 0;
-		width: calc(100% + 157px);
+		width: 100%;
 		margin-left: 0;
 		min-height: 280px;
 	}
@@ -534,10 +534,10 @@ function formatDate(dateStr: string): string {
 		}
 
 		.review-card {
-			flex: 0 0 100%;
-			min-width: 100%;
-			width: 100%;
-			max-width: 450px;
+			flex: 0 0 auto;
+			min-width: 280px;
+			width: 280px;
+			max-width: 280px;
 			height: 280px;
 		}
 
@@ -602,12 +602,12 @@ function formatDate(dateStr: string): string {
 		}
 
 		.review-card {
-			flex: 0 0 100%;
-			min-width: 100%;
-			width: 100%;
+			flex: 0 0 auto;
+			min-width: 280px;
+			width: 280px;
+			max-width: 280px;
 			height: 280px;
 			padding: 1.25rem;
-			max-width: none;
 		}
 
 		.review-card.expanded {
@@ -740,29 +740,23 @@ function formatDate(dateStr: string): string {
 			});
 		}
 
-		navigateMobile(direction: 'prev' | 'next') {
-			if (!this.cards || !this.container) return;
+	navigateMobile(direction: 'prev' | 'next') {
+		if (!this.cards || !this.container) return;
 
-			if (direction === 'next' && this.currentIndex < this.cards.length - 1) {
-				this.currentIndex++;
-			} else if (direction === 'prev' && this.currentIndex > 0) {
-				this.currentIndex--;
-			}
-
-			// Calcular desplazamiento
-			// En móvil cada tarjeta ocupa el 100% del wrapper visible
-			const wrapper = this.container.parentElement;
-			if (!wrapper) return;
-			
-			// El wrapper tiene padding, así que usamos el ancho interno
-			const wrapperPadding = parseInt(getComputedStyle(wrapper).paddingLeft || '0') + parseInt(getComputedStyle(wrapper).paddingRight || '0');
-			const availableWidth = wrapper.offsetWidth - wrapperPadding;
-			const gap = 16; // 1rem en px
-			const displacement = this.currentIndex * (availableWidth + gap);
-			
-			this.container.style.transform = `translateX(-${displacement}px)`;
-			this.updateMobileButtons();
+		if (direction === 'next' && this.currentIndex < this.cards.length - 1) {
+			this.currentIndex++;
+		} else if (direction === 'prev' && this.currentIndex > 0) {
+			this.currentIndex--;
 		}
+
+		// Calcular desplazamiento usando el ancho real de la tarjeta (280px)
+		const cardWidth = 280; // Ancho fijo de las tarjetas
+		const gap = 16; // 1rem en px
+		const displacement = this.currentIndex * (cardWidth + gap);
+		
+		this.container.style.transform = `translateX(-${displacement}px)`;
+		this.updateMobileButtons();
+	}
 
 		handleSwipe() {
 			const swipeThreshold = 50; // 50px mínimo para detectar swipe
