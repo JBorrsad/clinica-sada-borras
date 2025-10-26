@@ -4,17 +4,16 @@ import { asset } from '../../utils/assets';
 ---
 
 <section class="contact section" id="contacto">
-	<!-- Información de las clínicas -->
 	<div class="container">
 		<div class="section-header text-center">
 			<h2>Contacta con Nosotros</h2>
-			<p class="section-subtitle">Visítanos en nuestras clínicas de Pamplona y Tafalla</p>
+			<p class="section-subtitle">Visítanos en nuestras clínicas o solicita información</p>
 		</div>
 		
-		<div class="contact-grid">
+		<div class="contact-grid-three">
 			<!-- Clínica Pamplona -->
 			<div class="clinic-contact">
-				<h3 class="clinic-name">Clínica Pamplona</h3>
+				<h3 class="clinic-name">Pamplona</h3>
 				
 				<div class="contact-info">
 					<div class="info-item">
@@ -25,7 +24,6 @@ import { asset } from '../../utils/assets';
 							</svg>
 						</div>
 						<div class="info-content">
-							<p class="info-title">Dirección Pamplona</p>
 							<p class="info-text">{CONTACT_INFO.pamplona.address}</p>
 							<p class="info-text">C.P. {CONTACT_INFO.pamplona.postalCode} - {CONTACT_INFO.pamplona.city}</p>
 						</div>
@@ -38,7 +36,6 @@ import { asset } from '../../utils/assets';
 							</svg>
 						</div>
 						<div class="info-content">
-							<p class="info-title">Teléfono:</p>
 							<p class="info-text num"><a href={`tel:+34${CONTACT_INFO.pamplona.phone.replace(/\s/g, '')}`}>{CONTACT_INFO.pamplona.phone}</a></p>
 							<p class="info-text num"><a href={`tel:+34${CONTACT_INFO.pamplona.mobile.replace(/\s/g, '')}`}>{CONTACT_INFO.pamplona.mobile}</a></p>
 						</div>
@@ -52,7 +49,6 @@ import { asset } from '../../utils/assets';
 							</svg>
 						</div>
 						<div class="info-content">
-							<p class="info-title">Email:</p>
 							<p class="info-text"><a href={`mailto:${CONTACT_INFO.pamplona.email}`}>{CONTACT_INFO.pamplona.email}</a></p>
 						</div>
 					</div>
@@ -71,12 +67,9 @@ import { asset } from '../../utils/assets';
 				</div>
 			</div>
 			
-			<!-- Separador -->
-			<div class="contact-separator"></div>
-			
 			<!-- Clínica Tafalla -->
 			<div class="clinic-contact">
-				<h3 class="clinic-name">Clínica Tafalla</h3>
+				<h3 class="clinic-name">Tafalla</h3>
 				
 				<div class="contact-info">
 					<div class="info-item">
@@ -87,7 +80,6 @@ import { asset } from '../../utils/assets';
 							</svg>
 						</div>
 						<div class="info-content">
-							<p class="info-title">Dirección Tafalla</p>
 							<p class="info-text">{CONTACT_INFO.tafalla.address}</p>
 							<p class="info-text">C.P. {CONTACT_INFO.tafalla.postalCode} - {CONTACT_INFO.tafalla.city}</p>
 						</div>
@@ -100,7 +92,6 @@ import { asset } from '../../utils/assets';
 							</svg>
 						</div>
 						<div class="info-content">
-							<p class="info-title">Teléfono:</p>
 							<p class="info-text num"><a href={`tel:+34${CONTACT_INFO.tafalla.phone.replace(/\s/g, '')}`}>{CONTACT_INFO.tafalla.phone}</a></p>
 						</div>
 					</div>
@@ -113,7 +104,6 @@ import { asset } from '../../utils/assets';
 							</svg>
 						</div>
 						<div class="info-content">
-							<p class="info-title">Email:</p>
 							<p class="info-text"><a href={`mailto:${CONTACT_INFO.tafalla.email}`}>{CONTACT_INFO.tafalla.email}</a></p>
 						</div>
 					</div>
@@ -131,24 +121,10 @@ import { asset } from '../../utils/assets';
 					></iframe>
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<!-- Formulario de contacto -->
-	<div class="contact-wrapper">
-		<!-- Lado izquierdo: Imagen decorativa -->
-		<div class="contact-image">
-			<img 
-				src={asset('/img/pilipaciente.jpeg')} 
-				alt="Clínica dental"
-				loading="lazy"
-			/>
-		</div>
-
-		<!-- Lado derecho: Formulario -->
-		<div class="contact-form-container">
+			
+			<!-- Formulario de contacto -->
 			<div class="form-content">
-				<h2>Pide cita, te ayudaremos</h2>
+				<h3 class="form-title">Pide cita, te ayudaremos</h3>
 				<p class="form-description">
 					Te asesoramos de manera personalizada para ofrecerte el tratamiento más adecuado a tus necesidades, garantizando tu salud, función y estética bucodental.
 				</p>
@@ -286,35 +262,30 @@ import { asset } from '../../utils/assets';
 		color: var(--c-gray-700);
 	}
 	
-	.contact-grid {
+	.contact-grid-three {
 		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		gap: 0;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--spacing-md);
 		margin-top: var(--spacing-lg);
-		margin-bottom: var(--spacing-xl);
-		align-items: stretch;
+		align-items: start;
 	}
 	
-	.contact-separator {
-		width: 120px;
-		align-self: stretch;
-	}
-	
-	.clinic-contact {
+	.clinic-contact,
+	.form-content {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
-		height: 100%;
+		gap: 1.5rem;
 	}
 	
-	.clinic-name {
+	.clinic-name,
+	.form-title {
 		font-size: 15px;
 		color: var(--c-ink);
 		font-weight: 700;
 		font-family: var(--ff-body);
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		margin: 0 0 1rem 0;
+		margin: 0;
 		padding-bottom: 0.75rem;
 		border-bottom: 3px solid var(--c-ink);
 	}
@@ -323,15 +294,12 @@ import { asset } from '../../utils/assets';
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-		min-height: 300px;
-		flex: 1;
 	}
 	
 	.info-item {
 		display: flex;
 		gap: 1rem;
 		align-items: flex-start;
-		min-height: 70px;
 	}
 	
 	.info-icon {
@@ -351,19 +319,14 @@ import { asset } from '../../utils/assets';
 	
 	.info-content {
 		flex: 1;
-	}
-	
-	.info-title {
-		font-weight: 700;
-		color: var(--c-ink);
-		margin: 0 0 0.5rem 0;
-		font-size: 14px;
-		font-family: var(--ff-body);
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 	
 	.info-text {
-		margin: 0.25rem 0;
-		color: var(--color-text);
+		margin: 0;
+		color: var(--c-ink);
 		font-size: 14px;
 		line-height: 1.5;
 	}
@@ -390,52 +353,11 @@ import { asset } from '../../utils/assets';
 	}
 	
 	/* Estilos para el formulario de contacto */
-	.contact-wrapper {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		min-height: 600px;
-	}
-	
-	.contact-image {
-		position: relative;
-		overflow: hidden;
-		background: var(--color-bg-light);
-	}
-	
-	.contact-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		filter: grayscale(100%) opacity(0.3);
-	}
-	
-	.contact-form-container {
-		background: var(--c-bg);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: var(--spacing-xl);
-	}
-	
-	.form-content {
-		width: 100%;
-		max-width: 600px;
-	}
-	
-	.form-content h2 {
-		font-size: var(--fs-h2);
-		color: var(--c-ink);
-		font-family: var(--ff-head);
-		font-weight: 700;
-		margin-bottom: 1rem;
-		line-height: 1.18;
-	}
-	
 	.form-description {
 		color: var(--c-gray-700);
-		font-size: var(--fs-body);
-		line-height: 1.6;
-		margin-bottom: 2rem;
+		font-size: var(--fs-small);
+		line-height: 1.5;
+		margin: 0;
 	}
 	
 	.contact-form {
@@ -598,39 +520,18 @@ import { asset } from '../../utils/assets';
 	}
 	
 	/* Responsive */
-	@media (max-width: 1024px) {
-		.contact-grid {
+	@media (max-width: 1200px) {
+		.contact-grid-three {
 			grid-template-columns: 1fr;
 			gap: var(--spacing-lg);
 		}
 		
-		.contact-separator {
-			display: none;
-		}
-		
-		.clinic-contact {
-			gap: 1.5rem;
-		}
-		
-		.contact-wrapper {
-			grid-template-columns: 1fr;
-		}
-		
-		.contact-image {
-			min-height: 300px;
-			display: none;
-		}
-		
-		.contact-form-container {
-			padding: var(--spacing-lg) var(--spacing-md);
+		.form-description {
+			font-size: var(--fs-body);
 		}
 	}
 	
 	@media (max-width: 767px) {
-		.contact-info {
-			padding: 1.5rem;
-		}
-		
 		.map-container iframe {
 			height: 300px !important;
 		}
@@ -646,14 +547,6 @@ import { asset } from '../../utils/assets';
 		
 		.submit-btn {
 			width: 100%;
-		}
-		
-		.form-content h2 {
-			font-size: 28px;
-		}
-		
-		.contact-form-container {
-			padding: var(--spacing-md);
 		}
 	}
 </style>
