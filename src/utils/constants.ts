@@ -23,51 +23,94 @@ export const CONTACT_INFO = {
 export const SERVICES = [
 	{
 		id: 'implantologia',
-		title: 'Implantología, Cirugía Oral y Periodoncia',
+		title: 'Implantología',
 		icon: 'tesicon11.png',
 		image: '/img/servicios_cards/implante.jpg',
-		description: 'Realizamos el proceso de extracción del diente, colocación de implante y prótesis provisional en un solo día. Utilizamos plasma rico en factores de crecimiento que acelera y mejora la cicatrización.',
-		features: ['Implantes en un día', 'Plasma rico en factores de crecimiento', 'Sedación consciente con óxido nitroso']
+		features: ['Implantes de titanio biocompatibles', 'Regeneración ósea guiada', 'Carga inmediata en casos seleccionados']
+	},
+	{
+		id: 'cirugia-oral',
+		title: 'Cirugía Oral',
+		icon: 'tesicon11.png',
+		image: '/img/servicios_cards/implante.jpg',
+		features: ['Extracciones complejas', 'Cirugía de muelas del juicio', 'Técnicas mínimamente invasivas']
+	},
+	{
+		id: 'periodoncia',
+		title: 'Periodoncia',
+		icon: 'tesicon11.png',
+		image: '/img/servicios_cards/qs01.jpg',
+		features: ['Tratamiento de encías inflamadas', 'Limpieza profunda y raspado radicular', 'Prevención de pérdida dental']
 	},
 	{
 		id: 'odontologia-conservadora',
-		title: 'Odontología Conservadora y Estética Dental',
+		title: 'Odontología Conservadora',
 		icon: 'tesicon2.png',
 		image: '/img/servicios_cards/estetica.jpg',
-		description: 'Cuidamos sus dientes para mejorar su sonrisa y su salud. Realizamos tratamientos estéticos y conservadores de última generación.',
-		features: ['Empastes estéticos', 'Carillas dentales', 'Blanqueamiento dental']
+		features: ['Empastes de composite estético', 'Reconstrucciones dentales', 'Incrustaciones cerámicas']
+	},
+	{
+		id: 'estetica-dental',
+		title: 'Estética Dental',
+		icon: 'tesicon2.png',
+		image: '/img/servicios_cards/estetica.jpg',
+		features: ['Carillas de porcelana', 'Diseño digital de sonrisa', 'Resultados naturales y duraderos']
 	},
 	{
 		id: 'odontopediatria',
 		title: 'Odontopediatría',
 		icon: 'tesicon4.png',
 		image: '/img/servicios_cards/qs02.jpg',
-		description: 'Participamos en el Programa de Atención Dental Infantil (PADI) del Servicio Navarro de Salud, ofreciendo atención dental básica gratuita para niños.',
-		features: ['Programa PADI', 'Selladores de fisuras', 'Tratamiento sin miedo']
+		features: ['Atención especializada para niños', 'Prevención de caries infantil', 'Ambiente adaptado y sin estrés']
 	},
 	{
-		id: 'odontologia-biologica',
-		title: 'Rehabilitación Masticatoria-Respiratoria',
+		id: 'rmr',
+		title: 'Tratamiento RMR',
 		icon: 'tesicon5.png',
 		image: '/img/servicios_cards/rmr.png',
-		description: 'Rehabilitamos en niños y adultos las funciones vegetativas primarias: masticación, respiración, deglución y fonación.',
-		features: ['Rehabilitación respiratoria', 'Mejora de la masticación', 'Tratamiento integral']
+		features: ['Rehabilitación masticatoria', 'Mejora de la respiración nasal', 'Corrección de hábitos orales']
 	},
 	{
 		id: 'estetica-facial',
 		title: 'Estética Facial',
 		icon: 'tesicon6.png',
 		image: '/img/servicios_cards/esteticafacial.jpg',
-		description: 'Rejuvenecimiento facial con productos de alta calidad mediante tratamientos con ácido hialurónico y toxina botulínica.',
-		features: ['Ácido hialurónico', 'Toxina botulínica', 'Resultados naturales']
+		features: ['Rellenos con ácido hialurónico', 'Tratamiento de arrugas con toxina', 'Rejuvenecimiento natural']
 	},
 	{
 		id: 'ortodoncia',
 		title: 'Ortodoncia',
 		icon: 'tesicon8.png',
 		image: '/img/servicios_cards/orto.jpg',
-		description: 'Corregimos la posición de los dientes y la mordida para mejorar tanto la estética como la funcionalidad de tu sonrisa.',
-		features: ['Ortodoncia invisible', 'Brackets tradicionales', 'Tratamiento personalizado']
+		features: ['Alineadores invisibles', 'Brackets metálicos y estéticos', 'Ortodoncia para adultos y niños']
+	},
+	{
+		id: 'endodoncia',
+		title: 'Endodoncia',
+		icon: 'tesicon2.png',
+		image: '/img/servicios_cards/estetica.jpg',
+		features: ['Tratamientos de conductos', 'Salvamos dientes comprometidos', 'Técnicas con microscopio']
+	},
+	{
+		id: 'protesis',
+		title: 'Prótesis',
+		icon: 'tesicon11.png',
+		image: '/img/servicios_cards/implante.jpg',
+		features: ['Prótesis fijas sobre implantes', 'Prótesis removibles', 'Rehabilitaciones completas']
+	},
+	{
+		id: 'prevencion-higiene',
+		title: 'Prevención e Higiene',
+		icon: 'tesicon4.png',
+		image: '/img/servicios_cards/qs01.jpg',
+		features: ['Limpiezas dentales profesionales', 'Fluorización y selladores', 'Enseñanza de higiene oral']
+	},
+	{
+		id: 'blanqueamiento',
+		title: 'Blanqueamiento',
+		icon: 'tesicon2.png',
+		image: '/img/servicios_cards/estetica.jpg',
+		features: ['Blanqueamiento LED en clínica', 'Tratamiento ambulatorio en casa', 'Resultados visibles desde primera sesión']
 	}
 ] as const;
 
@@ -76,7 +119,6 @@ export const NAV_ITEMS = [
 	{ label: 'Inicio', href: '#inicio' },
 	{ label: 'Servicios', href: '#servicios' },
 	{ label: 'Equipo', href: '#equipo' },
-	{ label: 'Clínicas', href: '#clinicas' },
-	{ label: 'Contacto', href: '#contacto' }
+	{ label: 'Clínicas', href: '#clinicas' }
 ] as const;
 

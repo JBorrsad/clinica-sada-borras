@@ -239,7 +239,7 @@ function formatDate(dateStr: string): string {
 		display: inline-block;
 		width: auto;
 		background: var(--c-primary);
-		border: none;
+		border: 2px solid var(--c-primary);
 		color: white;
 		padding: 0.625rem 1.25rem;
 		border-radius: var(--rad);
@@ -254,7 +254,9 @@ function formatDate(dateStr: string): string {
 	}
 
 	.write-review-btn:hover {
-		filter: brightness(0.92);
+		background: white;
+		color: var(--c-primary);
+		border: 2px solid var(--c-primary);
 		transform: translateY(-1px);
 	}
 

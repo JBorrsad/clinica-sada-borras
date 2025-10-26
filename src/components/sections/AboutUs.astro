@@ -1,428 +1,108 @@
 ---
 import { asset } from '../../utils/assets';
-// Nueva sección "Sobre nosotros" con carrusel horizontal estilo Apple/iOS
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
-<section class="about section" id="sobre-nosotros">
+<section class="about-section" id="sobre-nosotros">
 	<div class="container">
-			<div class="about-content">
-			<h2>Clínica Dental Sada Borrás</h2>
-				<p class="lead">Más de cuatro décadas dedicados a mejorar la salud dental de familias en Pamplona y Tafalla.</p>
-				
-			<div class="carousel-container">
-				<a href={`${baseUrl}sobre-nosotros`} class="carousel-wrapper">
-					<div class="carousel-track" id="carousel-track">
-						<div class="carousel-slide">
-							<p>Nuestra clínica dental nace del compromiso de dos profesionales con amplia formación y experiencia: José Manuel Borrás Amblar y Pilar Sada Garralda. Ambos licenciados en Medicina y Cirugía, especializados en Estomatología, han construido un centro de referencia en Navarra.</p>
-						</div>
-						<div class="carousel-slide">
-							<p>José Manuel Borrás cuenta con formación especializada en Implantología y Rehabilitación Oral por la European School de Nueva York, además de un posgrado en Periodoncia por la New York University. Pilar Sada, licenciada por la Universidad de Navarra, aporta su experiencia y cercanía en el trato con cada paciente.</p>
-						</div>
-					</div>
-				</a>
-				
-				<div class="carousel-indicators">
-					<button class="indicator active" data-slide="0" aria-label="Ir a la primera frase"></button>
-					<button class="indicator" data-slide="1" aria-label="Ir a la segunda frase"></button>
+		<div class="about-container">
+			<div class="about-text-column">
+				<div class="about-text-content">
+					<p class="about-description">Llevamos más de 40 años cuidando sonrisas en Navarra. Cuidamos cada aspecto de tu experiencia dental con un trato cercano, profesional y adaptado a ti en unas instalaciones modernas equipadas con tecnología avanzada.</p>
 				</div>
 			</div>
-			
-			<div class="about-cta">
-				<a href={`${baseUrl}sobre-nosotros`} class="btn btn-primary">Conoce más sobre nosotros</a>
+			<div class="about-buttons-column">
+				<a href={`${baseUrl}sobre-nosotros`} class="btn-primary">Conoce más sobre nosotros</a>
+				<a href="#contacto" class="btn-secondary">Pide una cita</a>
 			</div>
 		</div>
 	</div>
 </section>
 
-<script>
-	// Encapsular en IIFE para evitar conflictos con otros carruseles
-	(() => {
-		class AboutUsCarousel {
-			track: HTMLElement | null;
-			indicators: NodeListOf<Element>;
-			slides: NodeListOf<Element>;
-			currentSlide: number;
-			totalSlides: number;
-			autoPlayInterval: number | null;
-			autoPlayDelay: number;
-			isTransitioning: boolean;
-
-			constructor() {
-				this.track = document.getElementById('carousel-track');
-				this.indicators = document.querySelectorAll('#sobre-nosotros .indicator');
-				this.slides = document.querySelectorAll('#sobre-nosotros .carousel-slide');
-				this.currentSlide = 0;
-				this.totalSlides = this.slides.length;
-				this.autoPlayInterval = null;
-				this.autoPlayDelay = 7000;
-				this.isTransitioning = false;
-				
-				// Solo inicializar si los elementos existen
-				if (this.track && this.slides.length > 0) {
-					this.init();
-				}
-			}
-			
-			init() {
-				this.setupEventListeners();
-				this.startAutoPlay();
-			}
-			
-			setupEventListeners() {
-				// Event listeners para indicadores
-				this.indicators.forEach((indicator: Element, index: number) => {
-					indicator.addEventListener('click', (e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						this.goToSlide(index);
-					});
-				});
-			
-				// Touch events para móvil
-				let startX = 0;
-				let startY = 0;
-				let isScrolling = false;
-			
-				this.track?.addEventListener('touchstart', (e: TouchEvent) => {
-					startX = e.touches[0].clientX;
-					startY = e.touches[0].clientY;
-					isScrolling = false;
-				}, { passive: true });
-			
-				this.track?.addEventListener('touchmove', (e: TouchEvent) => {
-					if (!isScrolling) {
-						const deltaX = Math.abs(e.touches[0].clientX - startX);
-						const deltaY = Math.abs(e.touches[0].clientY - startY);
-						isScrolling = deltaY > deltaX;
-					}
-					
-					if (!isScrolling) {
-						e.preventDefault();
-					}
-				}, { passive: false });
-			
-				this.track?.addEventListener('touchend', (e: TouchEvent) => {
-					if (!isScrolling) {
-						const endX = e.changedTouches[0].clientX;
-						const deltaX = startX - endX;
-						
-						if (Math.abs(deltaX) > 50) {
-							if (deltaX > 0) {
-								this.nextSlide();
-							} else {
-								this.prevSlide();
-							}
-						}
-					}
-				}, { passive: true });
-			
-				// Pausar auto-play al hacer hover
-				const carouselWrapper = document.querySelector('#sobre-nosotros .carousel-wrapper');
-				carouselWrapper?.addEventListener('mouseenter', () => this.pauseAutoPlay());
-				carouselWrapper?.addEventListener('mouseleave', () => this.startAutoPlay());
-			}
-			
-			goToSlide(targetSlide: number, direction: string = 'auto') {
-				if (this.isTransitioning || targetSlide === this.currentSlide) return;
-				
-				this.isTransitioning = true;
-				this.pauseAutoPlay();
-				
-				// Determinar dirección de la animación
-				if (direction === 'auto') {
-					direction = targetSlide > this.currentSlide ? 'right' : 'left';
-				}
-				
-				// Actualizar indicadores
-				this.indicators.forEach((indicator: Element) => indicator.classList.remove('active'));
-				this.indicators[targetSlide].classList.add('active');
-				
-				// Aplicar animación del track
-				if (this.track) {
-					this.track.style.transform = `translateX(-${targetSlide * 50}%)`;
-				}
-				
-				// Resetear transición y actualizar slide actual
-				setTimeout(() => {
-					this.currentSlide = targetSlide;
-					this.isTransitioning = false;
-					this.startAutoPlay();
-				}, 600);
-			}
-			
-			nextSlide() {
-				const nextSlide = (this.currentSlide + 1) % this.totalSlides;
-				this.goToSlide(nextSlide, 'right');
-			}
-			
-			prevSlide() {
-				const prevSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
-				this.goToSlide(prevSlide, 'left');
-			}
-			
-			startAutoPlay() {
-				this.pauseAutoPlay();
-				this.autoPlayInterval = window.setInterval(() => {
-					this.nextSlide();
-				}, this.autoPlayDelay);
-			}
-			
-			pauseAutoPlay() {
-				if (this.autoPlayInterval) {
-					clearInterval(this.autoPlayInterval);
-					this.autoPlayInterval = null;
-				}
-			}
-		}
-	
-		// Inicializar carrusel cuando el DOM esté listo
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', () => new AboutUsCarousel());
-		} else {
-			new AboutUsCarousel();
-		}
-	})();
-</script>
-
 <style>
-	.about {
-		min-height: 50vh;
+	.about-section {
+		position: relative;
+		z-index: 10;
+		padding: var(--spacing-xl) 0;
+		background: white;
+	}
+	
+	.about-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		background: white;
+	}
+	
+	.about-text-column {
+		background: white;
 		display: flex;
 		align-items: center;
-		position: relative;
-		z-index: 10;
-		border-bottom: 1px solid var(--color-divider);
-		overflow: hidden;
-	}
-	
-	.about::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: url('/clinica-sada-borras/img/Untitled-2.jpg');
-		background-size: cover;
-		background-position: center;
-		filter: blur(2px);
-		transform: scale(1.05);
-		z-index: 0;
-	}
-	
-	.about::after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(255, 255, 255, 0.75);
-		z-index: 1;
-	}
-	
-	.about .container {
-		position: relative;
-		z-index: 2;
-	}
-	
-	.about-content {
-		max-width: 800px;
-		margin: 0 auto;
-		text-align: center;
-		padding: var(--spacing-xl) 0;
-	}
-	
-	.about-content h2 {
-		font-size: 38px;
-		color: var(--c-ink);
-		margin-bottom: 1.5rem;
-		font-weight: 700;
-		font-family: var(--ff-head);
-		line-height: 1.2;
-		padding-bottom: 1rem;
-		border-bottom: 3px solid var(--c-ink);
-		display: inline-block;
-	}
-	
-	.lead {
-		font-size: 19px;
-		color: var(--color-text-light);
-		margin-bottom: 2rem;
-		font-weight: 500;
-		line-height: 1.6;
-	}
-	
-	.carousel-container {
-		margin-top: 2rem;
-	}
-	
-	.carousel-wrapper {
-		overflow: hidden;
-		border-radius: 12px;
-		background: rgba(255, 255, 255, 0.8);
-		backdrop-filter: blur(10px);
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-		margin-bottom: 2rem;
-		position: relative;
-		display: block;
-		text-decoration: none;
-		color: inherit;
-		cursor: pointer;
-		transition: var(--transition);
-	}
-	
-	.carousel-wrapper:hover {
-		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-		transform: translateY(-2px);
-	}
-	
-	.carousel-track {
-		display: flex;
-		width: 200%;
-		transform: translateX(0%);
-		transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	}
-	
-	.carousel-slide {
-		width: 50%;
-		flex-shrink: 0;
-		padding: 2rem;
-		box-sizing: border-box;
-		overflow: hidden;
-	}
-	
-	
-	.carousel-slide p {
-		font-size: 16px;
-		color: var(--color-text);
-		line-height: 1.7;
-		margin: 0;
-		text-align: center;
-	}
-	
-	.carousel-indicators {
-		display: flex;
 		justify-content: center;
-		gap: 12px;
-		margin-top: 1.5rem;
-		position: relative;
-		z-index: 10;
+		padding: 3rem 2.5rem;
 	}
 	
-	.indicator {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		border: none;
-		background: rgba(0, 0, 0, 0.3);
-		cursor: pointer;
-		transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-		position: relative;
-		pointer-events: all;
+	.about-text-content {
+		max-width: 600px;
+		width: 100%;
 	}
 	
-	.indicator::before {
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		background: transparent;
-		transition: background 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	}
-	
-	.indicator:hover::before {
-		background: rgba(0, 0, 0, 0.1);
-	}
-	
-	.indicator.active {
-		background: var(--color-primary);
-		transform: scale(1.2);
-	}
-	
-	.indicator.active::before {
-		background: rgba(0, 191, 166, 0.2);
-	}
-	
-	.about-cta {
-		text-align: center;
-		margin-top: 2rem;
-	}
-	
-	.btn {
-		padding: 1rem 2rem;
-		border-radius: var(--rad);
-		font-weight: 600;
-		font-size: var(--font-size-base);
-		transition: var(--transition);
-		display: inline-block;
-		text-align: center;
-		text-decoration: none;
-		border: none;
-		cursor: pointer;
+	.about-description {
+		font-size: 20px;
+		line-height: 1.6;
+		color: var(--c-gray-700);
+		margin: 0;
 		font-family: var(--ff-body);
 	}
 	
-	.btn-primary {
-		background: var(--color-primary);
-		color: white;
+	.about-buttons-column {
+		background: white;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		padding: 3rem 2.5rem;
 	}
 	
-	.btn-primary:hover {
-		background: var(--color-primary-dark);
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
+	.about-buttons-column .btn-primary,
+	.about-buttons-column .btn-secondary {
+		white-space: nowrap;
+		padding: 0.75rem 1.5rem;
+		border: 2px solid var(--c-primary);
+		font-size: 1rem;
+		line-height: 1;
 	}
 	
-	@media (max-width: 767px) {
-		.about {
-			min-height: 40vh;
+	.about-buttons-column .btn-secondary {
+		color: var(--c-primary);
+	}
+	
+	.about-buttons-column .btn-secondary:hover {
+		color: #fff;
+	}
+	
+	@media (max-width: 768px) {
+		.about-container {
+			grid-template-columns: 1fr;
 		}
 		
-		.about-content {
-			padding: var(--spacing-lg) 0;
+		.about-text-column {
+			padding: 3rem 2rem;
 		}
 		
-		.about-content h2 {
-			font-size: var(--fs-h2);
+		.about-description {
+			font-size: 18px;
 		}
 		
-		.lead {
-			font-size: var(--font-size-base);
+		.about-buttons-column {
+			flex-direction: column;
+			gap: 1rem;
+			padding: 2rem;
 		}
 		
-		.carousel-wrapper {
-			margin: 0 1rem 2rem 1rem;
-		}
-		
-		.carousel-slide {
-			padding: 1.5rem;
-		}
-		
-		.carousel-slide p {
-			text-align: center;
-			font-size: 0.9375rem;
-			line-height: 1.6;
-		}
-		
-		.carousel-indicators {
-			margin-top: 1rem;
-		}
-		
-		.indicator {
-			width: 10px;
-			height: 10px;
-		}
-		
-		.indicator::before {
-			width: 24px;
-			height: 24px;
+		.about-buttons-column .btn-primary,
+		.about-buttons-column .btn-secondary {
+			width: 100%;
 		}
 	}
-
 </style>

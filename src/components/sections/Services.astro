@@ -6,8 +6,8 @@ import { asset } from '../../utils/assets';
 <section class="services section" id="servicios">
 	<div class="container">
 		<div class="section-header text-center">
-			<h2>Nuestros Servicios</h2>
-			<p class="section-subtitle">Soluciones integrales para tu salud dental en Pamplona y Tafalla</p>
+			<h2>Lo que mejor hacemos</h2>
+			<p class="section-subtitle">De la revisión a los tratamientos complejos, con un plan claro</p>
 		</div>
 		
 		<div class="services-grid">
@@ -20,7 +20,7 @@ import { asset } from '../../utils/assets';
 					serviceUrl = `${baseUrl}conservadora`;
 				} else if (service.id === 'odontopediatria') {
 					serviceUrl = `${baseUrl}odontopediatria`;
-				} else if (service.id === 'odontologia-biologica') {
+				} else if (service.id === 'rmr') {
 					serviceUrl = `${baseUrl}rmr`;
 				} else if (service.id === 'estetica-facial') {
 					serviceUrl = `${baseUrl}estetica-facial`;
@@ -43,7 +43,6 @@ import { asset } from '../../utils/assets';
 						</div>
 						<div class="service-content">
 							<h3>{service.title}</h3>
-							<p class="service-description">{service.description}</p>
 							<ul class="service-features">
 								{service.features.map(feature => (
 									<li>
@@ -63,14 +62,66 @@ import { asset } from '../../utils/assets';
 					</CardTag>
 				);
 			})}
-		</div>
-		
-		<div class="services-cta text-center">
-			<p class="services-note">¿No encuentras lo que buscas? Contáctanos y te ayudaremos.</p>
-			<a href="#contacto" class="btn btn-primary">Pedir información</a>
+			
+			<div class="services-cta" id="services-cta">
+				<p class="services-note">¿No encuentras lo que buscas? Contáctanos y te ayudaremos.</p>
+				<a href="#contacto" class="btn btn-primary">Pedir información</a>
+			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+	function adjustCTAWidth() {
+		const grid = document.querySelector('.services-grid') as HTMLElement;
+		const cta = document.getElementById('services-cta');
+		const cards = document.querySelectorAll('.service-card');
+		
+		if (!grid || !cta || cards.length === 0) return;
+		
+		// Obtener el ancho del grid y el gap
+		const gridStyles = window.getComputedStyle(grid);
+		const gridWidth = grid.offsetWidth;
+		const gap = parseFloat(gridStyles.gap) || 0;
+		
+		// Calcular cuántas columnas caben (cada tarjeta es 300px + gap)
+		const columnWidth = 300 + gap;
+		const columnsPerRow = Math.floor((gridWidth + gap) / columnWidth);
+		
+		if (columnsPerRow <= 1) {
+			// En móvil o pantallas pequeñas, no hacemos nada especial
+			cta.style.gridColumn = '';
+			return;
+		}
+		
+		// Calcular cuántas tarjetas hay (sin contar el CTA)
+		const totalCards = cards.length;
+		
+		// Calcular cuántas columnas ocupa la última fila sin el CTA
+		const cardsInLastRow = totalCards % columnsPerRow || columnsPerRow;
+		
+		// Calcular cuántas columnas quedan disponibles después de las tarjetas
+		const availableColumns = columnsPerRow - cardsInLastRow;
+		
+		if (availableColumns > 0) {
+			// El CTA ocupará el espacio restante en la fila
+			cta.style.gridColumn = `span ${availableColumns}`;
+		} else {
+			// Si la última fila está completa, el CTA ocupará 1 columna en la siguiente fila
+			cta.style.gridColumn = '';
+		}
+	}
+	
+	// Ejecutar al cargar la página
+	adjustCTAWidth();
+	
+	// Ejecutar cuando cambie el tamaño de la ventana
+	let resizeTimeout: number;
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(adjustCTAWidth, 100);
+	});
+</script>
 
 <style>
 	.services {
@@ -105,9 +156,10 @@ import { asset } from '../../utils/assets';
 	
 	.services-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		grid-template-columns: repeat(auto-fill, 300px);
 		gap: var(--spacing-md);
 		margin-bottom: var(--spacing-lg);
+		justify-content: center;
 	}
 	
 	.service-card {
@@ -123,6 +175,7 @@ import { asset } from '../../utils/assets';
 		text-decoration: none;
 		color: inherit;
 		display: block;
+		width: 300px;
 	}
 	
 	@media (min-width: 768px) {
@@ -148,8 +201,7 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.service-content {
-		padding: 1.5rem;
-		padding-bottom: 3.5rem;
+		padding: 1.25rem 1.5rem;
 	}
 	
 	.service-read-more {
@@ -203,13 +255,6 @@ import { asset } from '../../utils/assets';
 		min-height: 2.5em;
 	}
 	
-	.service-description {
-		color: var(--color-text-light);
-		margin-bottom: 1.5rem;
-		line-height: 1.6;
-		font-size: 14px;
-	}
-	
 	.service-features {
 		list-style: none;
 		padding: 0;
@@ -231,16 +276,22 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.services-cta {
-		margin-top: var(--spacing-lg);
+		min-width: 300px;
+		width: 100%;
 		padding: 2rem;
 		background: white;
 		border: 1px solid var(--c-gray-200);
 		border-radius: var(--border-radius-lg);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 	}
 	
 	.services-note {
-		font-size: var(--font-size-lg);
+		font-size: 18px;
 		color: var(--color-secondary);
 		margin-bottom: 1.5rem;
 		font-weight: 500;
@@ -270,9 +321,18 @@ import { asset } from '../../utils/assets';
 		box-shadow: var(--shadow-md);
 	}
 	
+	/* Pantallas móviles y tablets pequeñas */
 	@media (max-width: 767px) {
 		.services-grid {
 			grid-template-columns: 1fr;
+			justify-content: center;
+		}
+		
+		.service-card {
+			width: 100%;
+			max-width: 300px;
+			min-width: auto;
+			margin: 0 auto;
 		}
 		
 		.service-card h3 {
@@ -280,11 +340,14 @@ import { asset } from '../../utils/assets';
 		}
 		
 		.service-read-more {
-			transform: translateX(0);
+			display: none;
 		}
 		
-		.service-read-more::after {
-			display: none;
+		.services-cta {
+			width: 100%;
+			max-width: 300px;
+			min-width: auto;
+			margin: 0 auto;
 		}
 	}
 </style>

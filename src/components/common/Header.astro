@@ -27,9 +27,10 @@ import { asset } from '../../utils/assets';
 						<a href={item.href}>{item.label}</a>
 					</li>
 				))}
+				<li>
+					<a href="#contacto" class="btn-primary">Contacto</a>
+				</li>
 			</ul>
-			
-			<a href="#contacto" class="btn-cta">Pedir cita</a>
 		</nav>
 	</div>
 </header>
@@ -41,6 +42,11 @@ import { asset } from '../../utils/assets';
 		background: #FFFFFF;
 		box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
 		z-index: 1000;
+		transition: transform 0.3s ease-in-out;
+	}
+	
+	.header.header-hidden {
+		transform: translateY(-100%);
 	}
 	
 	.nav {
@@ -123,24 +129,23 @@ import { asset } from '../../utils/assets';
 		width: 100%;
 	}
 	
-	.btn-cta {
+	/* Botón de contacto - estilo invertido (como hover de btn-primary) */
+	.nav-list a.btn-primary {
+		padding: 0.75rem 1.5rem;
 		background: var(--c-primary);
 		color: white;
-		padding: 0.5rem 1rem;
-		border-radius: var(--border-radius);
-		font-weight: 600;
-		font-family: var(--ff-body);
-		font-size: 0.875rem;
-		transition: var(--transition);
-		white-space: nowrap;
-		display: flex;
-		align-items: center;
+		border: 2px solid var(--c-primary);
 	}
 	
-	.btn-cta:hover {
-		background: var(--color-primary-dark);
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
+	.nav-list a.btn-primary::after {
+		display: none;
+	}
+	
+	.nav-list a.btn-primary:hover {
+		background: white;
+		color: var(--c-primary);
+		border: 2px solid var(--c-primary);
+		transform: translateY(-1px);
 	}
 	
 	/* Responsive */
@@ -186,8 +191,9 @@ import { asset } from '../../utils/assets';
 			padding: 1rem;
 		}
 		
-		.btn-cta {
-			display: none;
+		.nav-list a.btn-primary {
+			text-align: center;
+			margin: 0.5rem 0;
 		}
 	}
 </style>
@@ -195,6 +201,7 @@ import { asset } from '../../utils/assets';
 <script>
 	const menuToggle = document.querySelector('.menu-toggle');
 	const navList = document.querySelector('.nav-list');
+	const header = document.querySelector('.header');
 	
 	if (menuToggle && navList) {
 		menuToggle.addEventListener('click', () => {
@@ -212,5 +219,38 @@ import { asset } from '../../utils/assets';
 			});
 		});
 	}
+	
+	// Ocultar/mostrar navbar según dirección del scroll
+	let lastScrollY = window.scrollY;
+	let ticking = false;
+	
+	const updateHeader = () => {
+		const currentScrollY = window.scrollY;
+		
+		// Si estamos en la parte superior, siempre mostrar el header
+		if (currentScrollY <= 0) {
+			header?.classList.remove('header-hidden');
+		} 
+		// Si hacemos scroll hacia abajo, ocultar
+		else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+			header?.classList.add('header-hidden');
+		} 
+		// Si hacemos scroll hacia arriba, mostrar
+		else if (currentScrollY < lastScrollY) {
+			header?.classList.remove('header-hidden');
+		}
+		
+		lastScrollY = currentScrollY;
+		ticking = false;
+	};
+	
+	const onScroll = () => {
+		if (!ticking) {
+			window.requestAnimationFrame(updateHeader);
+			ticking = true;
+		}
+	};
+	
+	window.addEventListener('scroll', onScroll, { passive: true });
 </script>
 

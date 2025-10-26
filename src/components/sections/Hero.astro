@@ -13,14 +13,16 @@ import { asset } from '../../utils/assets';
 	</div>
 	<div class="hero-overlay"></div>
 	<div class="container hero-content">
-		<div class="hero-left">
-			<h1>Tu Clínica Dental de Confianza en Pamplona y Tafalla</h1>
-		</div>
-		<div class="hero-right">
-			<p class="hero-description">Llevamos más de 40 años cuidando sonrisas en Navarra. Cuidamos cada aspecto de tu experiencia dental con un trato cercano, profesional y adaptado a ti en unas instalaciones modernas equipadas con tecnología avanzada.</p>
-			<div class="hero-cta">
-				<a href="#contacto" class="btn btn-primary">¡PIDE CITA!</a>
+		<div class="hero-center">
+			<div class="hero-logo">
+				<img 
+					src={asset("/icons/cropped-logo-dental-2-300x300.png")}
+					alt="Logo Clínica Dental Sada Borrás"
+					class="logo-white"
+				/>
 			</div>
+			<h1>CLÍNICA DENTAL SADA BORRÁS</h1>
+			<p class="hero-subtitle">Tu clínica dental de confianza en Pamplona y Tafalla</p>
 		</div>
 	</div>
 </section>
@@ -28,15 +30,14 @@ import { asset } from '../../utils/assets';
 <style>
 	.hero {
 		position: relative;
-		min-height: 600px;
+		min-height: 650px;
 		display: flex;
 		align-items: center;
 		overflow: hidden;
-		border-bottom: 1px solid var(--color-divider);
 	}
 	
 	.hero-bg {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -51,12 +52,12 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.hero-overlay {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(135deg, rgba(0, 191, 166, 0.85) 0%, rgba(26, 26, 46, 0.85) 100%);
+		background: rgba(0, 0, 0, 0.35);
 		z-index: 1;
 	}
 	
@@ -64,96 +65,76 @@ import { asset } from '../../utils/assets';
 		position: relative;
 		z-index: 2;
 		padding: var(--spacing-xl) 0;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 4rem;
-		align-items: start;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 600px;
+		width: 100%;
 	}
 	
-	.hero-right {
-		padding-top: 7rem;
-		color: white;
+	.hero-center {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 	}
 	
-	.hero-left {
-		color: white;
+	.hero-logo {
+		margin-bottom: 1.5rem;
+	}
+	
+	.logo-white {
+		max-width: 90px;
+		height: auto;
+		filter: brightness(0) invert(1);
 	}
 	
 	.hero h1 {
 		font-size: 40px;
 		color: white;
-		margin-bottom: 1.5rem;
+		margin: 0 0 0.75rem 0;
 		line-height: 1.2;
 		font-family: var(--ff-head);
 		font-weight: 700;
+		letter-spacing: 1px;
+		text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 	}
 	
-	.hero-description {
-		font-size: 19px;
-		margin-bottom: 2rem;
-		opacity: 0.95;
-		line-height: 1.6;
+	.hero-subtitle {
+		font-size: 20px;
 		color: white;
-	}
-	
-	.hero-cta {
-		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
-		margin-top: 1.5rem;
-	}
-	
-	.btn {
-		padding: 1rem 2rem;
-		border-radius: var(--border-radius);
-		font-weight: 600;
-		font-size: 15px;
-		transition: var(--transition);
-		display: inline-block;
-		text-align: center;
+		margin: 0;
+		font-weight: 400;
+		letter-spacing: 0.5px;
+		text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 		font-family: var(--ff-body);
-	}
-	
-	.btn-primary {
-		background: var(--color-primary);
-		color: white;
-	}
-	
-	.btn-primary:hover {
-		background: var(--color-primary-dark);
-		transform: translateY(-3px);
-		box-shadow: var(--shadow-lg);
 	}
 	
 	
 	@media (max-width: 767px) {
 		.hero {
-			min-height: 500px;
+			min-height: 550px;
 			padding: 0 1rem;
 		}
 		
 		.hero-content {
-			grid-template-columns: 1fr;
-			gap: 2rem;
+			min-height: 500px;
 			padding: var(--spacing-lg) 0;
 		}
 		
+		.logo-white {
+			max-width: 90px;
+		}
+		
 		.hero h1 {
-			font-size: 32px;
+			font-size: 28px;
+			letter-spacing: 0.5px;
+			margin-bottom: 0.75rem;
 		}
 		
-		.hero-description {
-			font-size: 17px;
-		}
-		
-		.hero-right {
-			padding-top: 0;
-		}
-		
-		.btn {
-			width: auto;
-			display: inline-block;
-			min-width: 200px;
+		.hero-subtitle {
+			font-size: 16px;
 		}
 	}
 </style>
