@@ -4,16 +4,17 @@ import { asset } from '../../utils/assets';
 ---
 
 <section class="contact section" id="contacto">
-	<div class="container">
+	<div class="contact-full-width">
 		<div class="section-header text-center">
 			<h2>Contacta con Nosotros</h2>
-			<p class="section-subtitle">Visítanos en nuestras clínicas o solicita información</p>
 		</div>
 		
-		<div class="contact-grid-three">
-			<!-- Clínica Pamplona -->
-			<div class="clinic-contact">
-				<h3 class="clinic-name">Pamplona</h3>
+		<div class="contact-grid-two">
+			<!-- Columna izquierda: Clínicas -->
+			<div class="clinics-column">
+				<!-- Clínica Pamplona -->
+				<div class="clinic-contact">
+					<h3 class="clinic-name">Pamplona</h3>
 				
 				<div class="contact-info">
 					<div class="info-item">
@@ -64,12 +65,12 @@ import { asset } from '../../utils/assets';
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"
 					></iframe>
+					</div>
 				</div>
-			</div>
-			
-			<!-- Clínica Tafalla -->
-			<div class="clinic-contact">
-				<h3 class="clinic-name">Tafalla</h3>
+				
+				<!-- Clínica Tafalla -->
+				<div class="clinic-contact">
+					<h3 class="clinic-name">Tafalla</h3>
 				
 				<div class="contact-info">
 					<div class="info-item">
@@ -119,17 +120,19 @@ import { asset } from '../../utils/assets';
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"
 					></iframe>
+					</div>
 				</div>
 			</div>
 			
-			<!-- Formulario de contacto -->
+			<!-- Columna derecha: Formulario -->
 			<div class="form-content">
-				<h3 class="form-title">Pide cita, te ayudaremos</h3>
+				<h3 class="form-title">¿TIENES ALGUNA DUDA? Contáctanos</h3>
 				<p class="form-description">
-					Te asesoramos de manera personalizada para ofrecerte el tratamiento más adecuado a tus necesidades, garantizando tu salud, función y estética bucodental.
+					Te escuchamos y estudiamos tu caso para proponerte la opción que mejor encaje contigo, cuidando salud, función y estética.
 				</p>
 
-				<form class="contact-form" id="contactForm">
+				<div class="form-card">
+					<form class="contact-form" id="contactForm">
 					<div class="form-row">
 						<div class="form-group">
 							<input 
@@ -207,6 +210,7 @@ import { asset } from '../../utils/assets';
 						</div>
 					</details>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -242,7 +246,14 @@ import { asset } from '../../utils/assets';
 		background: white;
 		position: relative;
 		z-index: 10;
-		border-bottom: 1px solid var(--color-divider);
+		width: 100%;
+	}
+	
+	.contact-full-width {
+		width: 100%;
+		max-width: 1800px;
+		margin: 0 auto;
+		padding: 0 var(--container-padding);
 	}
 	
 	/* Estilos para la información de las clínicas */
@@ -262,11 +273,18 @@ import { asset } from '../../utils/assets';
 		color: var(--c-gray-700);
 	}
 	
-	.contact-grid-three {
+	.contact-grid-two {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: var(--spacing-md);
+		grid-template-columns: 5fr 4fr;
+		gap: 6%;
 		margin-top: var(--spacing-lg);
+		align-items: start;
+	}
+	
+	.clinics-column {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-xl);
 		align-items: start;
 	}
 	
@@ -299,7 +317,7 @@ import { asset } from '../../utils/assets';
 	.info-item {
 		display: flex;
 		gap: 1rem;
-		align-items: flex-start;
+		align-items: center;
 	}
 	
 	.info-icon {
@@ -360,6 +378,15 @@ import { asset } from '../../utils/assets';
 		margin: 0;
 	}
 	
+	.form-card {
+		background: white;
+		border: 1px solid var(--c-gray-200);
+		border-radius: 12px;
+		padding: 2rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+		margin-top: 1.5rem;
+	}
+	
 	.contact-form {
 		display: flex;
 		flex-direction: column;
@@ -385,7 +412,7 @@ import { asset } from '../../utils/assets';
 	.form-group textarea {
 		padding: 0.7rem 0.9rem;
 		border: 1px solid var(--c-gray-200);
-		border-radius: var(--rad);
+		border-radius: 0;
 		background: white;
 		font-size: var(--fs-body);
 		font-family: var(--ff-body);
@@ -420,7 +447,7 @@ import { asset } from '../../utils/assets';
 	
 	.privacy-check {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		gap: 0.5rem;
 		flex: 1;
 	}
@@ -429,10 +456,11 @@ import { asset } from '../../utils/assets';
 		width: 18px;
 		height: 18px;
 		border: 1px solid var(--c-gray-200);
-		border-radius: 4px;
+		border-radius: 0;
 		cursor: pointer;
 		flex-shrink: 0;
 		accent-color: var(--c-primary);
+		margin-top: 2px;
 	}
 	
 	.privacy-check label {
@@ -456,7 +484,7 @@ import { asset } from '../../utils/assets';
 		background: var(--c-primary);
 		color: white;
 		border: 2px solid var(--c-primary);
-		border-radius: var(--rad);
+		border-radius: 8px;
 		padding: 0.75rem 1.5rem;
 		cursor: pointer;
 		transition: var(--transition);
@@ -520,10 +548,14 @@ import { asset } from '../../utils/assets';
 	}
 	
 	/* Responsive */
-	@media (max-width: 1200px) {
-		.contact-grid-three {
+	@media (max-width: 1024px) {
+		.contact-grid-two {
 			grid-template-columns: 1fr;
 			gap: var(--spacing-lg);
+		}
+		
+		.clinics-column {
+			grid-template-columns: 1fr;
 		}
 		
 		.form-description {

@@ -32,10 +32,14 @@ const cases = [
 <section class="clinical-cases section" id="casos-clinicos">
 	<div class="container">
 		<div class="section-header text-center">
-			<h2>Casos clínicos</h2>
+			<h2>Resultados reales de nuestros pacientes</h2>
 			<div class="intro-text">
-				<p>Te invitamos a conocer el <strong>antes y el después de pacientes</strong> que han confiado en nosotros para obtener una sonrisa sana y estética.</p>
-				<p>Ofrecemos soluciones específicas, así como tratamientos multidisciplinares que combinan la experiencia de diferentes especialistas, adaptándonos a las necesidades y expectativas de cada caso.</p>
+				<div class="intro-column">
+					<p>Explora cambios documentados antes y después: salud, función y estética que se notan. En cada caso diseñamos un plan a medida y, cuando conviene, coordinamos a varias especialidades.</p>
+				</div>
+				<div class="intro-column">
+					<p>Seleccionamos la técnica adecuada para cada persona y, cuando hace falta, intervenimos de forma multidisciplinar.</p>
+				</div>
 			</div>
 		</div>
 
@@ -187,7 +191,6 @@ const cases = [
 		background: white;
 		position: relative;
 		z-index: 10;
-		border-bottom: 1px solid var(--color-divider);
 	}
 	
 	.section-header {
@@ -207,15 +210,19 @@ const cases = [
 	}
 	
 	.intro-text {
-		max-width: 900px;
+		max-width: 1000px;
 		margin: 2rem auto 0;
 		color: var(--color-text);
 		font-size: var(--font-size-base);
 		line-height: 1.6;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-xl);
+		text-align: left;
 	}
 	
-	.intro-text p {
-		margin-bottom: 1rem;
+	.intro-column p {
+		margin: 0;
 	}
 	
 	.intro-text strong {
@@ -368,6 +375,12 @@ const cases = [
 	
 	/* Móvil */
 	@media (max-width: 767px) {
+		.intro-text {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-md);
+			text-align: center;
+		}
+		
 		.cases-grid {
 			grid-template-columns: 1fr;
 		}
