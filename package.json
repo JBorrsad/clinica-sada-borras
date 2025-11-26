@@ -13,7 +13,7 @@
 		"fetch:reviews": "node scripts/fetch-google-reviews.mjs"
 	},
   "dependencies": {
-    "astro": "^4.16.0",
+    "astro": "^5.16.0",
     "dotenv": "^17.2.3"
   },
   "devDependencies": {
