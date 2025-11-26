@@ -1,9 +1,17 @@
 {
-  "last_updated": "2025-10-16T02:01:45.022Z",
+  "last_updated": "2025-11-26T04:45:30.543Z",
   "places": [
     {
+      "place_id": "ChIJPZNNn_d3Wg0RxOoLrfHRghk",
+      "name": "Clinica Dental Sada Borrás",
+      "rating": 5,
+      "userRatingCount": 2,
+      "googleMapsUri": "https://maps.google.com/?cid=1838262433841146564&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+      "writeReviewUri": "https://search.google.com/local/writereview?placeid=ChIJPZNNn_d3Wg0RxOoLrfHRghk",
+      "reviews": []
+    },
+    {
       "place_id": "ChIJvU47BVx3Wg0RKYHweIB2OQo",
-      "name": "Sada Borras",
       "rating": 4.6,
       "userRatingCount": 15,
       "googleMapsUri": "https://maps.google.com/?cid=736750308208705833&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
@@ -55,15 +63,6 @@
           "deep_link": "https://www.google.com/maps/place/?q=place_id:ChIJvU47BVx3Wg0RKYHweIB2OQo&reviewId=ChdDSUhNMG9nS0VJQ0FnSUMxaE5hWDRRRRAB"
         }
       ]
-    },
-    {
-      "place_id": "ChIJPZNNn_d3Wg0RxOoLrfHRghk",
-      "name": "Clinica Dental Sada Borrás",
-      "rating": 5,
-      "userRatingCount": 2,
-      "googleMapsUri": "https://maps.google.com/?cid=1838262433841146564&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
-      "writeReviewUri": "https://search.google.com/local/writereview?placeid=ChIJPZNNn_d3Wg0RxOoLrfHRghk",
-      "reviews": []
     }
   ]
 }
