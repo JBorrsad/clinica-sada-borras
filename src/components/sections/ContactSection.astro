@@ -16,7 +16,7 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 		</div>
 		
 		<div class="contact-form-wrapper">
-			<form class="contact-form" method="POST" action="/contacto">
+			<form class="contact-form" id="contact-form">
 				<div class="form-row">
 					<div class="form-group">
 						<input type="text" id="nombre" name="nombre" placeholder="Nombre*" required />
@@ -48,6 +48,8 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 					</div>
 					<button type="submit" class="btn-submit">ENVIAR</button>
 				</div>
+				
+				<div id="form-message" class="form-message" style="display: none;"></div>
 				
 				<div class="legal-info">
 					<button type="button" class="legal-toggle" aria-expanded="false" aria-controls="legal-content">
@@ -324,6 +326,50 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 		text-decoration: underline;
 	}
 	
+	.form-message {
+		margin-top: 1rem;
+		padding: 1rem 1.25rem;
+		border-radius: var(--rad);
+		font-size: var(--fs-body);
+		line-height: 1.5;
+		animation: slideDown 0.3s ease-out;
+	}
+	
+	.form-message.success {
+		background: #d4edda;
+		color: #155724;
+		border: 1px solid #c3e6cb;
+	}
+	
+	.form-message.error {
+		background: #f8d7da;
+		color: #721c24;
+		border: 1px solid #f5c6cb;
+	}
+	
+	.form-message.warning {
+		background: #fff3cd;
+		color: #856404;
+		border: 1px solid #ffeeba;
+	}
+	
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	.btn-submit:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		transform: none !important;
+	}
+	
 	@media (max-width: 768px) {
 		.contact .section-header h2 {
 			font-size: 32px;
@@ -408,5 +454,138 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 		document.addEventListener('DOMContentLoaded', initLegalToggle);
 	} else {
 		initLegalToggle();
+	}
+
+	// EmailJS Configuration
+	// Las credenciales se cargan desde variables de entorno (.env)
+	// Para desarrollo local, crea un archivo .env con las variables PUBLIC_EMAILJS_*
+	// Para producción en GitHub Pages, configura los secrets en GitHub Actions
+	
+	const EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || '';
+	const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || '';
+	const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || '';
+	const RECIPIENT_EMAIL = import.meta.env.PUBLIC_EMAILJS_RECIPIENT_EMAIL || 'admin@clinicaborras.es';
+
+	// Cargar EmailJS desde CDN
+	const loadEmailJS = () => {
+		return new Promise((resolve, reject) => {
+			if (window.emailjs) {
+				resolve(window.emailjs);
+				return;
+			}
+			
+			const script = document.createElement('script');
+			script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+			script.onload = () => {
+				window.emailjs.init(EMAILJS_PUBLIC_KEY);
+				resolve(window.emailjs);
+			};
+			script.onerror = reject;
+			document.head.appendChild(script);
+		});
+	};
+
+	// Función para mostrar mensajes
+	const showMessage = (message: string, type: 'success' | 'error' | 'warning') => {
+		const messageEl = document.getElementById('form-message');
+		if (!messageEl) return;
+		
+		messageEl.textContent = message;
+		messageEl.className = `form-message ${type}`;
+		messageEl.style.display = 'block';
+		
+		// Auto-ocultar después de 5 segundos (excepto errores)
+		if (type !== 'error') {
+			setTimeout(() => {
+				messageEl.style.display = 'none';
+			}, 5000);
+		}
+		
+		// Scroll suave al mensaje
+		messageEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+	};
+
+	// Manejar el envío del formulario
+	const handleFormSubmit = async (e: Event) => {
+		e.preventDefault();
+		
+		const form = e.target as HTMLFormElement;
+		const submitButton = form.querySelector('.btn-submit') as HTMLButtonElement;
+		const originalText = submitButton.textContent;
+		const messageEl = document.getElementById('form-message');
+		
+		// Ocultar mensajes anteriores
+		if (messageEl) {
+			messageEl.style.display = 'none';
+		}
+		
+		// Validar que las credenciales estén configuradas
+		const hasDefaultValues = EMAILJS_PUBLIC_KEY.includes('YOUR_') || 
+		                        EMAILJS_SERVICE_ID.includes('YOUR_') || 
+		                        EMAILJS_TEMPLATE_ID.includes('YOUR_');
+		
+		if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || hasDefaultValues) {
+			showMessage('⚠️ Error: El formulario no está configurado. Por favor, contacta al administrador.', 'error');
+			console.error('EmailJS no está configurado. Por favor, configura las credenciales en ContactSection.astro');
+			return;
+		}
+
+		// Deshabilitar el botón durante el envío
+		submitButton.disabled = true;
+		submitButton.textContent = 'ENVIANDO...';
+
+		try {
+			// Cargar EmailJS si no está cargado
+			await loadEmailJS();
+
+			// Obtener los datos del formulario
+			const formData = new FormData(form);
+			const nombre = formData.get('nombre') as string;
+			const apellido = formData.get('apellido') as string;
+			const email = formData.get('email') as string;
+			const telefono = formData.get('telefono') as string;
+			const mensaje = formData.get('mensaje') as string || 'Sin mensaje';
+
+			// Enviar el email usando EmailJS
+			await window.emailjs.send(
+				EMAILJS_SERVICE_ID,
+				EMAILJS_TEMPLATE_ID,
+				{
+					to_email: RECIPIENT_EMAIL,
+					from_name: `${nombre} ${apellido}`,
+					from_email: email,
+					phone: telefono,
+					message: mensaje,
+					subject: `Nuevo contacto de ${nombre} ${apellido}`,
+					reply_to: email
+				}
+			);
+
+			// Mostrar mensaje de éxito
+			showMessage('✅ ¡Mensaje enviado correctamente! Te responderemos pronto.', 'success');
+			form.reset();
+
+		} catch (error) {
+			console.error('Error al enviar el formulario:', error);
+			showMessage('❌ Error al enviar el mensaje. Por favor, intenta de nuevo o contacta por teléfono: 948 172 617', 'error');
+		} finally {
+			// Restaurar el botón
+			submitButton.disabled = false;
+			submitButton.textContent = originalText;
+		}
+	};
+
+	// Inicializar el manejo del formulario
+	const initContactForm = () => {
+		const form = document.getElementById('contact-form') as HTMLFormElement;
+		if (form) {
+			form.addEventListener('submit', handleFormSubmit);
+		}
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initContactForm);
+	} else {
+		initContactForm();
 	}
 </script>
