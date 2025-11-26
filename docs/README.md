@@ -6,7 +6,7 @@ Sitio web de la Clínica Dental Sada Borrás en Pamplona y Tafalla.
 
 Este sitio se despliega automáticamente en GitHub Pages cada vez que se hace push a la rama `main`.
 
-**URL del sitio**: https://jborrsad.github.io/clinica-sada-borras
+**URL del sitio**: https://sadaborras.com
 
 ## Desarrollo Local
 

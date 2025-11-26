@@ -19,9 +19,9 @@ Este es el repositorio de la página web de la Clínica Dental Sada Borrás, una
 
 El sitio se actualiza automáticamente con las reseñas de Google Places mediante GitHub Actions:
 
-> **🌐 URL del sitio**: `https://jborrsad.github.io/clinica-sada-borras`
+> **🌐 URL del sitio**: `https://sadaborras.com`
 >
-> El proyecto está configurado para GitHub Pages **sin dominio custom**. La configuración de `astro.config.mjs` ya tiene el `base` path correcto.
+> El proyecto está configurado para GitHub Pages **con dominio personalizado**. La configuración de `astro.config.mjs` usa `base: "/"` para el dominio raíz.
 
 ### Frecuencia de Actualización
 
@@ -99,7 +99,7 @@ Después de configurar los secrets:
 
 **❌ Assets no cargan (404)**
 
-→ Verifica que el `base: "/clinica-sada-borras"` en `astro.config.mjs` coincida exactamente con el nombre del repositorio
+→ Verifica que el `base: "/"` en `astro.config.mjs` sea correcto para tu dominio
 
 ## 📞 Información de Contacto
 

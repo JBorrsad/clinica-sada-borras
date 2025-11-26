@@ -5,7 +5,7 @@
 /**
  * Construye la URL completa de un asset incluyendo el base path
  * @param path Ruta relativa del asset (ej: "/img/photo.jpg")
- * @returns URL completa con base path (ej: "/clinica-sada-borras/img/photo.jpg")
+ * @returns URL completa con base path (ej: "/img/photo.jpg" o "/clinica-sada-borras/img/photo.jpg" si hay subdirectorio)
  */
 export function asset(path: string): string {
 	// Asegurarnos de que path empiece con /
