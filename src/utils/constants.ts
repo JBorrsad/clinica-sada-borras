@@ -32,28 +32,21 @@ export const SERVICES = [
 		id: 'cirugia-oral',
 		title: 'Cirugía Oral',
 		icon: 'tesicon11.png',
-		image: '/img/servicios_cards/implante.jpg',
-		features: ['Extracciones complejas', 'Cirugía de muelas del juicio', 'Técnicas mínimamente invasivas']
-	},
-	{
-		id: 'periodoncia',
-		title: 'Periodoncia',
-		icon: 'tesicon11.png',
-		image: '/img/servicios_cards/qs01.jpg',
-		features: ['Tratamiento de encías inflamadas', 'Limpieza profunda y raspado radicular', 'Prevención de pérdida dental']
+		image: '/img/servicios_cards/cirugiaoral.png',
+		features: ['Extracciones y muelas del juicio', 'Limpiezas profundas y raspado radicular', 'Regeneración ósea guiada']
 	},
 	{
 		id: 'odontologia-conservadora',
 		title: 'Odontología Conservadora',
 		icon: 'tesicon2.png',
-		image: '/img/servicios_cards/estetica.jpg',
+		image: '/img/servicios_cards/conservadora.png',
 		features: ['Empastes de composite estético', 'Reconstrucciones dentales', 'Incrustaciones cerámicas']
 	},
 	{
 		id: 'estetica-dental',
 		title: 'Estética Dental',
 		icon: 'tesicon2.png',
-		image: '/img/servicios_cards/estetica.jpg',
+		image: '/img/servicios_cards/estetica.png',
 		features: ['Carillas de porcelana', 'Diseño digital de sonrisa', 'Resultados naturales y duraderos']
 	},
 	{
@@ -67,7 +60,7 @@ export const SERVICES = [
 		id: 'rmr',
 		title: 'Tratamiento RMR',
 		icon: 'tesicon5.png',
-		image: '/img/servicios_cards/rmr.png',
+		image: '/img/servicios_cards/rmr2.png',
 		features: ['Rehabilitación masticatoria', 'Mejora de la respiración nasal', 'Corrección de hábitos orales']
 	},
 	{
@@ -88,28 +81,28 @@ export const SERVICES = [
 		id: 'endodoncia',
 		title: 'Endodoncia',
 		icon: 'tesicon2.png',
-		image: '/img/servicios_cards/estetica.jpg',
+		image: '/img/servicios_cards/endo.png',
 		features: ['Tratamientos de conductos', 'Salvamos dientes comprometidos', 'Técnicas con microscopio']
 	},
 	{
 		id: 'protesis',
 		title: 'Prótesis',
 		icon: 'tesicon11.png',
-		image: '/img/servicios_cards/implante.jpg',
+		image: '/img/servicios_cards/protesis.png',
 		features: ['Prótesis fijas sobre implantes', 'Prótesis removibles', 'Rehabilitaciones completas']
 	},
 	{
 		id: 'prevencion-higiene',
 		title: 'Prevención e Higiene',
 		icon: 'tesicon4.png',
-		image: '/img/servicios_cards/qs01.jpg',
+		image: '/img/servicios_cards/prevencion.png',
 		features: ['Limpiezas dentales profesionales', 'Fluorización y selladores', 'Enseñanza de higiene oral']
 	},
 	{
 		id: 'blanqueamiento',
 		title: 'Blanqueamiento',
 		icon: 'tesicon2.png',
-		image: '/img/servicios_cards/estetica.jpg',
+		image: '/img/servicios_cards/blanqueamiento.jpg',
 		features: ['Blanqueamiento LED en clínica', 'Tratamiento ambulatorio en casa', 'Resultados visibles desde primera sesión']
 	}
 ] as const;

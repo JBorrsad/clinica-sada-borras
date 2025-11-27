@@ -39,6 +39,7 @@ import { asset } from '../../utils/assets';
 								width="400"
 								height="100"
 								loading="lazy"
+								decoding="async"
 							/>
 						</div>
 						<div class="service-content">
@@ -107,8 +108,8 @@ import { asset } from '../../utils/assets';
 			// El CTA ocupará el espacio restante en la fila
 			cta.style.gridColumn = `span ${availableColumns}`;
 		} else {
-			// Si la última fila está completa, el CTA ocupará 1 columna en la siguiente fila
-			cta.style.gridColumn = '';
+			// Si la última fila está completa, el CTA ocupará toda la siguiente fila
+			cta.style.gridColumn = `span ${columnsPerRow}`;
 		}
 	}
 	

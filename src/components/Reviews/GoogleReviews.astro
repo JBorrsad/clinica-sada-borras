@@ -51,6 +51,7 @@ function formatDate(dateStr: string): string {
 							width="60" 
 							height="60"
 							loading="lazy"
+							decoding="async"
 						/>
 					</div>
 					<h3 id="reviews-heading" class="clinic-name">Clínica Dental Sada Borrás</h3>
@@ -118,6 +119,8 @@ function formatDate(dateStr: string): string {
 										class="verified-icon"
 										width="16"
 										height="16"
+										loading="lazy"
+										decoding="async"
 									/>
 								</div>
 									
@@ -186,6 +189,16 @@ function formatDate(dateStr: string): string {
 
 	.clinic-logo {
 		flex-shrink: 0;
+		width: 80px;
+		height: 80px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		border: 1px solid #e8eaed;
+		background: white;
+		padding: 8px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
 
 	.clinic-logo img {
@@ -564,6 +577,12 @@ function formatDate(dateStr: string): string {
 		.clinic-header {
 			margin-bottom: 1rem;
 			justify-content: center;
+		}
+
+		.clinic-logo {
+			width: 70px;
+			height: 70px;
+			padding: 6px;
 		}
 
 		.clinic-logo img {

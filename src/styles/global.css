@@ -251,6 +251,14 @@ textarea::placeholder {
   color: var(--c-ink);
 }
 
+/* Optimización para prevenir CLS (Cumulative Layout Shift) */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Utilidades de layout */
 .container {
   max-width: var(--container-max-width);
