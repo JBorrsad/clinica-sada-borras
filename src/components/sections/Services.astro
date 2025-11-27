@@ -32,16 +32,17 @@ import { asset } from '../../utils/assets';
 						class="service-card" 
 						{...(serviceUrl ? { href: serviceUrl } : {})}
 					>
-						<div class="service-image">
-							<img 
-								src={asset(service.image)}
-								alt={service.title}
-								width="400"
-								height="100"
-								loading="lazy"
-								decoding="async"
-							/>
-						</div>
+					<div class="service-image">
+						<img 
+							src={asset(service.image)}
+							alt={service.title}
+							width="400"
+							height="100"
+							loading="lazy"
+							decoding="async"
+							style="aspect-ratio: 4/1;"
+						/>
+					</div>
 						<div class="service-content">
 							<h3>{service.title}</h3>
 							<ul class="service-features">

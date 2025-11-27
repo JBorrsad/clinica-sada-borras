@@ -45,14 +45,15 @@ function formatDate(dateStr: string): string {
 			<div class="reviews-summary">
 				<div class="clinic-header">
 					<div class="clinic-logo">
-						<img 
-							src={asset("/icons/logo-dental-2.png")}
-							alt="Logo Clínica Dental Sada Borrás" 
-							width="60" 
-							height="60"
-							loading="lazy"
-							decoding="async"
-						/>
+					<img 
+						src={asset("/icons/logo-dental-2.png")}
+						alt="Logo Clínica Dental Sada Borrás" 
+						width="60" 
+						height="60"
+						loading="lazy"
+						decoding="async"
+						style="aspect-ratio: 1/1;"
+					/>
 					</div>
 					<h3 id="reviews-heading" class="clinic-name">Clínica Dental Sada Borrás</h3>
 				</div>
@@ -113,15 +114,16 @@ function formatDate(dateStr: string): string {
 									<div class="stars">
 										{"★".repeat(review.rating)}
 									</div>
-									<img 
-										src={asset("/icons/google-verified-1.svg")}
-										alt="Verificado por Google"
-										class="verified-icon"
-										width="16"
-										height="16"
-										loading="lazy"
-										decoding="async"
-									/>
+								<img 
+									src={asset("/icons/google-verified-1.svg")}
+									alt="Verificado por Google"
+									class="verified-icon"
+									width="16"
+									height="16"
+									loading="lazy"
+									decoding="async"
+									style="aspect-ratio: 1/1;"
+								/>
 								</div>
 									
 									{review.text && (
