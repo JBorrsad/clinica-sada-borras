@@ -53,7 +53,7 @@ export const SERVICES = [
 		id: 'odontopediatria',
 		title: 'Odontopediatría',
 		icon: 'tesicon4.png',
-		image: '/img/servicios_cards/qs02.jpg',
+		image: '/img/servicios_cards/qs03.jpg',
 		features: ['Atención especializada para niños', 'Prevención de caries infantil', 'Ambiente adaptado y sin estrés']
 	},
 	{
