@@ -131,6 +131,31 @@ import { asset } from '../../utils/assets';
 		z-index: 10;
 	}
 	
+	.services::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('/img/bgservices.webp');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		opacity: 0.1;
+		pointer-events: none;
+		z-index: 0;
+		image-rendering: -webkit-optimize-contrast;
+		image-rendering: crisp-edges;
+		filter: contrast(1.1);
+	}
+	
+	.services .container {
+		position: relative;
+		z-index: 1;
+	}
+	
 	.section-header {
 		margin-bottom: var(--spacing-lg);
 	}
