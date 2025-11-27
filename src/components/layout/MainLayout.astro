@@ -20,6 +20,10 @@ const currentYear = new Date().getFullYear();
 	<link rel="icon" type="image/png" href={asset("/icons/cropped-logo-dental-2-32x32.png")} />
 	<meta name="generator" content={Astro.generator} />
 	
+	<!-- Preload recursos críticos -->
+	<link rel="preload" href="https://fonts.gstatic.com/s/lora/v32/0QI6MX1D_JOuGQbT0gvTJPa787weuxJBkq0.woff2" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="https://fonts.gstatic.com/s/publicsans/v15/ijwGs572Xtc6ZYQws9YVwllKVG8qX1oyOymuFpmJygco.woff2" as="font" type="font/woff2" crossorigin />
+	
 	<!-- SEO Meta Tags -->
 	<title>{title}</title>
 	<meta name="description" content={description} />
@@ -41,7 +45,10 @@ const currentYear = new Date().getFullYear();
 	<!-- Fuentes Google Fonts - Optimizado para Core Web Vitals -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+	<noscript>
+		<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+	</noscript>
 	
 	<!-- Schema.org Structured Data -->
 	<script type="application/ld+json" set:html={JSON.stringify({
@@ -93,6 +100,32 @@ const currentYear = new Date().getFullYear();
 <body>
 	<a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
 	<slot />
+	
+	<!-- Script para optimizar rendimiento -->
+	<script>
+		// Prefetch de enlaces al hacer hover (mejora la navegación)
+		document.addEventListener('DOMContentLoaded', () => {
+			const links = document.querySelectorAll('a[href^="/"], a[href^="#"]');
+			const prefetchedLinks = new Set();
+			
+			const prefetchLink = (url) => {
+				if (prefetchedLinks.has(url) || url.startsWith('#')) return;
+				prefetchedLinks.add(url);
+				
+				const link = document.createElement('link');
+				link.rel = 'prefetch';
+				link.href = url;
+				document.head.appendChild(link);
+			};
+			
+			links.forEach(link => {
+				link.addEventListener('mouseenter', () => {
+					const href = link.getAttribute('href');
+					if (href) prefetchLink(href);
+				}, { once: true, passive: true });
+			});
+		});
+	</script>
 </body>
 </html>
 
