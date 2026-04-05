@@ -176,13 +176,22 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 
 	@media (max-width: 767px) {
 		.hero {
-			min-height: auto;
+			min-height: 100svh;
+		}
+
+		.hero-bottom-bar {
+			margin-bottom: 0;
 		}
 		
 		.hero-layout {
 			grid-template-columns: 1fr;
-			gap: 2rem;
-			padding: 2.5rem 0;
+			gap: 1.5rem;
+			padding: 2rem 0;
+			margin-bottom: 1.5rem;
+		}
+
+		.hero-right {
+			margin-top: 0;
 		}
 		
 		.hero-subtitle {
