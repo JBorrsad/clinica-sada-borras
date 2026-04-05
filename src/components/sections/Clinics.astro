@@ -33,12 +33,9 @@ import { asset } from '../../utils/assets';
 			</div>
 		</div>
 		
-		<!-- Información de contacto de las clínicas -->
 		<div class="clinics-info-grid">
-			<!-- Clínica Pamplona -->
-			<div class="clinic-contact-info">
+			<div class="clinic-card">
 				<h3 class="clinic-name">Pamplona</h3>
-				
 				<div class="contact-info">
 					<div class="info-item">
 						<div class="info-icon">
@@ -52,7 +49,6 @@ import { asset } from '../../utils/assets';
 							<p class="info-text">C.P. {CONTACT_INFO.pamplona.postalCode} - {CONTACT_INFO.pamplona.city}</p>
 						</div>
 					</div>
-					
 					<div class="info-item">
 						<div class="info-icon">
 							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -64,7 +60,6 @@ import { asset } from '../../utils/assets';
 							<p class="info-text num"><a href={`tel:+34${CONTACT_INFO.pamplona.mobile.replace(/\s/g, '')}`}>{CONTACT_INFO.pamplona.mobile}</a></p>
 						</div>
 					</div>
-					
 					<div class="info-item">
 						<div class="info-icon">
 							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -77,12 +72,11 @@ import { asset } from '../../utils/assets';
 						</div>
 					</div>
 				</div>
-				
 				<div class="map-container">
 					<iframe 
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2973.7849305684867!2d-1.6547428!3d42.8160167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd50929c8a7f7d87%3A0x9d4c5f8a8e8e8e8e!2sAvenida%20P%C3%ADo%20XII%2C%208%2C%2031008%20Pamplona%2C%20Navarra!5e0!3m2!1ses!2ses!4v1234567890"
 						width="100%"
-						height="300"
+						height="280"
 						style="border:0;"
 						allowfullscreen=""
 						loading="lazy"
@@ -91,11 +85,9 @@ import { asset } from '../../utils/assets';
 					></iframe>
 				</div>
 			</div>
-			
-			<!-- Clínica Tafalla -->
-			<div class="clinic-contact-info">
+
+			<div class="clinic-card">
 				<h3 class="clinic-name">Tafalla</h3>
-				
 				<div class="contact-info">
 					<div class="info-item">
 						<div class="info-icon">
@@ -109,7 +101,6 @@ import { asset } from '../../utils/assets';
 							<p class="info-text">C.P. {CONTACT_INFO.tafalla.postalCode} - {CONTACT_INFO.tafalla.city}</p>
 						</div>
 					</div>
-					
 					<div class="info-item">
 						<div class="info-icon">
 							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -120,7 +111,6 @@ import { asset } from '../../utils/assets';
 							<p class="info-text num"><a href={`tel:+34${CONTACT_INFO.tafalla.phone.replace(/\s/g, '')}`}>{CONTACT_INFO.tafalla.phone}</a></p>
 						</div>
 					</div>
-					
 					<div class="info-item">
 						<div class="info-icon">
 							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -133,12 +123,11 @@ import { asset } from '../../utils/assets';
 						</div>
 					</div>
 				</div>
-				
 				<div class="map-container">
 					<iframe 
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2982.3749305684867!2d-1.6727428!3d42.5267167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd50a8c8a7f7d87%3A0x9d4c5f8a8e8e8e8e!2sDiputaci%C3%B3n%20Foral%2C%202%2C%2031300%20Tafalla%2C%20Navarra!5e0!3m2!1ses!2ses!4v1234567890"
 						width="100%"
-						height="300"
+						height="280"
 						style="border:0;"
 						allowfullscreen=""
 						loading="lazy"
@@ -213,82 +202,79 @@ import { asset } from '../../utils/assets';
 		width: 100%;
 	}
 	
-	.clinic-contact-info {
+	.clinic-card {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-		background: #fff;
-		border: 1px solid rgba(10, 34, 64, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.15);
 		border-radius: var(--rad);
 		padding: 1.75rem 2rem;
 	}
-	
+
 	.clinic-name {
 		font-size: var(--fs-h3);
-		color: var(--c-ink);
+		color: #fff;
 		font-family: var(--ff-head);
 		margin: 0;
 		padding-bottom: 0.75rem;
-		border-bottom: 1px solid rgba(10, 34, 64, 0.15);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	}
-	
+
 	.contact-info {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-		padding: 0.5rem 0 0.25rem;
 	}
-	
+
 	.info-item {
 		display: flex;
 		gap: 1rem;
 		align-items: center;
 	}
-	
+
 	.info-icon {
 		width: 48px;
 		height: 48px;
-		background: rgba(10, 34, 64, 0.08);
+		background: rgba(255, 255, 255, 0.1);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
 	}
-	
+
 	.info-icon svg {
-		color: var(--c-ink);
+		color: rgba(255, 255, 255, 0.85);
 	}
-	
+
 	.info-content {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
 	}
-	
+
 	.info-text {
-		color: var(--c-ink);
+		color: rgba(255, 255, 255, 0.85);
 		margin: 0;
 	}
-	
+
 	.info-text a {
-		color: var(--c-ink);
+		color: rgba(255, 255, 255, 0.9);
 	}
-	
+
 	.info-text a:hover {
-		color: var(--color-primary-dark);
+		color: #fff;
 		text-decoration: underline;
 	}
-	
+
 	.map-container {
-		width: 100%;
-		margin-top: 1rem;
+		margin-top: 0.5rem;
 	}
-	
+
 	.map-container iframe {
 		display: block;
-		border-radius: 8px;
+		border-radius: var(--rad);
 	}
 
 	@media (max-width: 768px) {
@@ -313,10 +299,6 @@ import { asset } from '../../utils/assets';
 		.clinics-info-grid {
 			grid-template-columns: 1fr;
 			gap: 2.5rem;
-		}
-
-		.clinic-contact-info {
-			padding: 1.5rem 1.25rem;
 		}
 	}
 </style>
