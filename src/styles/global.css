@@ -200,96 +200,60 @@ a:hover {
 }
 
 /* Botones */
-.btn {
+.btn,
+.btn-primary,
+.btn-secondary {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
-	font-family: var(--ff-body);
-	font-size: var(--fs-small);
-	font-weight: 600;
+	font-family: var(--ff-head);
+	font-size: 16px;
+	font-weight: 400;
 	line-height: 1;
-	border-radius: var(--rad);
-	padding: 0.875rem 2rem;
+	border-radius: 999px;
+	padding: 0.875rem 2.5rem;
 	cursor: pointer;
 	transition: var(--transition);
 	text-decoration: none;
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: 0.5px;
 }
 
 .btn-primary {
-	font: 600 var(--fs-small)/1 var(--ff-body);
-	background: var(--c-primary);
+	background: var(--c-ink);
 	color: #fff;
-	border: 1px solid var(--c-primary);
-	border-radius: var(--rad);
-	padding: 0.875rem 2rem;
-	cursor: pointer;
-	transition: var(--transition);
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
-	text-decoration: none;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	border: 1px solid var(--c-ink);
 }
 
 .btn-primary:hover {
 	background: transparent;
-	color: var(--c-primary);
-	border-color: var(--c-primary);
+	color: var(--c-ink);
 }
 
 .btn-secondary {
-	color: var(--c-ink);
-	background: transparent;
+	background: var(--c-ink);
+	color: #fff;
 	border: 1px solid var(--c-ink);
-	border-radius: var(--rad);
-	padding: 0.875rem 2rem;
-	font-weight: 600;
-	font-size: var(--fs-small);
-	cursor: pointer;
-	transition: var(--transition);
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
-	font-family: var(--ff-body);
-	text-decoration: none;
-	text-transform: uppercase;
-	letter-spacing: 1px;
 }
 
 .btn-secondary:hover {
-	background: var(--c-ink);
-	color: #fff;
+	background: transparent;
+	color: var(--c-ink);
 }
 
-/* Botones sobre fondo oscuro/teal (CTA sections) */
-.cta-box .btn-primary {
+/* Botones sobre fondo oscuro */
+.section--dark .btn-primary,
+.section--dark .btn-secondary {
 	background: #fff;
-	color: var(--c-primary);
-	border: 1px solid #fff;
+	color: var(--c-ink);
+	border-color: #fff;
 }
 
-.cta-box .btn-primary:hover {
+.section--dark .btn-primary:hover,
+.section--dark .btn-secondary:hover {
 	background: transparent;
 	color: #fff;
-	border: 1px solid #fff;
-}
-
-.cta-box .btn-secondary {
-	background: transparent;
-	color: #fff;
-	border: 1px solid #fff;
-}
-
-.cta-box .btn-secondary:hover {
-	background: #fff;
-	color: var(--c-primary);
-	border: 1px solid #fff;
 }
 
 /* Chips/etiquetas */
@@ -421,27 +385,6 @@ video {
 	color: #fff;
 }
 
-.section--dark .btn-primary {
-	background: #fff;
-	color: var(--c-ink);
-	border-color: #fff;
-}
-
-.section--dark .btn-primary:hover {
-	background: transparent;
-	color: #fff;
-	border-color: #fff;
-}
-
-.section--dark .btn-secondary {
-	color: #fff;
-	border-color: #fff;
-}
-
-.section--dark .btn-secondary:hover {
-	background: #fff;
-	color: var(--c-ink);
-}
 
 .section--white {
 	background-color: #ffffff;
