@@ -5,11 +5,11 @@ const posterUrl = asset('/img/poster.png');
 ---
 
 <section class="hero" id="inicio">
-	<div class="hero-bg">
+	<div class="hero-bg" style={`background-image: url(${posterUrl})`}>
 		<video
 			muted
 			playsinline
-			poster={posterUrl}
+			preload="none"
 			id="hero-video-a"
 			class="hero-video active"
 		></video>
@@ -56,6 +56,9 @@ const posterUrl = asset('/img/poster.png');
 		width: 100%;
 		height: 100%;
 		z-index: 0;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 	
 	.hero-bg video {
@@ -238,6 +241,7 @@ const posterUrl = asset('/img/poster.png');
 
 		function start() {
 			current.src = nextUrl();
+			current.preload = 'auto';
 			current.load();
 			current.addEventListener('canplay', () => {
 				current.play().catch(() => {});
@@ -245,7 +249,6 @@ const posterUrl = asset('/img/poster.png');
 			}, { once: true });
 		}
 
-		const idle = (window as any).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 200));
-		idle(() => start());
+		start();
 	}
 </script>

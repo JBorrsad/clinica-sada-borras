@@ -3,11 +3,11 @@ import { SERVICES } from '../../utils/constants';
 import { asset } from '../../utils/assets';
 ---
 
-<section class="services section" id="servicios">
+<section class="services section section--white" id="servicios">
 	<div class="container">
 		<div class="section-header text-center">
-			<h2 class="section-title">Lo que mejor hacemos</h2>
-			<p class="section-subtitle">De la revisión a los tratamientos complejos, con un plan claro</p>
+			<h2 class="section-title"><em>Lo que mejor</em> Sabemos Hacer</h2>
+			<p class="section-subtitle">En Clínica Dental Sada Borrás ofrecemos un servicio dental completo, desde la prevención y la higiene hasta la odontología restauradora, estética e implantología. Todos los tratamientos están disponibles en nuestras clínicas de Pamplona y Tafalla. Nuestro equipo te espera.</p>
 		</div>
 		
 		<div class="services-grid">
@@ -32,17 +32,6 @@ import { asset } from '../../utils/assets';
 						class="service-card" 
 						{...(serviceUrl ? { href: serviceUrl } : {})}
 					>
-					<div class="service-image">
-						<img 
-							src={asset(service.image)}
-							alt={service.title}
-							width="400"
-							height="100"
-							loading="lazy"
-							decoding="async"
-							style="aspect-ratio: 4/1;"
-						/>
-					</div>
 						<div class="service-content">
 							<h3>{service.title}</h3>
 							<ul class="service-features">
@@ -56,11 +45,16 @@ import { asset } from '../../utils/assets';
 								))}
 							</ul>
 						</div>
-						{serviceUrl && (
-							<div class="service-read-more">
-								<span>Leer más...</span>
-							</div>
-						)}
+					<div class="service-image">
+						<img 
+							src={asset(service.image)}
+							alt={service.title}
+							width="900"
+							height="240"
+							loading="lazy"
+							decoding="async"
+						/>
+					</div>
 					</CardTag>
 				);
 			})}
@@ -127,221 +121,140 @@ import { asset } from '../../utils/assets';
 
 <style>
 	.services {
-		background: var(--color-bg-light);
+		background: #ffffff;
 		position: relative;
 		z-index: 10;
 	}
-	
-	.services::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-image: url('/img/bgservices.webp');
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		opacity: 0.1;
-		pointer-events: none;
-		z-index: 0;
-		image-rendering: -webkit-optimize-contrast;
-		image-rendering: crisp-edges;
-		filter: contrast(1.1);
-	}
-	
-	.services .container {
-		position: relative;
-		z-index: 1;
-	}
-	
+
 	.section-header {
 		margin-bottom: var(--spacing-lg);
 	}
-	
-	.section-subtitle {
-		font-size: var(--fs-body);
-		color: var(--color-text-light);
-		max-width: 600px;
-		margin: 0 auto;
+
+	.section-title em {
+		font-weight: 300;
 	}
-	
+
+	.section-subtitle {
+		font-size: 16px;
+		font-weight: 300;
+		color: var(--c-ink);
+		max-width: 750px;
+		margin: 0 auto;
+		line-height: 1.6;
+	}
+
 	.services-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, 300px);
-		gap: var(--spacing-md);
-		margin-bottom: var(--spacing-lg);
-		justify-content: center;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 23px;
+		max-width: 1100px;
+		margin: 0 auto var(--spacing-lg);
 	}
-	
+
 	.service-card {
 		background: white;
-		border: 1px solid rgba(0, 0, 0, 0.06);
-		border-radius: var(--border-radius-lg);
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 8px;
 		padding: 0;
-		transition: var(--transition);
+		transition: background 0.4s ease-in-out, color 0.4s ease-in-out;
 		position: relative;
 		overflow: hidden;
 		cursor: pointer;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 		text-decoration: none;
-		color: inherit;
-		display: block;
-		width: 300px;
+		color: var(--c-ink);
+		display: flex;
+		flex-direction: column;
 	}
-	
+
 	@media (min-width: 768px) {
 		.service-card:hover {
-			border-color: var(--c-primary);
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-			transform: translateY(-2px);
+			background: var(--c-ink);
+			color: white;
+		}
+
+		.service-card:hover h3,
+		.service-card:hover .service-features li {
+			color: white;
+		}
+
+		.service-card:hover .service-features svg {
+			color: white;
 		}
 	}
-	
-	.service-image {
-		width: 100%;
-		height: 160px;
-		overflow: hidden;
-		border-radius: 11px 11px 0 0;
-	}
-	
-	.service-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-	}
-	
+
 	.service-content {
-		padding: 1.5rem;
+		padding: 23px;
+		flex: 1;
 	}
-	
-	.service-read-more {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 50px;
-		background: var(--color-primary);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 0 0 11px 11px;
-		transform: translateX(calc(-100% - 25px));
-		transition: transform 0.3s ease;
-		pointer-events: none;
-	}
-	
-	.service-read-more::after {
-		content: '';
-		position: absolute;
-		left: -25px;
-		top: 0;
-		width: 0;
-		height: 0;
-		border-style: solid;
-		border-width: 25px 25px 25px 0;
-		border-color: transparent var(--color-primary) transparent transparent;
-	}
-	
-	.service-read-more span {
-		color: white;
-		font-weight: 600;
-		font-size: var(--fs-small);
-		font-family: var(--ff-body);
-	}
-	
-	@media (min-width: 768px) {
-		.service-card:hover .service-read-more {
-			transform: translateX(0);
-		}
-	}
-	
+
 	.service-card h3 {
-		font-size: var(--fs-card-title);
+		font-size: 24px;
 		margin-bottom: 1rem;
 		color: var(--c-ink);
 		font-family: var(--ff-head);
 		font-weight: 600;
-		line-height: 1.3;
-		min-height: 2.5em;
+		line-height: 1;
 	}
-	
+
 	.service-features {
 		list-style: none;
 		padding: 0;
 		margin: 0;
 	}
-	
+
 	.service-features li {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
 		margin-bottom: 0.75rem;
-		font-size: var(--fs-small);
-		color: var(--c-gray-500);
+		font-size: 16px;
+		font-weight: 300;
+		font-family: var(--ff-body);
+		color: var(--c-ink);
+		line-height: 1.5;
 	}
-	
+
 	.service-features svg {
 		color: var(--color-primary);
 		flex-shrink: 0;
 	}
-	
-	.services-cta {
-		min-width: 300px;
+
+	.service-image {
 		width: 100%;
-		padding: 2rem;
+		overflow: hidden;
+		margin-top: auto;
+		line-height: 0;
+	}
+
+	.service-image img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		display: block;
+	}
+
+	.services-cta {
+		padding: 2.5rem;
 		background: white;
-		border: 1px solid var(--c-gray-200);
-		border-radius: var(--border-radius-lg);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 8px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		text-align: center;
 	}
-	
+
 	.services-note {
 		font-size: var(--fs-card-title);
 		color: var(--color-secondary);
 		margin-bottom: 1.5rem;
 		font-weight: 500;
 	}
-	
-	/* Pantallas móviles y tablets pequeñas */
+
 	@media (max-width: 767px) {
-		.services::before {
-			background-image: url('/img/bgservicesmobile.png');
-		}
-		
-		.services-grid {
-			grid-template-columns: 1fr;
-			justify-content: center;
-		}
-		
-		.service-card {
-			width: 100%;
-			max-width: 300px;
-			min-width: auto;
-			margin: 0 auto;
-		}
-		
-		.service-card h3 {
-			min-height: auto;
-		}
-		
-		.service-read-more {
-			display: none;
-		}
-		
-		.services-cta {
-			width: 100%;
-			max-width: 300px;
-			min-width: auto;
-			margin: 0 auto;
+		.service-content {
+			padding: 20px;
 		}
 	}
 </style>

@@ -3,12 +3,12 @@ import { asset } from '../../utils/assets';
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
-<section class="about-section" id="sobre-nosotros">
+<section class="about-section section--white" id="sobre-nosotros">
 	<div class="container">
 		<div class="about-container">
 			<div class="about-text-column">
 				<div class="about-text-content">
-					<p class="about-description">Llevamos más de 40 años cuidando sonrisas en Navarra. Cuidamos cada aspecto de tu experiencia dental con un trato cercano, profesional y adaptado a ti en unas instalaciones modernas equipadas con tecnología avanzada.</p>
+					<p class="about-description">Llevamos más de cuatro décadas acompañando a familias de Navarra en cada etapa de su salud dental. Nos mueve la cercanía, la formación continua y el compromiso de tratarte como nos gustaría que nos tratasen a nosotros.</p>
 				</div>
 			</div>
 			<div class="about-buttons-column">
@@ -24,7 +24,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 		position: relative;
 		z-index: 10;
 		padding: var(--spacing-xl) 0;
-		background-color: var(--c-bg-alt);
+		background-color: #ffffff;
 	}
 	
 	.about-container {
@@ -48,6 +48,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 	
 	.about-description {
 		font-size: var(--fs-body);
+		font-weight: 300;
 		line-height: 1.6;
 		color: var(--c-gray-700);
 		margin: 0;
@@ -68,10 +69,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 	.about-buttons-column .btn-primary,
 	.about-buttons-column .btn-secondary {
 		white-space: nowrap;
-		padding: 0.75rem 1.5rem;
-		border: 2px solid var(--c-primary);
-		font-size: 1rem;
+		padding: 0.875rem 2rem;
+		border: 1px solid var(--c-primary);
+		font-size: var(--fs-small);
 		line-height: 1;
+		text-transform: uppercase;
+		letter-spacing: 1px;
 	}
 	
 	.about-buttons-column .btn-secondary {

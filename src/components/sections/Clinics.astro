@@ -3,7 +3,7 @@ import { CONTACT_INFO } from '../../utils/constants';
 import { asset } from '../../utils/assets';
 ---
 
-<section class="clinics section" id="clinicas">
+<section class="clinics section section--dark" id="clinicas">
 	<div class="container">
 		<!-- Título separado arriba -->
 		<h2 class="clinics-title section-title">Espacios pensados para ti</h2>
@@ -153,7 +153,7 @@ import { asset } from '../../utils/assets';
 
 <style>
 	.clinics {
-		background: white;
+		background: var(--c-ink);
 		position: relative;
 		z-index: 10;
 	}
@@ -186,7 +186,8 @@ import { asset } from '../../utils/assets';
 	
 	.section-subtitle {
 		font-size: var(--fs-body);
-		color: var(--c-gray-700);
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.85);
 		line-height: 1.6;
 		margin: 0;
 	}
@@ -224,21 +225,21 @@ import { asset } from '../../utils/assets';
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-		border: 1px solid rgba(0, 0, 0, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.15);
 		border-radius: var(--rad);
 		padding: 1.75rem 2rem;
 	}
 	
 	.clinic-name {
 		font-size: var(--fs-small);
-		color: var(--c-ink);
-		font-weight: 700;
+		color: #fff;
+		font-weight: 600;
 		font-family: var(--ff-body);
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 		margin: 0;
 		padding-bottom: 0.75rem;
-		border-bottom: 1px solid var(--c-ink);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	}
 	
 	.contact-info {
@@ -257,7 +258,7 @@ import { asset } from '../../utils/assets';
 	.info-icon {
 		width: 48px;
 		height: 48px;
-		background: var(--color-primary-light);
+		background: rgba(255, 255, 255, 0.1);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
@@ -266,7 +267,7 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.info-icon svg {
-		color: var(--color-primary);
+		color: rgba(255, 255, 255, 0.85);
 	}
 	
 	.info-content {
@@ -278,19 +279,20 @@ import { asset } from '../../utils/assets';
 	
 	.info-text {
 		font-size: var(--fs-body);
-		color: var(--c-gray-700);
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.85);
 		margin: 0;
 		line-height: 1.5;
 	}
 	
 	.info-text a {
-		color: var(--c-primary);
+		color: rgba(255, 255, 255, 0.9);
 		text-decoration: none;
 		transition: color 0.3s ease;
 	}
 	
 	.info-text a:hover {
-		color: var(--color-primary-dark);
+		color: #fff;
 		text-decoration: underline;
 	}
 	

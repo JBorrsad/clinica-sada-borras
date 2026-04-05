@@ -2,7 +2,7 @@
 // Sección de estadísticas con contadores animados
 ---
 
-<section class="stats section" id="estadisticas">
+<section class="stats section section--dark" id="estadisticas">
 	<div class="container">
 		<div class="stats-grid">
 			<div class="stat-item" data-target="12000">
@@ -30,7 +30,7 @@
 
 <style>
 	.stats {
-		background: #E6F7F6;
+		background: var(--c-ink);
 		padding: var(--spacing-xl) 0;
 		position: relative;
 		z-index: 1;
@@ -53,8 +53,8 @@
 	.stat-number {
 		display: block;
 		font-size: var(--fs-h1);
-		font-weight: 700;
-		color: var(--c-ink);
+		font-weight: 300;
+		color: #fff;
 		line-height: 1.1;
 		margin-bottom: 0.5rem;
 		font-family: var(--ff-head);
@@ -63,7 +63,7 @@
 	
 	.stat-label {
 		font-size: var(--fs-small);
-		color: var(--c-gray-700);
+		color: rgba(255, 255, 255, 0.85);
 		text-transform: uppercase;
 		letter-spacing: 1.5px;
 		font-weight: 600;
