@@ -6,7 +6,7 @@ import { asset } from '../../utils/assets';
 <section class="clinics section" id="clinicas">
 	<div class="container">
 		<!-- Título separado arriba -->
-		<h2 class="clinics-title">Espacios pensados para ti</h2>
+		<h2 class="clinics-title section-title">Espacios pensados para ti</h2>
 		
 		<div class="clinics-content">
 			<!-- Imagen a la izquierda -->
@@ -165,17 +165,8 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.clinics-title {
-		font-size: 38px;
-		color: var(--c-ink);
-		font-family: var(--ff-head);
-		font-weight: 700;
-		line-height: 1.2;
 		text-align: center;
 		margin-bottom: 3rem;
-		padding-bottom: 1rem;
-		border-bottom: 3px solid var(--c-ink);
-		display: inline-block;
-		width: auto;
 	}
 	
 	.clinics-content {
@@ -220,30 +211,6 @@ import { asset } from '../../utils/assets';
 		margin-top: 0;
 	}
 	
-	.btn {
-		padding: 1rem 2rem;
-		border-radius: var(--border-radius);
-		font-weight: 600;
-		font-size: var(--font-size-base);
-		transition: var(--transition);
-		display: inline-block;
-		text-align: center;
-		text-decoration: none;
-		border: none;
-		cursor: pointer;
-	}
-	
-	.btn-primary {
-		background: var(--color-primary);
-		color: white;
-	}
-	
-	.btn-primary:hover {
-		background: var(--color-primary-dark);
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
-	}
-	
 	/* Estilos para la información de contacto de las clínicas */
 	.clinics-info-grid {
 		display: grid;
@@ -257,10 +224,13 @@ import { asset } from '../../utils/assets';
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
+		border: 1px solid rgba(0, 0, 0, 0.08);
+		border-radius: var(--rad);
+		padding: 1.75rem 2rem;
 	}
 	
 	.clinic-name {
-		font-size: 15px;
+		font-size: var(--fs-small);
 		color: var(--c-ink);
 		font-weight: 700;
 		font-family: var(--ff-body);
@@ -268,13 +238,14 @@ import { asset } from '../../utils/assets';
 		letter-spacing: 0.5px;
 		margin: 0;
 		padding-bottom: 0.75rem;
-		border-bottom: 3px solid var(--c-ink);
+		border-bottom: 1px solid var(--c-ink);
 	}
 	
 	.contact-info {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
+		padding: 0.5rem 0 0.25rem;
 	}
 	
 	.info-item {
@@ -335,7 +306,6 @@ import { asset } from '../../utils/assets';
 
 	@media (max-width: 768px) {
 		.clinics-title {
-			font-size: 32px;
 			margin-bottom: 2rem;
 		}
 		
@@ -355,7 +325,11 @@ import { asset } from '../../utils/assets';
 		
 		.clinics-info-grid {
 			grid-template-columns: 1fr;
-			gap: 7rem;
+			gap: 2.5rem;
+		}
+
+		.clinic-contact-info {
+			padding: 1.5rem 1.25rem;
 		}
 	}
 </style>

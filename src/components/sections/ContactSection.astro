@@ -9,7 +9,7 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 	
 	<div class="container">
 		<div class="section-header text-center">
-			<h2>¿Tienes alguna duda? Contáctanos</h2>
+			<h2 class="section-title">¿Tienes alguna duda? Contáctanos</h2>
 			<p class="section-description">
 				Te escuchamos y estudiamos tu caso para proponerte la opción que mejor encaje contigo, cuidando salud, función y estética.
 			</p>
@@ -119,18 +119,6 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 		margin-bottom: 3rem;
 	}
 	
-	.contact .section-header h2 {
-		font-size: 38px;
-		color: var(--c-ink);
-		font-family: var(--ff-head);
-		font-weight: 700;
-		line-height: 1.2;
-		padding-bottom: 1rem;
-		border-bottom: 3px solid var(--c-ink);
-		display: inline-block;
-		text-transform: none;
-	}
-	
 	.section-description {
 		font-size: var(--fs-body);
 		color: var(--c-gray-700);
@@ -151,9 +139,9 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 		width: 100%;
 		max-width: 650px;
 		background: white;
-		padding: 2.5rem;
+		padding: 3rem;
 		border-radius: var(--rad);
-		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 	}
 	
 	.form-row {
@@ -371,10 +359,6 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 	}
 	
 	@media (max-width: 768px) {
-		.contact .section-header h2 {
-			font-size: 32px;
-		}
-		
 		.contact-background::after {
 			background: linear-gradient(
 				to bottom,
@@ -390,7 +374,7 @@ const bgImageUrl = asset('img/bg-dental.jpg');
 		}
 		
 		.contact-form {
-			padding: 1.5rem;
+			padding: 2rem;
 		}
 		
 		.form-row {

@@ -32,7 +32,7 @@ const cases = [
 <section class="clinical-cases section" id="casos-clinicos">
 	<div class="container">
 		<div class="section-header text-center">
-			<h2>Resultados reales de nuestros pacientes</h2>
+			<h2 class="section-title">Resultados reales de nuestros pacientes</h2>
 			<div class="intro-text">
 				<div class="intro-column">
 					<p>Explora cambios documentados antes y después: salud, función y estética que se notan. En cada caso diseñamos un plan a medida y, cuando conviene, coordinamos a varias especialidades.</p>
@@ -205,27 +205,15 @@ const cases = [
 		margin-bottom: var(--spacing-lg);
 	}
 	
-	.section-header h2 {
-		font-size: 38px;
-		margin-bottom: 1.5rem;
-		color: var(--c-ink);
-		font-family: var(--ff-head);
-		font-weight: 700;
-		line-height: 1.2;
-		padding-bottom: 1rem;
-		border-bottom: 3px solid var(--c-ink);
-		display: inline-block;
-	}
-	
 	.intro-text {
 		max-width: 1000px;
-		margin: 2rem auto 0;
+		margin: 1.5rem auto 0;
 		color: var(--color-text);
-		font-size: var(--font-size-base);
+		font-size: var(--fs-body);
 		line-height: 1.6;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: var(--spacing-xl);
+		gap: var(--spacing-lg);
 		text-align: left;
 	}
 	
@@ -248,10 +236,10 @@ const cases = [
 	
 	.case-card {
 		background: white;
-		border: 1px solid var(--c-gray-200);
+		border: 1px solid rgba(0, 0, 0, 0.06);
 		border-radius: var(--border-radius-lg);
 		overflow: hidden;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 	}
 	
 	.case-title {
@@ -261,7 +249,7 @@ const cases = [
 	}
 	
 	.case-title h3 {
-		font-size: 18px;
+		font-size: var(--fs-card-title);
 		margin: 0;
 		color: var(--c-ink);
 		font-family: var(--ff-head);
@@ -321,8 +309,9 @@ const cases = [
 		padding: 6px 16px;
 		background: rgba(0, 0, 0, 0.75);
 		color: white;
-		font-size: 12px;
+		font-size: var(--fs-small);
 		font-weight: 700;
+		text-transform: uppercase;
 		letter-spacing: 1px;
 		border-radius: 4px;
 		transition: opacity 0.1s ease-out;
@@ -397,10 +386,6 @@ const cases = [
 			max-width: 500px;
 			margin: 0 auto;
 			width: 100%;
-		}
-		
-		.section-header h2 {
-			font-size: 32px;
 		}
 	}
 </style>

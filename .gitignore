@@ -28,3 +28,14 @@ pnpm-debug.log*
 # Astro
 .astro/
 
+# Videos (hosted on Cloudflare R2)
+public/img/hero-video-*.mp4
+
+# Fotos originales de sesion fotografica (demasiado pesadas para git)
+public/img/pamplona/
+public/img/tafalla/
+public/img/personal/
+
+# Gentleman AI / delegator cache (regenerable via skill-registry)
+.atl/
+
