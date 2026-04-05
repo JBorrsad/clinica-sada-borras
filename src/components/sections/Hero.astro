@@ -2,24 +2,23 @@
 import { asset } from '../../utils/assets';
 
 const posterUrl = asset('/img/poster.png');
-const videoSrc1080 = 'https://pub-146edcb977de463eb79397c4bb7d8d06.r2.dev/hero-video-1080p.mp4';
-const videoSrc1440 = 'https://pub-146edcb977de463eb79397c4bb7d8d06.r2.dev/hero-video-1440p.mp4';
 ---
 
 <section class="hero" id="inicio">
 	<div class="hero-bg">
 		<video
-			autoplay
 			muted
-			loop
 			playsinline
-			preload="none"
 			poster={posterUrl}
-			id="hero-video"
-			data-src-1440={videoSrc1440}
-		>
-			<source src={videoSrc1080} type="video/mp4" />
-		</video>
+			id="hero-video-a"
+			class="hero-video active"
+		></video>
+		<video
+			muted
+			playsinline
+			id="hero-video-b"
+			class="hero-video"
+		></video>
 	</div>
 	<div class="hero-overlay"></div>
 	<div class="container hero-content">
@@ -65,6 +64,18 @@ const videoSrc1440 = 'https://pub-146edcb977de463eb79397c4bb7d8d06.r2.dev/hero-v
 		object-fit: cover;
 		max-width: 100%;
 		display: block;
+	}
+	
+	.hero-video {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		transition: opacity 0.6s ease;
+	}
+
+	.hero-video.active {
+		opacity: 1;
 	}
 	
 	.hero-overlay {
@@ -160,18 +171,81 @@ const videoSrc1440 = 'https://pub-146edcb977de463eb79397c4bb7d8d06.r2.dev/hero-v
 </style>
 
 <script>
-	const video = document.getElementById('hero-video') as HTMLVideoElement;
-	if (video) {
-		const conn = (navigator as any).connection;
-		if (conn && conn.effectiveType === '4g' && !conn.saveData) {
-			const hqSrc = video.dataset.src1440;
-			if (hqSrc) {
-				const source = video.querySelector('source');
-				if (source) {
-					source.src = hqSrc;
-					video.load();
-				}
+	const BASE = 'https://pub-146edcb977de463eb79397c4bb7d8d06.r2.dev/';
+	const PRIORITY = [11, 13];
+	const FADE_MS = 600;
+
+	function shuffle(arr: number[]): number[] {
+		for (let i = arr.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[arr[i], arr[j]] = [arr[j], arr[i]];
+		}
+		return arr;
+	}
+
+	function buildPlaylist(): string[] {
+		const prio = shuffle([...PRIORITY]);
+		const rest = shuffle(
+			Array.from({ length: 13 }, (_, i) => i + 1).filter(n => !PRIORITY.includes(n))
+		);
+		return [...prio, ...rest].map(n => `${BASE}video${n}.mp4`);
+	}
+
+	const elA = document.getElementById('hero-video-a') as HTMLVideoElement;
+	const elB = document.getElementById('hero-video-b') as HTMLVideoElement;
+
+	if (elA && elB) {
+		let playlist = buildPlaylist();
+		let idx = 0;
+		let current = elA;
+		let standby = elB;
+
+		function nextUrl(): string {
+			if (idx >= playlist.length) {
+				playlist = buildPlaylist();
+				idx = 0;
+			}
+			return playlist[idx++];
+		}
+
+		function preloadNext() {
+			standby.src = nextUrl();
+			standby.load();
+		}
+
+		function swap() {
+			const doSwap = () => {
+				standby.classList.add('active');
+				current.classList.remove('active');
+				standby.play().catch(() => {});
+
+				const old = current;
+				current = standby;
+				standby = old;
+
+				setTimeout(() => preloadNext(), FADE_MS + 100);
+			};
+
+			if (standby.readyState >= 3) {
+				doSwap();
+			} else {
+				standby.addEventListener('canplay', doSwap, { once: true });
 			}
 		}
+
+		elA.addEventListener('ended', () => { if (current === elA) swap(); });
+		elB.addEventListener('ended', () => { if (current === elB) swap(); });
+
+		function start() {
+			current.src = nextUrl();
+			current.load();
+			current.addEventListener('canplay', () => {
+				current.play().catch(() => {});
+				preloadNext();
+			}, { once: true });
+		}
+
+		const idle = (window as any).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 200));
+		idle(() => start());
 	}
 </script>
