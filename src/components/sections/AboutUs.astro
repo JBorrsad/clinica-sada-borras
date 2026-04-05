@@ -47,10 +47,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 	}
 	
 	.about-description {
-		font-size: var(--fs-body);
+		font-size: 16px;
 		font-weight: 300;
 		line-height: 1.6;
-		color: var(--c-gray-700);
+		color: var(--c-ink);
 		margin: 0;
 		font-family: var(--ff-body);
 		max-width: 65ch;
@@ -69,20 +69,6 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 	.about-buttons-column .btn-primary,
 	.about-buttons-column .btn-secondary {
 		white-space: nowrap;
-		padding: 0.875rem 2rem;
-		border: 1px solid var(--c-primary);
-		font-size: var(--fs-small);
-		line-height: 1;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-	}
-	
-	.about-buttons-column .btn-secondary {
-		color: var(--c-primary);
-	}
-	
-	.about-buttons-column .btn-secondary:hover {
-		color: #fff;
 	}
 	
 	@media (max-width: 768px) {

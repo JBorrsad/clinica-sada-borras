@@ -184,14 +184,6 @@ import { asset } from '../../utils/assets';
 		margin-top: 2rem;
 	}
 	
-	.section-subtitle {
-		font-size: var(--fs-body);
-		font-weight: 300;
-		color: rgba(255, 255, 255, 0.85);
-		line-height: 1.6;
-		margin: 0;
-	}
-	
 	.clinics-image {
 		overflow: hidden;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -225,21 +217,19 @@ import { asset } from '../../utils/assets';
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-		border: 1px solid rgba(255, 255, 255, 0.15);
+		background: #fff;
+		border: 1px solid rgba(10, 34, 64, 0.2);
 		border-radius: var(--rad);
 		padding: 1.75rem 2rem;
 	}
 	
 	.clinic-name {
-		font-size: var(--fs-small);
-		color: #fff;
-		font-weight: 600;
-		font-family: var(--ff-body);
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
+		font-size: var(--fs-h3);
+		color: var(--c-ink);
+		font-family: var(--ff-head);
 		margin: 0;
 		padding-bottom: 0.75rem;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		border-bottom: 1px solid rgba(10, 34, 64, 0.15);
 	}
 	
 	.contact-info {
@@ -258,7 +248,7 @@ import { asset } from '../../utils/assets';
 	.info-icon {
 		width: 48px;
 		height: 48px;
-		background: rgba(255, 255, 255, 0.1);
+		background: rgba(10, 34, 64, 0.08);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
@@ -267,7 +257,7 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.info-icon svg {
-		color: rgba(255, 255, 255, 0.85);
+		color: var(--c-ink);
 	}
 	
 	.info-content {
@@ -278,21 +268,16 @@ import { asset } from '../../utils/assets';
 	}
 	
 	.info-text {
-		font-size: var(--fs-body);
-		font-weight: 300;
-		color: rgba(255, 255, 255, 0.85);
+		color: var(--c-ink);
 		margin: 0;
-		line-height: 1.5;
 	}
 	
 	.info-text a {
-		color: rgba(255, 255, 255, 0.9);
-		text-decoration: none;
-		transition: color 0.3s ease;
+		color: var(--c-ink);
 	}
 	
 	.info-text a:hover {
-		color: #fff;
+		color: var(--color-primary-dark);
 		text-decoration: underline;
 	}
 	

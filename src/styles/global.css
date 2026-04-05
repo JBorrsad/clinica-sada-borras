@@ -15,9 +15,9 @@
   --c-accent: #143a64;
   --c-bg: #ffffff;
   --c-bg-alt: #ffffff;
-  --c-gray-700: #4a5568;
-  --c-gray-500: #718096;
-  --c-gray-200: #e2e8f0;
+  --c-gray-700: #3a4f6a;
+  --c-gray-500: #5a7394;
+  --c-gray-200: #b0c0d4;
 
   /* Escala tipográfica responsive */
   --fs-h1: clamp(1.875rem, 2vw + 0.8rem, 2.75rem);
@@ -106,8 +106,11 @@ body {
 /* Tipografía */
 p,
 li {
-  font-size: var(--fs-body);
-  line-height: 1.75;
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--c-ink);
   margin-bottom: 1rem;
 }
 
@@ -145,7 +148,7 @@ h2 {
 
 h3 {
   font-size: var(--fs-h3);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 h4 {
@@ -183,6 +186,10 @@ h4 {
 
 /* Enlaces */
 a {
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
   color: var(--c-primary);
   text-decoration: none;
   transition: var(--transition);
@@ -297,7 +304,10 @@ a:hover {
 
 /* Formularios */
 label {
-  font: 500 var(--fs-small) / 1.3 var(--ff-body);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
   color: var(--c-ink);
   display: block;
   margin-bottom: 0.5rem;
@@ -306,8 +316,11 @@ label {
 input,
 textarea,
 select {
-  font: 400 var(--fs-body) / 1.4 var(--ff-body);
-  border: 1px solid var(--c-gray-200);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  border: 1px solid rgba(10, 34, 64, 0.35);
   border-radius: var(--rad);
   padding: 0.875rem 1rem;
   color: var(--c-ink);
@@ -326,7 +339,7 @@ select:focus {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--c-gray-500);
+  color: rgba(10, 34, 64, 0.5);
 }
 
 /* Números alineados */
@@ -374,19 +387,26 @@ video {
 }
 
 .section--dark h1,
-.section--dark h2,
+.section--dark h2 {
+	color: #fff;
+	font-weight: 300;
+}
+
 .section--dark h3,
 .section--dark h4,
 .section--dark h5,
 .section--dark h6 {
 	color: #fff;
+	font-weight: 500;
 }
 
 .section--dark .section-intro,
 .section--dark .section-subtitle,
+.section--dark .section-description,
 .section--dark p,
 .section--dark li {
 	color: rgba(255, 255, 255, 0.85);
+	font-weight: 200;
 }
 
 .section--dark .eyebrow {
@@ -432,12 +452,23 @@ video {
 }
 
 .section-subtitle {
-  font-size: var(--fs-body);
+  font-family: var(--ff-body);
+  font-size: 16px;
   font-weight: 300;
-  color: var(--c-gray-700);
-  line-height: 1.6;
-  max-width: 65ch;
+  color: var(--c-ink);
+  max-width: 750px;
   margin: 0 auto;
+  line-height: 1.6;
+}
+
+.section-description {
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--c-ink);
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .text-center {
