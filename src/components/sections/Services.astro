@@ -1,6 +1,6 @@
 ---
 import { SERVICES } from '../../utils/constants';
-import { asset } from '../../utils/assets';
+import ProgressiveImage from '../common/ProgressiveImage.astro';
 ---
 
 <section class="services section section--white" id="servicios">
@@ -46,13 +46,12 @@ import { asset } from '../../utils/assets';
 							</ul>
 						</div>
 					<div class="service-image">
-						<img 
-							src={asset(service.image)}
+						<ProgressiveImage
+							src={service.image}
 							alt={service.title}
-							width="900"
-							height="240"
+							width={900}
+							height={240}
 							loading="lazy"
-							decoding="async"
 						/>
 					</div>
 					</CardTag>

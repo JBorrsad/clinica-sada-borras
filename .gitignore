@@ -36,6 +36,9 @@ public/img/pamplona/
 public/img/tafalla/
 public/img/personal/
 
+# Processed image variants (regenerable via process:images)
+dist-images/
+
 # Gentleman AI / delegator cache (regenerable via skill-registry)
 .atl/
 

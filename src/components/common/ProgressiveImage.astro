@@ -1,0 +1,105 @@
+---
+import { r2Variants } from '../../utils/assets';
+
+interface Props {
+	src: string;
+	alt: string;
+	width?: number;
+	height?: number;
+	class?: string;
+	loading?: 'lazy' | 'eager';
+	sizes?: string;
+	fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const { src, alt, class: className, loading = 'lazy', ...rest } = Astro.props;
+const variants = r2Variants(src);
+const classes = ['progressive-img', className].filter(Boolean).join(' ');
+---
+
+<img
+	src={variants.low}
+	data-med={variants.med}
+	data-high={variants.high}
+	data-loaded="low"
+	alt={alt}
+	class={classes}
+	loading={loading}
+	{...rest}
+/>
+
+<style>
+	.progressive-img {
+		transition: filter 0.3s ease;
+	}
+	.progressive-img[data-loaded="low"] {
+		filter: blur(4px);
+	}
+	.progressive-img[data-loaded="med"] {
+		filter: blur(0);
+	}
+	.progressive-img[data-loaded="high"] {
+		filter: blur(0);
+	}
+</style>
+
+<script>
+	function upgradeImage(img: HTMLImageElement) {
+		const medSrc = img.dataset.med;
+		const highSrc = img.dataset.high;
+
+		function loadHigh() {
+			if (!highSrc) return;
+			const highImg = new Image();
+			highImg.onload = () => {
+				img.src = highSrc;
+				img.dataset.loaded = 'high';
+			};
+			highImg.src = highSrc;
+		}
+
+		if (!medSrc) {
+			loadHigh();
+			return;
+		}
+
+		const medImg = new Image();
+		medImg.onload = () => {
+			img.src = medSrc;
+			img.dataset.loaded = 'med';
+			loadHigh();
+		};
+		medImg.onerror = () => loadHigh();
+		medImg.src = medSrc;
+	}
+
+	const images = document.querySelectorAll<HTMLImageElement>('img.progressive-img');
+
+	const eagerImages: HTMLImageElement[] = [];
+	const lazyImages: HTMLImageElement[] = [];
+
+	images.forEach((img) => {
+		if (img.loading === 'lazy') {
+			lazyImages.push(img);
+		} else {
+			eagerImages.push(img);
+		}
+	});
+
+	eagerImages.forEach(upgradeImage);
+
+	if (lazyImages.length > 0) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) return;
+					const img = entry.target as HTMLImageElement;
+					observer.unobserve(img);
+					upgradeImage(img);
+				});
+			},
+			{ rootMargin: '200px' },
+		);
+		lazyImages.forEach((img) => observer.observe(img));
+	}
+</script>

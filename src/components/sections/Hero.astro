@@ -1,12 +1,18 @@
 ---
-import { asset } from '../../utils/assets';
+import ProgressiveImage from '../common/ProgressiveImage.astro';
 
-const posterUrl = asset('/img/poster.png');
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="hero" id="inicio">
-	<div class="hero-bg" style={`background-image: url(${posterUrl})`}>
+	<div class="hero-bg">
+		<ProgressiveImage
+			src="img/poster"
+			alt="Clínica Dental Sada Borrás"
+			class="hero-poster"
+			loading="eager"
+			fetchpriority="high"
+		/>
 		<video
 			muted
 			playsinline
@@ -57,9 +63,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 		width: 100%;
 		height: 100%;
 		z-index: 0;
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
+	}
+
+	.hero-bg :global(.hero-poster) {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
 	}
 	
 	.hero-bg video {

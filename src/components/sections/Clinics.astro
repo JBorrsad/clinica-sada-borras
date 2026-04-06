@@ -1,6 +1,6 @@
 ---
 import { CONTACT_INFO } from '../../utils/constants';
-import { asset } from '../../utils/assets';
+import ProgressiveImage from '../common/ProgressiveImage.astro';
 ---
 
 <section class="clinics section section--dark" id="clinicas">
@@ -11,14 +11,12 @@ import { asset } from '../../utils/assets';
 		<div class="clinics-content">
 			<!-- Imagen a la izquierda -->
 			<div class="clinics-image">
-				<img 
-					src={asset('img/instalaciones/top2.jpeg')}
+				<ProgressiveImage
+					src="img/instalaciones/top2"
 					alt="Clínica Dental Sada Borrás"
-					width="600"
-					height="400"
+					width={600}
+					height={400}
 					loading="lazy"
-					decoding="async"
-					style="aspect-ratio: 3/2;"
 				/>
 			</div>
 			

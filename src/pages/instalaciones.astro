@@ -2,7 +2,8 @@
 import MainLayout from '../components/layout/MainLayout.astro';
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
-import { asset } from '../utils/assets';
+import ProgressiveImage from '../components/common/ProgressiveImage.astro';
+import { r2Asset } from '../utils/assets';
 
 const title = 'Nuestras Instalaciones — Clínica Dental en Pamplona';
 const description = 'Conoce nuestras instalaciones en Pamplona. Espacios diseñados para tu confort y seguridad con tecnología avanzada: escáner intraoral, CBCT, sedación consciente.';
@@ -10,11 +11,11 @@ const keywords = 'instalaciones clínica dental Pamplona, tecnología dental Pam
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 
 const pamplonaImages = [
-	'img/IMG_7719-Large-1024x768.jpeg',
-	'img/IMG_7699-Large-1024x768.jpeg',
-	'img/IMG_7711-Large-1024x768.jpeg',
-	'img/IMG_7763-Large-1024x768.jpeg',
-	'img/IMG_7766-Large-1024x768.jpeg'
+	'img/IMG_7719-Large-1024x768',
+	'img/IMG_7699-Large-1024x768',
+	'img/IMG_7711-Large-1024x768',
+	'img/IMG_7763-Large-1024x768',
+	'img/IMG_7766-Large-1024x768'
 ];
 ---
 
@@ -98,19 +99,17 @@ const pamplonaImages = [
 					<p class="section-intro">En esta galería encontrarás nuestras salas, boxes, área de esterilización y tecnología. Si lo prefieres, te acompañamos en una visita guiada cuando vengas a la primera cita.</p>
 					
 					<div class="photo-grid">
-						{pamplonaImages.map((img, index) => (
-							<div class="photo-item" data-index={index}>
-								<img 
-									src={asset(img)}
-									alt={`Instalaciones Clínica Dental Sada Borrás Pamplona - Imagen ${index + 1}`}
-									loading="lazy"
-									decoding="async"
-									width="400"
-									height="300"
-									style="aspect-ratio: 4/3;"
-								/>
-							</div>
-						))}
+					{pamplonaImages.map((img, index) => (
+						<div class="photo-item" data-index={index} data-high={r2Asset(img, 'high')}>
+							<ProgressiveImage
+								src={img}
+								alt={`Instalaciones Clínica Dental Sada Borrás Pamplona - Imagen ${index + 1}`}
+								loading="lazy"
+								width={400}
+								height={300}
+							/>
+						</div>
+					))}
 					</div>
 				</div>
 			</section>
@@ -206,8 +205,9 @@ const pamplonaImages = [
 		let currentIndex = 0;
 		const images = Array.from(photoItems).map(item => {
 			const img = item.querySelector('img') as HTMLImageElement;
+			const highSrc = (item as HTMLElement).dataset.high;
 			return {
-				src: img?.src || '',
+				src: highSrc || img?.src || '',
 				alt: img?.alt || ''
 			};
 		});

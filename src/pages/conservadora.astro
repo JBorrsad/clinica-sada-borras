@@ -2,6 +2,7 @@
 import MainLayout from '../components/layout/MainLayout.astro';
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
+import ProgressiveImage from '../components/common/ProgressiveImage.astro';
 
 const title = 'Odontología Conservadora y Estética Dental — Clínica Dental en Pamplona';
 const description = 'Cuidamos tu sonrisa con mínima invasión. Más de 40 años de experiencia en empastes estéticos, carillas, blanqueamiento y restauraciones conservadoras en Pamplona.';
@@ -129,7 +130,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 					<h2>Tecnología y materiales que marcan la diferencia</h2>
 					<div class="benefits-layout">
 						<div class="benefits-image-tech">
-							<img src={`${baseUrl}img/medit.png`} alt="Escáner intraoral Medit - Tecnología dental moderna" loading="lazy" />
+							<ProgressiveImage src="img/medit" alt="Escáner intraoral Medit - Tecnología dental moderna" loading="lazy" />
 						</div>
 						<div class="benefits-content">
 							<ul class="benefits-list">
