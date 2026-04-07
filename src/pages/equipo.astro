@@ -1,0 +1,462 @@
+---
+import MainLayout from '../components/layout/MainLayout.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import ProgressiveImage from '../components/common/ProgressiveImage.astro';
+import { r2Asset } from '../utils/assets';
+
+const title = 'Nuestro equipo — Clínica Dental en Pamplona y Tafalla | Sada Borrás';
+const description = 'Conoce al equipo de la Clínica Dental Sada Borrás en Pamplona y Tafalla. Profesionales que cuidan de tu salud bucodental con trato cercano y atención personalizada.';
+const keywords = 'equipo clínica dental Pamplona, dentista Pamplona, dentista Tafalla, equipo odontológico, clínica dental Sada Borrás';
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const heroImage = r2Asset('img/pamplona/PERSONAL/_MG_9668', 'high');
+
+const teamMembers = [
+	{ name: 'Amaia', src: 'img/personal/_MG_9808_pp', alt: 'Amaia — Equipo de la Clínica Dental Sada Borrás', pos: 'center 20%' },
+	{ name: 'Ana', src: 'img/personal/_MG_0115_pp', alt: 'Ana — Equipo de la Clínica Dental Sada Borrás', pos: '55% 15%' },
+	{ name: 'Nati', src: 'img/personal/_MG_0101_pp', alt: 'Nati — Equipo de la Clínica Dental Sada Borrás', pos: '60% 15%' },
+	{ name: 'Giselle', src: 'img/personal/_MG_0123_pp', alt: 'Giselle — Equipo de la Clínica Dental Sada Borrás', pos: 'center 20%' },
+	{ name: 'Inma', src: 'img/tafalla/PERSONAL/_MG_0065', alt: 'Inma — Equipo de la Clínica Dental Sada Borrás', pos: '65% 15%' },
+	{ name: 'Natalia', src: 'img/personal/_MG_0162_pp', alt: 'Natalia — Equipo de la Clínica Dental Sada Borrás', pos: '35% 15%' },
+];
+
+const workImages = [
+	{ src: 'img/pamplona/PERSONAL/_MG_9711', alt: 'Atención al paciente en la clínica dental de Pamplona' },
+	{ src: 'img/tafalla/PERSONAL/_MG_0029', alt: 'Atención personalizada en la clínica dental de Tafalla' },
+	{ src: 'img/pamplona/PERSONAL/_MG_9785', alt: 'Diagnóstico con escáner intraoral en la clínica de Pamplona' },
+	{ src: 'img/tafalla/PERSONAL/_MG_0087', alt: 'Acompañamiento del paciente durante el tratamiento dental' },
+	{ src: 'img/tafalla/PERSONAL/_MG_0200', alt: 'Trabajo coordinado del equipo clínico en Tafalla' },
+	{ src: 'img/pamplona/PERSONAL/_MG_9753', alt: 'Equipo profesional trabajando en la clínica de Pamplona' },
+];
+
+const faqItems = [
+	{
+		question: '¿Quién me atenderá en mi primera visita?',
+		answer: 'En tu primera visita te recibirá el equipo y realizaremos un estudio inicial para conocer tu situación. A partir de ahí, planificamos los siguientes pasos contigo.',
+	},
+	{
+		question: '¿El mismo profesional me acompaña durante todo el tratamiento?',
+		answer: 'Sí, siempre que es posible. Trabajamos para que tengas continuidad con las mismas personas durante tu tratamiento. Cuando intervienen varias especialidades, el equipo se coordina internamente para que no tengas que repetir información ni perder el hilo.',
+	},
+	{
+		question: '¿El equipo trabaja en las dos clínicas?',
+		answer: 'Sí. Compartimos profesionales entre Pamplona y Tafalla. Si empiezas un tratamiento en una sede, puedes continuar en la otra sin perder continuidad.',
+	},
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords}>
+	<Header />
+	<main id="main-content">
+		<article class="team-page">
+
+			<nav class="breadcrumbs" aria-label="Migas de pan">
+				<div class="container">
+					<ol>
+						<li><a href={baseUrl}>Inicio</a></li>
+						<li aria-current="page">Equipo</li>
+					</ol>
+				</div>
+			</nav>
+
+			<section class="page-hero" style={`--hero-bg: url(${heroImage})`}>
+				<div class="container">
+					<h1>Nuestro equipo</h1>
+					<p class="hero-subtitle">Las personas que cuidan de tu sonrisa en Pamplona y Tafalla</p>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="container">
+					<blockquote class="intro-quote">
+						<p>Detrás de cada tratamiento hay un equipo que se coordina, se comunica y trabaja con un objetivo común: que tu experiencia en la clínica sea clara, cómoda y profesional. Nos conocemos bien, llevamos años trabajando juntos y eso se nota en cómo te atendemos.</p>
+					</blockquote>
+				</div>
+			</section>
+
+			<section class="section section--dark" id="dr-borras">
+				<div class="container">
+					<div class="content-row">
+						<div class="content-row__image">
+							<ProgressiveImage
+								src="img/pamplona/PERSONAL/_MG_9636"
+								alt="Dr. José Manuel Borrás — Clínica Dental Sada Borrás"
+								loading="eager"
+								width={480}
+								height={600}
+							/>
+						</div>
+						<div class="content-row__text">
+							<h2>Dr. José Manuel Borrás</h2>
+							<p>El Dr. Borrás es una de las figuras que han construido este proyecto clínico a lo largo de los años, junto con la Dra. Pilar Sada. Su trayectoria combina experiencia clínica con un trato directo y cercano que define cómo trabajamos.</p>
+							<p>Ese enfoque —planificar bien, explicar con claridad y acompañar al paciente en cada fase— es el que hemos extendido a todo el equipo y a nuestras dos sedes en Pamplona y Tafalla.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="dra-sada">
+				<div class="container">
+					<div class="content-row reverse">
+						<div class="content-row__image">
+							<ProgressiveImage
+								src="img/personal/_MG_0148_pp"
+								alt="Dra. Pilar Sada Garralda — Clínica Dental Sada Borrás"
+								loading="lazy"
+								width={480}
+								height={600}
+							/>
+						</div>
+						<div class="content-row__text">
+							<h2>Dra. Pilar Sada Garralda</h2>
+							<p>La Dra. Pilar Sada Garralda es cofundadora de este proyecto clínico. Junto con el Dr. Borrás, ha construido a lo largo de los años un equipo y una forma de trabajar donde la relación con el paciente es tan importante como el diagnóstico.</p>
+							<p>Su presencia en consulta transmite la cercanía y la confianza que definen la identidad de Sada Borrás en Pamplona y en Tafalla.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section--dark" id="alicia-borras">
+				<div class="container">
+					<div class="content-row">
+						<div class="content-row__image" style="--row-img-pos: 92% 10%">
+							<ProgressiveImage
+								src="img/personal/_MG_0186_pp"
+								alt="Alicia Borrás Sada — Clínica Dental Sada Borrás"
+								loading="lazy"
+								width={480}
+								height={600}
+							/>
+						</div>
+						<div class="content-row__text">
+							<h2>Alicia Borrás Sada</h2>
+							<p>Alicia Borrás Sada representa la continuidad de un proyecto familiar. Su incorporación al equipo refuerza el compromiso con los valores que han definido la clínica desde sus inicios: atención cercana, rigor clínico y acompañamiento real del paciente.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="equipo">
+				<div class="container">
+					<div class="section-split">
+						<div class="section-split__heading">
+							<h2>El equipo</h2>
+						</div>
+						<div class="section-split__content">
+							<p>Cada persona del equipo aporta su experiencia y dedicación al cuidado del paciente, tanto en clínica como en recepción, coordinación y seguimiento.</p>
+						</div>
+					</div>
+					<div class="team-grid">
+						{teamMembers.map((member) => (
+							<div class="team-card">
+								<div class="team-photo" style={`--photo-pos: ${member.pos}`}>
+									<ProgressiveImage
+										src={member.src}
+										alt={member.alt}
+										loading="lazy"
+										width={300}
+										height={380}
+									/>
+								</div>
+								<p class="team-name">{member.name}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="section section--dark" id="asi-trabajamos">
+				<div class="container">
+					<div class="section-split">
+						<div class="section-split__heading">
+							<h2>Así trabajamos</h2>
+						</div>
+						<div class="section-split__content">
+							<p>Lo que nos define no es solo la formación, sino cómo nos organizamos alrededor del paciente. Cada persona sabe qué hacer y cuándo, y eso se traduce en visitas sin sorpresas, tiempos bien gestionados y un trato que se mantiene de principio a fin.</p>
+						</div>
+					</div>
+					<div class="work-mosaic">
+						<div class="work-mosaic__large">
+							<ProgressiveImage src={workImages[0].src} alt={workImages[0].alt} loading="lazy" width={600} height={450} />
+						</div>
+						<div class="work-mosaic__small">
+							<ProgressiveImage src={workImages[1].src} alt={workImages[1].alt} loading="lazy" width={400} height={300} />
+						</div>
+						<div class="work-mosaic__small">
+							<ProgressiveImage src={workImages[2].src} alt={workImages[2].alt} loading="lazy" width={400} height={300} />
+						</div>
+						<div class="work-mosaic__small">
+							<ProgressiveImage src={workImages[3].src} alt={workImages[3].alt} loading="lazy" width={400} height={300} />
+						</div>
+						<div class="work-mosaic__large">
+							<ProgressiveImage src={workImages[4].src} alt={workImages[4].alt} loading="lazy" width={600} height={450} />
+						</div>
+						<div class="work-mosaic__small">
+							<ProgressiveImage src={workImages[5].src} alt={workImages[5].alt} loading="lazy" width={400} height={300} />
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section faq-section" id="preguntas-frecuentes">
+				<div class="container">
+					<h2>Preguntas frecuentes sobre nuestro equipo</h2>
+					<div class="faq-accordion">
+						{faqItems.map((item) => (
+							<div class="faq-item">
+								<button class="faq-question" aria-expanded="false">
+									<span>{item.question}</span>
+									<svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<polyline points="6 9 12 15 18 9"/>
+									</svg>
+								</button>
+								<div class="faq-answer">
+									<p>{item.answer}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="section cta-section">
+				<div class="container">
+					<div class="cta-box">
+						<h2>Ponle cara a tu próxima visita</h2>
+						<p>Si todavía no nos conoces, pide tu primera cita. Te recibiremos, te explicaremos cómo trabajamos y empezaremos a planificar juntos.</p>
+						<div class="cta-buttons">
+							<a href={`${baseUrl}#contacto`} class="btn btn-primary">Pedir cita</a>
+							<a href="tel:+34948172617" class="btn btn-secondary">Llamar ahora</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</article>
+	</main>
+	<Footer />
+
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://sadaborras.com/" },
+			{ "@type": "ListItem", "position": 2, "name": "Equipo", "item": "https://sadaborras.com/equipo" }
+		]
+	})} />
+
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": faqItems.map(item => ({
+			"@type": "Question",
+			"name": item.question,
+			"acceptedAnswer": { "@type": "Answer", "text": item.answer }
+		}))
+	})} />
+
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Dentist",
+		"name": "Clínica Dental Sada Borrás",
+		"description": "Equipo profesional de la Clínica Dental Sada Borrás con atención personalizada en Pamplona y Tafalla.",
+		"url": "https://sadaborras.com/equipo",
+		"employee": [
+			{ "@type": "Person", "name": "Dr. José Manuel Borrás", "jobTitle": "Odontólogo" },
+			{ "@type": "Person", "name": "Dra. Pilar Sada Garralda", "jobTitle": "Odontóloga" },
+			{ "@type": "Person", "name": "Alicia Borrás Sada" }
+		]
+	})} />
+</MainLayout>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const faqButtons = document.querySelectorAll('.faq-question');
+		faqButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const faqItem = button.parentElement;
+				const isExpanded = button.getAttribute('aria-expanded') === 'true';
+				faqButtons.forEach((btn) => {
+					if (btn !== button && btn.parentElement) {
+						btn.setAttribute('aria-expanded', 'false');
+						btn.parentElement.classList.remove('active');
+					}
+				});
+				if (faqItem) {
+					button.setAttribute('aria-expanded', String(!isExpanded));
+					faqItem.classList.toggle('active');
+				}
+			});
+		});
+	});
+</script>
+
+<style>
+	.team-page { background: white; }
+
+	.breadcrumbs { padding: 1rem 0; background: #f8f9fb; border-bottom: 1px solid var(--c-gray-200); }
+	.breadcrumbs ol { list-style: none; display: flex; gap: 0.5rem; margin: 0; padding: 0; font-size: var(--fs-small); }
+	.breadcrumbs li { display: flex; align-items: center; gap: 0.5rem; margin: 0; font-size: var(--fs-small); color: var(--c-gray-500); }
+	.breadcrumbs li + li::before { content: "/"; color: var(--c-gray-200); }
+	.breadcrumbs a { color: var(--c-gray-500); font-size: var(--fs-small); }
+	.breadcrumbs a:hover { color: var(--c-primary); }
+	.breadcrumbs li[aria-current="page"] { color: var(--c-ink); font-weight: 500; }
+
+	.page-hero {
+		background: linear-gradient(135deg, rgba(10, 34, 64, 0.8) 0%, rgba(20, 58, 100, 0.75) 100%),
+			var(--hero-bg, var(--c-primary)) center / cover no-repeat;
+		padding: 5rem 0 4rem;
+		text-align: center;
+	}
+	.page-hero h1 { color: white; font-size: var(--fs-h1); font-family: var(--ff-head); margin: 0 0 1rem 0; font-weight: 700; }
+	.hero-subtitle { color: rgba(255, 255, 255, 0.95); font-size: var(--fs-h3); font-family: var(--ff-head); margin: 0; font-weight: 600; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+	.section-alt { background: #f8f9fb; }
+
+	.section h2 {
+		font-size: var(--fs-h2); font-family: var(--ff-head); color: var(--c-ink);
+		margin-bottom: var(--spacing-sm); font-weight: 700;
+		text-align: left;
+	}
+
+	.cta-section h2,
+	.faq-section h2,
+	.page-hero h1 { text-align: center; margin-left: auto; margin-right: auto; }
+
+	/* Split heading layout (Wellington pattern) */
+	.section-split {
+		display: grid; grid-template-columns: 0.35fr 0.65fr;
+		gap: var(--spacing-lg); align-items: start;
+		margin-bottom: var(--spacing-lg);
+	}
+	.section-split__heading h2 { margin-bottom: 0; }
+	.section-split__content p {
+		font-size: var(--fs-body); color: var(--c-gray-700); line-height: 1.7; margin: 0;
+	}
+
+	/* Blockquote intro */
+	.intro-quote {
+		max-width: 800px; margin: 0 auto; text-align: center;
+		padding: 3rem 3rem 2.5rem; position: relative; border: none;
+		background: white; border-radius: 0;
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+	}
+	.intro-quote::before {
+		content: "\201C"; position: absolute; top: 0.5rem; left: 50%; transform: translateX(-50%);
+		font-size: 5rem; font-family: var(--ff-head); color: var(--c-primary); opacity: 0.15; line-height: 1;
+		pointer-events: none;
+	}
+	.intro-quote p {
+		font-family: var(--ff-head); font-weight: 400; font-size: 1.15rem;
+		color: var(--c-gray-700); line-height: 1.8; margin: 0; font-style: italic;
+		position: relative;
+	}
+
+	/* Dark section overrides */
+	.section--dark h2 { color: #fff; }
+	.section--dark h3 { color: #fff; }
+	.section--dark .content-row__text p { color: rgba(255, 255, 255, 0.85); }
+	.section--dark .content-row__text p strong { color: #fff; }
+	.section--dark .content-block p { color: rgba(255, 255, 255, 0.85); }
+	.section--dark .section-split__content p { color: rgba(255, 255, 255, 0.85); }
+	.section--dark .team-name { color: #fff; }
+
+	/* Alternating content rows */
+	.content-row {
+		display: grid; grid-template-columns: 0.45fr 0.55fr;
+		gap: var(--spacing-lg); align-items: center; max-width: 950px; margin: 0 auto;
+	}
+	.content-row.reverse { grid-template-columns: 0.55fr 0.45fr; }
+	.content-row.reverse .content-row__image { order: 2; }
+	.content-row.reverse .content-row__text { order: 1; }
+
+	.content-row__image {
+		border-radius: var(--border-radius); overflow: hidden;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	}
+	.content-row__image img { width: 100%; height: auto; display: block; aspect-ratio: 3/4; object-fit: cover; object-position: var(--row-img-pos, center 20%); }
+
+	.content-row__text h2 { text-align: left; margin-left: 0; }
+	.content-row__text p { font-size: var(--fs-body); color: var(--c-gray-700); line-height: 1.7; margin-bottom: 1.25rem; }
+	.content-row__text p:last-child { margin-bottom: 0; }
+
+	.content-block { max-width: 900px; margin: 0 auto var(--spacing-md); }
+	.content-block p { font-size: var(--fs-body); color: var(--c-gray-700); line-height: 1.7; margin-bottom: 1.5rem; }
+	.content-block p:last-child { margin-bottom: 0; }
+
+	/* Team grid */
+	.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: var(--spacing-md); }
+	.team-card { text-align: center; }
+	.team-photo { aspect-ratio: 3/4; overflow: hidden; border-radius: var(--border-radius); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); margin-bottom: 1rem; }
+	.team-photo img { width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 20%); display: block; transition: var(--transition); }
+	.team-card:hover .team-photo img { transform: scale(1.03); }
+	.team-name { font-family: var(--ff-head); font-size: var(--fs-card-title); font-weight: 600; color: var(--c-ink); margin: 0; }
+
+	/* Work mosaic */
+	.work-mosaic {
+		display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+		gap: 1rem; margin-top: var(--spacing-md);
+	}
+	.work-mosaic__large,
+	.work-mosaic__small { overflow: hidden; border-radius: var(--border-radius); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+	.work-mosaic__large { grid-row: span 2; }
+	.work-mosaic__large img,
+	.work-mosaic__small img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+	/* CTA */
+	.cta-section { background: var(--c-primary); color: white; }
+	.cta-section h2 { color: white; border-bottom-color: rgba(255, 255, 255, 0.3); }
+	.cta-box { text-align: center; max-width: 700px; margin: 0 auto; }
+	.cta-box > p { color: rgba(255, 255, 255, 0.9); font-size: var(--fs-body); line-height: 1.7; margin-bottom: 2rem; }
+	.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+	.cta-section .btn-primary { background: #fff; color: var(--c-ink); border-color: #fff; }
+	.cta-section .btn-primary:hover { background: transparent; color: #fff; }
+	.cta-section .btn-secondary { background: transparent; color: #fff; border-color: #fff; }
+	.cta-section .btn-secondary:hover { background: #fff; color: var(--c-ink); }
+
+	/* FAQ */
+	.faq-section { background: #f8f9fb; }
+	.faq-accordion { max-width: 900px; margin: var(--spacing-lg) auto 0; }
+	.faq-item { background: white; border: 2px solid var(--c-gray-200); border-radius: var(--border-radius); margin-bottom: 1rem; overflow: hidden; transition: var(--transition); }
+	.faq-item:hover { border-color: var(--c-primary); }
+	.faq-item.active { border-color: var(--c-primary); box-shadow: var(--shadow-md); }
+	.faq-question { width: 100%; background: transparent; border: none; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; text-align: left; font-size: var(--fs-body); font-family: var(--ff-head); font-weight: 600; color: var(--c-ink); transition: var(--transition); }
+	.faq-question:hover { color: var(--c-primary); }
+	.faq-question span { flex: 1; }
+	.faq-icon { flex-shrink: 0; transition: transform 0.3s ease; color: var(--c-primary); }
+	.faq-item.active .faq-icon { transform: rotate(180deg); }
+	.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.5rem; }
+	.faq-item.active .faq-answer { max-height: 500px; padding: 0 1.5rem 1.5rem; }
+	.faq-answer p { font-size: var(--fs-body); color: var(--c-gray-700); line-height: 1.7; margin: 0; }
+
+	/* Responsive */
+	@media (max-width: 1024px) {
+		.team-grid { grid-template-columns: repeat(3, 1fr); }
+		.work-mosaic { grid-template-columns: 1fr 1fr; }
+		.work-mosaic__large { grid-row: span 1; }
+	}
+
+	@media (max-width: 768px) {
+		.page-hero { padding: 3.5rem 0 2.5rem; }
+		.page-hero h1 { font-size: 2rem; }
+		.hero-subtitle { font-size: 1.125rem; }
+		.section-split { grid-template-columns: 1fr; gap: var(--spacing-sm); }
+		.section-split__heading h2 { text-align: center; margin-left: auto; margin-right: auto; }
+		.section-split__content p { text-align: center; }
+		.content-row,
+		.content-row.reverse { grid-template-columns: 1fr; gap: var(--spacing-md); }
+		.content-row.reverse .content-row__image { order: 0; }
+		.content-row.reverse .content-row__text { order: 0; }
+		.content-row__image { max-width: 340px; margin: 0 auto; }
+		.content-row__text h2 { text-align: center; margin-left: auto; }
+		.content-row__text p { text-align: center; }
+		.team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+		.work-mosaic { grid-template-columns: 1fr 1fr; }
+		.work-mosaic__large { grid-row: span 1; }
+		.intro-quote { padding: 1.5rem 1rem; }
+		.intro-quote::before { font-size: 4rem; }
+		.cta-buttons { flex-direction: row; align-items: flex-start; }
+		.cta-buttons .btn { display: inline-flex !important; width: auto !important; max-width: 100% !important; white-space: nowrap !important; flex: 0 1 auto; }
+		.faq-question { padding: 1.25rem; font-size: 0.95rem; }
+	}
+</style>

@@ -111,7 +111,7 @@ export const SERVICES = [
 export const NAV_ITEMS = [
 	{ label: 'Inicio', href: '#inicio' },
 	{ label: 'Servicios', href: '#servicios' },
-	{ label: 'Equipo', href: '#equipo' },
+	{ label: 'Equipo', href: '/equipo' },
 	{ label: 'Clínicas', href: '#clinicas' }
 ] as const;
 
