@@ -38,6 +38,10 @@ public/img/personal/
 
 # Processed image variants (regenerable via process:images)
 dist-images/
+dist-images-fixed/
+
+# Wrangler local state (R2 emulator)
+.wrangler/
 
 # Gentleman AI / delegator cache (regenerable via skill-registry)
 .atl/

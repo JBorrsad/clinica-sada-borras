@@ -5,17 +5,29 @@ import Footer from '../components/common/Footer.astro';
 import ProgressiveImage from '../components/common/ProgressiveImage.astro';
 import { r2Asset } from '../utils/assets';
 
-const title = 'Nuestras Instalaciones — Clínica Dental en Pamplona';
-const description = 'Conoce nuestras instalaciones en Pamplona. Espacios diseñados para tu confort y seguridad con tecnología avanzada: escáner intraoral, CBCT, sedación consciente.';
-const keywords = 'instalaciones clínica dental Pamplona, tecnología dental Pamplona, escáner intraoral, CBCT dental, esterilización dental';
+const title = 'Nuestras instalaciones — Clínica Dental en Pamplona y Tafalla | Sada Borrás';
+const description = 'Conoce las instalaciones de la Clínica Dental Sada Borrás en Pamplona y Tafalla. Gabinetes equipados, diagnóstico digital y espacios diseñados para tu confort y seguridad.';
+const keywords = 'instalaciones clínica dental Pamplona, clínica dental Tafalla, tecnología dental, gabinetes dentales, escáner intraoral, diagnóstico digital, clínica dental Navarra';
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const heroImage = r2Asset('img/pamplona/ESPACIOS/FACHADA/_MG_9825', 'high');
 
-const pamplonaImages = [
-	'img/IMG_7719-Large-1024x768',
-	'img/IMG_7699-Large-1024x768',
-	'img/IMG_7711-Large-1024x768',
-	'img/IMG_7763-Large-1024x768',
-	'img/IMG_7766-Large-1024x768'
+const faqItems = [
+	{
+		question: '¿Puedo visitar la clínica antes de empezar un tratamiento?',
+		answer: 'Por supuesto. En tu primera visita te acompañamos por las instalaciones y te explicamos cómo trabajamos. No hay ningún compromiso.',
+	},
+	{
+		question: '¿Las dos clínicas ofrecen los mismos servicios?',
+		answer: 'Ambas clínicas comparten equipo profesional y estándares de calidad. La clínica de Pamplona dispone de más gabinetes y equipamiento específico para cirugía avanzada e implantología. Tafalla cubre las especialidades más demandadas: conservadora, ortodoncia, odontopediatría y tratamientos generales.',
+	},
+	{
+		question: '¿Qué medidas de higiene y seguridad aplican?',
+		answer: 'Seguimos protocolos de esterilización con trazabilidad por ciclo, desinfección de superficies entre pacientes, circuitos diferenciados de material limpio y usado, y ventilación adecuada. Son prácticas alineadas con las recomendaciones de los colegios profesionales.',
+	},
+	{
+		question: '¿Qué hago si tengo miedo al dentista?',
+		answer: 'Es más habitual de lo que parece. En Pamplona disponemos de sedación consciente con óxido nitroso. En ambas clínicas, el equipo está acostumbrado a trabajar con pacientes que necesitan más tiempo y más explicaciones. Solo empezamos cuando tú estés preparado.',
+	},
 ];
 ---
 
@@ -23,121 +35,259 @@ const pamplonaImages = [
 	<Header />
 	<main id="main-content">
 		<article class="installations-page">
-			<!-- Hero Section -->
-			<section class="page-hero">
+
+			<nav class="breadcrumbs" aria-label="Migas de pan">
 				<div class="container">
-					<h1>Nuestras Instalaciones</h1>
-					<p class="hero-subtitle">Espacios pensados para tu confort y seguridad</p>
+					<ol>
+						<li><a href={baseUrl}>Inicio</a></li>
+						<li aria-current="page">Instalaciones</li>
+					</ol>
+				</div>
+			</nav>
+
+			<section class="page-hero" style={`--hero-bg: url(${heroImage})`}>
+				<div class="container">
+					<h1>Nuestras instalaciones</h1>
+					<p class="hero-subtitle">Dos clínicas en Navarra diseñadas para que te sientas bien atendido, con la tecnología que cada tratamiento necesita</p>
 				</div>
 			</section>
 
-			<!-- Introducción -->
 			<section class="section">
 				<div class="container">
-					<div class="content-block intro-text">
-						<p>Diseñamos la clínica para que cada visita sea cómoda, ágil y segura: salas luminosas, circuitos de trabajo ordenados, boxes amplios y una sala de espera tranquila. Detrás de esa calma hay <strong>protocolos de bioseguridad y esterilización</strong> que seguimos de forma rigurosa —limpieza, desinfección y esterilización del instrumental, con procedimientos recogidos en guías profesionales de referencia— porque tu tranquilidad empieza por hacer las cosas bien.</p>
-					</div>
+					<blockquote class="intro-quote">
+						<p>El entorno en el que te atendemos forma parte de tu experiencia como paciente. Nuestras instalaciones clínicas en Pamplona y Tafalla están pensadas para generar confianza desde el primer momento: gabinetes amplios, equipamiento digital actualizado y un equipo profesional que cuida los detalles que no siempre se ven.</p>
+					</blockquote>
 				</div>
 			</section>
 
-			<!-- Tecnología -->
-			<section class="section section-light">
+			<!-- ========== PAMPLONA ========== -->
+			<section class="section section-alt" id="pamplona">
 				<div class="container">
-					<h2>Tecnología que mejora tu experiencia (y el resultado)</h2>
-					<div class="content-block">
-						<ul class="treatments-list">
-							<li>
-								<h3><span>Radiología digital de baja dosis</span></h3>
-								<p>Usamos radiografía digital para obtener imágenes nítidas con menos dosis que los sistemas convencionales, lo que favorece diagnósticos rápidos con una exposición optimizada. La evidencia y los organismos reguladores subrayan que la imagen digital permite reducir notablemente la dosis frente a técnicas analógicas, manteniendo la calidad diagnóstica.</p>
-							</li>
-							<li>
-								<h3><span>CBCT (TAC dental) cuando realmente aporta valor</span></h3>
-								<p>Contamos con CBCT para casos en los que la visión 3D cambia el plan (implantes, cirugía, anatomía compleja). Lo indicamos solo cuando está justificado, ajustando el protocolo a la tarea diagnóstica y manteniendo la dosis tan baja como sea razonablemente posible (principio ALARA), tal y como recomiendan las guías europeas y reguladores.</p>
-							</li>
-							<li>
-								<h3><span>Escáner intraoral: adiós a las pastas de impresión</span></h3>
-								<p>El escáner intraoral nos permite tomar registros rápidos y cómodos, sin arcadas ni pastas voluminosas. Además, mejora el flujo digital y la precisión en restauraciones, alineadores y prótesis, elevando tu experiencia en consulta.</p>
-							</li>
-							<li>
-								<h3><span>Sedación consciente con óxido nitroso (si la necesitas)</span></h3>
-								<p>Para pacientes con ansiedad o tratamientos largos, ofrecemos sedación consciente con óxido nitroso. Es una técnica segura y eficaz en odontología cuando se realiza con monitorización y protocolos adecuados, ayudando a que la experiencia sea más tranquila.</p>
-							</li>
-						</ul>
+
+					<div class="section-split">
+						<div class="section-split__heading">
+							<h2>Clínica dental en Pamplona</h2>
+							<p class="clinic-address">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+								Avenida Pío XII, 8 · 31008 Pamplona
+							</p>
+						</div>
+						<div class="section-split__content">
+							<p>Nuestra clínica en la Avenida Pío XII ocupa un local amplio y luminoso a pie de calle. Gabinetes equipados para cirugía, implantología, conservadora y estética dental. Tecnología digital actualizada y protocolos de esterilización rigurosos.</p>
+						</div>
 					</div>
+
+					<div class="feature-image">
+						<ProgressiveImage src="img/pamplona/ESPACIOS/FACHADA/_MG_9811" alt="Fachada de la Clínica Dental Sada Borrás en la Avenida Pío XII, Pamplona" loading="lazy" width={1200} height={600} />
+					</div>
+
+					<div class="feature-cards">
+						<div class="feature-card">
+							<div class="feature-card__icon">
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+							</div>
+							<h3>Gabinetes equipados</h3>
+							<p>Varios gabinetes preparados para cirugía oral, implantología, conservadora y estética. Cada uno con el instrumental y la iluminación que el tratamiento requiere.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-card__icon">
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+							</div>
+							<h3>Tecnología digital</h3>
+							<p>Escáner intraoral, radiología digital de baja dosis, CBCT para planificación 3D y sedación consciente con óxido nitroso.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-card__icon">
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+							</div>
+							<h3>Esterilización y seguridad</h3>
+							<p>Autoclave con trazabilidad por ciclo, cuba de ultrasonidos y selladora. Protocolos alineados con las guías de los colegios profesionales.</p>
+						</div>
+					</div>
+
+					<div class="content-row">
+						<div class="content-row__text">
+							<h3>Tu recorrido por la clínica</h3>
+							<p>Desde que entras, todo es intuitivo: recepción, zona de espera y acceso directo a los gabinetes. El despacho de consulta permite explicarte el diagnóstico y el plan de tratamiento con calma —ya desde tu primera visita—, con imágenes y registros digitales para que entiendas cada paso.</p>
+						</div>
+						<div class="content-row__image">
+							<ProgressiveImage src="img/pamplona/ESPACIOS/RECEPCION Y PASILLO ACCESO GABINETES/_MG_9776" alt="Recepción y zona de paso de la clínica dental en Pamplona" loading="lazy" width={500} height={400} />
+						</div>
+					</div>
+
+					<div class="photo-mosaic">
+						<div class="photo-mosaic__wide">
+							<ProgressiveImage src="img/pamplona/ESPACIOS/GABINETE B/_MG_9799" alt="Gabinete dental equipado en la clínica de Pamplona" loading="lazy" width={700} height={450} />
+						</div>
+						<div class="photo-mosaic__tall">
+							<ProgressiveImage src="img/pamplona/ESPACIOS/GABINETE A/_MG_9795" alt="Gabinete con sillón dental preparado para tratamiento" loading="lazy" width={400} height={500} />
+						</div>
+						<div class="photo-mosaic__square">
+							<ProgressiveImage src="img/pamplona/ESPACIOS/DESPACHO/_MG_9805" alt="Despacho de consulta para diagnóstico y planificación" loading="lazy" width={400} height={400} />
+						</div>
+						<div class="photo-mosaic__square">
+							<ProgressiveImage src="img/pamplona/ESPACIOS/PASILLO INTERIOR/_MG_9889" alt="Pasillo interior con acceso a gabinetes en Pamplona" loading="lazy" width={400} height={400} />
+						</div>
+						<div class="photo-mosaic__wide-bottom">
+							<ProgressiveImage src="img/pamplona/ESPACIOS/RECEPCION Y PASILLO ACCESO GABINETES/_MG_9787" alt="Zona de acceso a gabinetes desde la recepción en Pamplona" loading="lazy" width={700} height={350} />
+						</div>
+					</div>
+
+					<div class="content-row reverse">
+						<div class="content-row__text">
+							<h3>Diagnóstico digital de precisión</h3>
+							<p>El <strong>escáner intraoral</strong> permite tomar registros rápidos y cómodos, sin pastas de impresión. Cuando el caso lo requiere, el <strong>CBCT</strong> nos da una imagen tridimensional para planificar implantes y cirugías con la máxima precisión.</p>
+						</div>
+						<div class="content-row__image">
+							<ProgressiveImage src="img/pamplona/ESPACIOS/ESCANER/_MG_9802" alt="Escáner intraoral para registros digitales sin molestias" loading="lazy" width={500} height={400} />
+						</div>
+					</div>
+
+					<div class="detail-strip">
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/pamplona/DETALLES/_MG_9908" alt="Autoclave y selladora del área de esterilización" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Esterilización</p>
+						</div>
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/pamplona/DETALLES/_MG_9809" alt="Equipo de ozonoterapia en la clínica de Pamplona" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Ozono</p>
+						</div>
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/pamplona/DETALLES/_MG_9820" alt="Sistema de óxido nitroso para sedación consciente" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Sedación consciente</p>
+						</div>
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/pamplona/DETALLES/_MG_9841" alt="Detalle del logo de Sada Borrás en la puerta de la clínica" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Sada Borrás</p>
+						</div>
+					</div>
+
 				</div>
 			</section>
 
-			<!-- Esterilización -->
-			<section class="section">
+			<!-- ========== TAFALLA ========== -->
+			<section class="section section--dark" id="tafalla">
 				<div class="container">
-					<h2>Esterilización y control de infecciones</h2>
-					<div class="content-block">
-						<ul class="simple-list">
-							<li>Esterilización de instrumental con trazabilidad por ciclos.</li>
-							<li>Zonas y circuitos diferenciados (limpio/sucio) y EPI del equipo.</li>
-							<li>Desinfección de superficies entre pacientes y ventilación programada.</li>
-						</ul>
-						<p>Estas medidas forman parte de las buenas prácticas recomendadas por colegios y organizaciones profesionales para garantizar una odontología segura.</p>
+
+					<div class="section-split">
+						<div class="section-split__heading">
+							<h2>Clínica dental en Tafalla</h2>
+							<p class="clinic-address">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+								Diputación Foral, 2 · 31300 Tafalla
+							</p>
+						</div>
+						<div class="section-split__content">
+							<p>La clínica de Tafalla nació para que los pacientes de la Zona Media de Navarra accedan a la misma calidad de atención sin desplazarse. Recepción acogedora, tres gabinetes completos y equipamiento digital para diagnóstico y seguimiento.</p>
+						</div>
 					</div>
+
+					<div class="feature-image">
+						<ProgressiveImage src="img/tafalla/ESTANCIAS/RECEPCION/_MG_0629" alt="Recepción de la Clínica Dental Sada Borrás en Tafalla" loading="lazy" width={1200} height={600} />
+					</div>
+
+					<div class="content-row">
+						<div class="content-row__text">
+							<h3>Un espacio pensado para tu comodidad</h3>
+							<p>La sala de espera es tranquila y luminosa. Las citas se organizan con holgura para que los tiempos se respeten y la visita sea predecible. El equipo conoce a cada paciente y eso marca la diferencia.</p>
+						</div>
+						<div class="content-row__image">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/SALA DE ESPERA/_MG_0535" alt="Sala de espera de la clínica dental en Tafalla" loading="lazy" width={500} height={400} />
+						</div>
+					</div>
+
+					<div class="photo-mosaic">
+						<div class="photo-mosaic__wide">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/GABINETE A/_MG_0542" alt="Gabinete dental equipado en la clínica de Tafalla" loading="lazy" width={700} height={450} />
+						</div>
+						<div class="photo-mosaic__tall">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/GABINETE B/_MG_0573" alt="Gabinete con iluminación quirúrgica en Tafalla" loading="lazy" width={400} height={500} />
+						</div>
+						<div class="photo-mosaic__square">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/RECEPCION/_MG_0627" alt="Mostrador de recepción en la clínica de Tafalla" loading="lazy" width={400} height={400} />
+						</div>
+						<div class="photo-mosaic__square">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/SALA DE ESPERA/_MG_0537" alt="Zona de espera con luz natural en Tafalla" loading="lazy" width={400} height={400} />
+						</div>
+						<div class="photo-mosaic__wide-bottom">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/ESCANER/_MG_0583" alt="Sala del escáner extraoral en la clínica de Tafalla" loading="lazy" width={700} height={350} />
+						</div>
+					</div>
+
+					<div class="feature-cards">
+						<div class="feature-card">
+							<div class="feature-card__icon">
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+							</div>
+							<h3>Tres gabinetes completos</h3>
+							<p>Preparados para conservadora, ortodoncia, odontopediatría y cirugía menor. Cada gabinete con su propio equipamiento e iluminación quirúrgica.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-card__icon">
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+							</div>
+							<h3>Diagnóstico digital</h3>
+							<p>Escáner extraoral y equipamiento de imagen para que cada tratamiento parta de un estudio preciso desde la primera visita.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-card__icon">
+								<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+							</div>
+							<h3>Trato cercano</h3>
+							<p>Citas organizadas con holgura, tiempos respetados y un equipo que conoce a cada paciente. La clínica donde el Ratoncito Pérez tiene su propio rincón.</p>
+						</div>
+					</div>
+
+					<div class="content-row reverse">
+						<div class="content-row__text">
+							<h3>Ortodoncia y tratamiento especializado</h3>
+							<p>La sala de ortodoncia está preparada para trabajar con alineadores y brackets. El gabinete de cirugía incorpora iluminación quirúrgica de alta calidad para intervenciones que requieren máxima visibilidad.</p>
+						</div>
+						<div class="content-row__image">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/GABINETE D/_MG_0589" alt="Sala de ortodoncia de la clínica dental en Tafalla" loading="lazy" width={500} height={400} />
+						</div>
+					</div>
+
+					<div class="detail-strip">
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/GABINETE B/_MG_0575" alt="Escáner extraoral para diagnóstico por imagen en Tafalla" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Escáner extraoral</p>
+						</div>
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/tafalla/DETALLES/_MG_0225" alt="Lámpara quirúrgica de alta intensidad" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Iluminación quirúrgica</p>
+						</div>
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/tafalla/ESTANCIAS/GABINETE B/_MG_0576" alt="Gabinete equipado con instrumental dental en Tafalla" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Instrumental</p>
+						</div>
+						<div class="detail-strip__item">
+							<ProgressiveImage src="img/tafalla/DETALLES/_MG_0032" alt="Rincón del Ratoncito Pérez en la clínica de Tafalla" loading="lazy" width={300} height={220} />
+							<p class="detail-strip__caption">Ratoncito Pérez</p>
+						</div>
+					</div>
+
 				</div>
 			</section>
 
-			<!-- Accesibilidad -->
-			<section class="section section-light">
+			<!-- FAQ -->
+			<section class="section faq-section" id="preguntas-frecuentes">
 				<div class="container">
-					<h2>Accesibilidad y bienestar</h2>
-					<div class="content-block">
-						<p>Cuidamos los detalles: accesos cómodos, iluminación cálida, climatización y música ambiental suave. Te explicamos cada paso con claridad y ajustamos tiempos para que la visita sea predecible y sin prisas.</p>
-					</div>
-				</div>
-			</section>
-
-			<!-- Galería de fotos -->
-			<section class="section gallery-section">
-				<div class="container">
-					<h2>Recorre la clínica de Pamplona</h2>
-					<p class="section-intro">En esta galería encontrarás nuestras salas, boxes, área de esterilización y tecnología. Si lo prefieres, te acompañamos en una visita guiada cuando vengas a la primera cita.</p>
-					
-					<div class="photo-grid">
-					{pamplonaImages.map((img, index) => (
-						<div class="photo-item" data-index={index} data-high={r2Asset(img, 'high')}>
-							<ProgressiveImage
-								src={img}
-								alt={`Instalaciones Clínica Dental Sada Borrás Pamplona - Imagen ${index + 1}`}
-								loading="lazy"
-								width={400}
-								height={300}
-							/>
-						</div>
-					))}
-					</div>
-				</div>
-			</section>
-
-			<!-- Por qué marcan la diferencia -->
-			<section class="section">
-				<div class="container">
-					<h2>¿Por qué nuestras instalaciones marcan la diferencia?</h2>
-					<div class="content-block">
-						<div class="why-choose-item">
-							<h3>Confort real en cada paso</h3>
-							<p>Desde la recepción al box, cada espacio está diseñado para que te sientas cómodo y tranquilo durante toda tu visita.</p>
-						</div>
-
-						<div class="why-choose-item">
-							<h3>Seguridad basada en protocolos</h3>
-							<p>Seguimos guías profesionales de bioseguridad y esterilización para garantizar un entorno seguro en cada tratamiento.</p>
-						</div>
-
-						<div class="why-choose-item">
-							<h3>Tecnología útil y justificada</h3>
-							<p>Aplicamos tecnología digital y 3D solo cuando aporta valor real al diagnóstico y al resultado, optimizando tu experiencia y seguridad.</p>
-						</div>
-
-						<div class="why-choose-item">
-							<h3>Experiencia fluida</h3>
-							<p>Menos esperas, más claridad y mejores sensaciones en cada visita. Organizamos nuestro trabajo para que tu tiempo sea respetado.</p>
-						</div>
+					<h2>Preguntas frecuentes sobre nuestras clínicas</h2>
+					<div class="faq-accordion">
+						{faqItems.map((item) => (
+							<div class="faq-item">
+								<button class="faq-question" aria-expanded="false">
+									<span>{item.question}</span>
+									<svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<polyline points="6 9 12 15 18 9"/>
+									</svg>
+								</button>
+								<div class="faq-answer">
+									<p>{item.answer}</p>
+								</div>
+							</div>
+						))}
 					</div>
 				</div>
 			</section>
@@ -146,8 +296,9 @@ const pamplonaImages = [
 			<section class="section cta-section">
 				<div class="container">
 					<div class="cta-box">
-						<h2>¿Quieres conocer la clínica por dentro?</h2>
-						<p>Reserva tu primera visita: te enseñamos nuestras instalaciones, resolvemos tus dudas y planificamos tu tratamiento con la tecnología que de verdad necesitas.</p>
+						<h2>Tu comodidad, nuestra prioridad</h2>
+						<p>Sabemos que ir al dentista no siempre resulta fácil. Por eso cuidamos cada detalle de tu experiencia como paciente: te explicamos lo que vamos a hacer antes de empezar, ajustamos tiempos para evitar esperas innecesarias y nos aseguramos de que tengas toda la información para decidir con confianza.</p>
+						<p>Si todavía no nos conoces, la mejor forma de empezar es con una primera visita.</p>
 						<div class="cta-buttons">
 							<a href={`${baseUrl}#contacto`} class="btn btn-primary">Pedir cita</a>
 							<a href="tel:+34948172617" class="btn btn-secondary">Llamar ahora</a>
@@ -155,547 +306,246 @@ const pamplonaImages = [
 					</div>
 				</div>
 			</section>
+
 		</article>
 	</main>
 	<Footer />
 
-	<!-- Modal para galería -->
-	<div id="gallery-modal" class="modal" aria-hidden="true">
-		<button class="modal-close" aria-label="Cerrar galería">
-			<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<line x1="18" y1="6" x2="6" y2="18"></line>
-				<line x1="6" y1="6" x2="18" y2="18"></line>
-			</svg>
-		</button>
-		<button class="modal-prev" aria-label="Imagen anterior">
-			<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<polyline points="15 18 9 12 15 6"></polyline>
-			</svg>
-		</button>
-		<button class="modal-next" aria-label="Imagen siguiente">
-			<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<polyline points="9 18 15 12 9 6"></polyline>
-			</svg>
-		</button>
-		<div class="modal-content">
-			<img id="modal-image" src="" alt="" />
-		</div>
-	</div>
-
-	<!-- JSON-LD -->
 	<script type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
-		"@type": "MedicalBusiness",
-		"name": "Instalaciones Clínica Dental Sada Borrás",
-		"description": "Instalaciones modernas con tecnología avanzada en Pamplona",
-		"areaServed": "Pamplona, Navarra"
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://sadaborras.com/" },
+			{ "@type": "ListItem", "position": 2, "name": "Instalaciones", "item": "https://sadaborras.com/instalaciones" }
+		]
+	})} />
+
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": faqItems.map(item => ({
+			"@type": "Question",
+			"name": item.question,
+			"acceptedAnswer": { "@type": "Answer", "text": item.answer }
+		}))
+	})} />
+
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Dentist",
+		"name": "Clínica Dental Sada Borrás",
+		"description": "Clínica dental con instalaciones modernas en Pamplona y Tafalla. Gabinetes equipados con tecnología digital, escáner intraoral, CBCT y sedación consciente.",
+		"url": "https://sadaborras.com/instalaciones",
+		"department": [
+			{
+				"@type": "Dentist",
+				"name": "Clínica Dental Sada Borrás — Pamplona",
+				"address": { "@type": "PostalAddress", "streetAddress": "Avenida Pío XII, 8, bajo", "addressLocality": "Pamplona", "postalCode": "31008", "addressRegion": "Navarra", "addressCountry": "ES" },
+				"telephone": "+34948172617"
+			},
+			{
+				"@type": "Dentist",
+				"name": "Clínica Dental Sada Borrás — Tafalla",
+				"address": { "@type": "PostalAddress", "streetAddress": "Diputación Foral, 2, 2º C y D", "addressLocality": "Tafalla", "postalCode": "31300", "addressRegion": "Navarra", "addressCountry": "ES" },
+				"telephone": "+34948702057"
+			}
+		]
 	})} />
 </MainLayout>
 
 <script>
-	// Gallery modal functionality
 	document.addEventListener('DOMContentLoaded', () => {
-		const modal = document.getElementById('gallery-modal');
-		const modalImage = document.getElementById('modal-image') as HTMLImageElement;
-		const photoItems = document.querySelectorAll('.photo-item');
-		const closeBtn = document.querySelector('.modal-close');
-		const prevBtn = document.querySelector('.modal-prev');
-		const nextBtn = document.querySelector('.modal-next');
-		
-		let currentIndex = 0;
-		const images = Array.from(photoItems).map(item => {
-			const img = item.querySelector('img') as HTMLImageElement;
-			const highSrc = (item as HTMLElement).dataset.high;
-			return {
-				src: highSrc || img?.src || '',
-				alt: img?.alt || ''
-			};
-		});
-		
-		function openModal(index: number) {
-			currentIndex = index;
-			const imgElement = modalImage as HTMLImageElement;
-			if (imgElement && modal) {
-				imgElement.src = images[currentIndex].src;
-				imgElement.alt = images[currentIndex].alt;
-				modal.classList.add('active');
-				modal.setAttribute('aria-hidden', 'false');
-				document.body.style.overflow = 'hidden';
-			}
-		}
-		
-		function closeModal() {
-			if (modal) {
-				modal.classList.remove('active');
-				modal.setAttribute('aria-hidden', 'true');
-				document.body.style.overflow = '';
-			}
-		}
-		
-		function showImage(index: number) {
-			currentIndex = (index + images.length) % images.length;
-			const imgElement = modalImage as HTMLImageElement;
-			if (imgElement) {
-				imgElement.src = images[currentIndex].src;
-				imgElement.alt = images[currentIndex].alt;
-			}
-		}
-		
-		function nextImage() {
-			showImage(currentIndex + 1);
-		}
-		
-		function prevImage() {
-			showImage(currentIndex - 1);
-		}
-		
-		// Event listeners
-		photoItems.forEach((item, index) => {
-			item.addEventListener('click', () => openModal(index));
-		});
-		
-		closeBtn?.addEventListener('click', closeModal);
-		prevBtn?.addEventListener('click', prevImage);
-		nextBtn?.addEventListener('click', nextImage);
-		
-		// Cerrar con ESC
-		document.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape' && modal?.classList.contains('active')) {
-				closeModal();
-			} else if (e.key === 'ArrowRight' && modal?.classList.contains('active')) {
-				nextImage();
-			} else if (e.key === 'ArrowLeft' && modal?.classList.contains('active')) {
-				prevImage();
-			}
-		});
-		
-		// Cerrar al hacer click en el fondo
-		modal?.addEventListener('click', (e) => {
-			if (e.target === modal) {
-				closeModal();
-			}
+		const faqButtons = document.querySelectorAll('.faq-question');
+		faqButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const faqItem = button.parentElement;
+				const isExpanded = button.getAttribute('aria-expanded') === 'true';
+				faqButtons.forEach((btn) => {
+					if (btn !== button && btn.parentElement) {
+						btn.setAttribute('aria-expanded', 'false');
+						btn.parentElement.classList.remove('active');
+					}
+				});
+				if (faqItem) {
+					button.setAttribute('aria-expanded', String(!isExpanded));
+					faqItem.classList.toggle('active');
+				}
+			});
 		});
 	});
 </script>
 
 <style>
-	.installations-page {
-		background: white;
-	}
+	.installations-page { background: white; }
 
-	/* Hero Section */
+	/* Breadcrumbs */
+	.breadcrumbs { padding: 1rem 0; background: #f8f9fb; border-bottom: 1px solid var(--c-gray-200); }
+	.breadcrumbs ol { list-style: none; display: flex; gap: 0.5rem; margin: 0; padding: 0; font-size: var(--fs-small); }
+	.breadcrumbs li { display: flex; align-items: center; gap: 0.5rem; margin: 0; font-size: var(--fs-small); color: var(--c-gray-500); }
+	.breadcrumbs li + li::before { content: "/"; color: var(--c-gray-200); }
+	.breadcrumbs a { color: var(--c-gray-500); font-size: var(--fs-small); }
+	.breadcrumbs a:hover { color: var(--c-primary); }
+	.breadcrumbs li[aria-current="page"] { color: var(--c-ink); font-weight: 500; }
+
+	/* Hero */
 	.page-hero {
-		background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-accent) 100%);
-		padding: 4rem 0 3rem;
-		text-align: center;
+		background: linear-gradient(135deg, rgba(10, 34, 64, 0.82) 0%, rgba(20, 58, 100, 0.78) 100%),
+			var(--hero-bg, var(--c-primary)) center / cover no-repeat;
+		padding: 5rem 0 4rem; text-align: center;
 	}
+	.page-hero h1 { color: white; font-size: var(--fs-h1); font-family: var(--ff-head); margin: 0 0 1rem 0; font-weight: 700; }
+	.hero-subtitle { color: rgba(255, 255, 255, 0.95); font-size: var(--fs-h3); font-family: var(--ff-head); margin: 0; font-weight: 600; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-	.page-hero h1 {
-		color: white;
-		font-size: var(--fs-h1);
-		font-family: var(--ff-head);
-		margin: 0 0 1rem 0;
-		font-weight: 700;
+	/* Sections */
+	.section-alt { background: #f8f9fb; }
+	.section h2 { font-size: var(--fs-h2); font-family: var(--ff-head); color: var(--c-ink); margin-bottom: var(--spacing-sm); font-weight: 700; text-align: left; }
+	.section h3 { font-size: var(--fs-h3); font-family: var(--ff-head); color: var(--c-ink); margin-bottom: 0.75rem; font-weight: 600; }
+	.cta-section h2, .faq-section h2, .page-hero h1 { text-align: center; margin-left: auto; margin-right: auto; }
+
+	/* Split heading (Wellington) */
+	.section-split { display: grid; grid-template-columns: 0.35fr 0.65fr; gap: var(--spacing-lg); align-items: start; margin-bottom: var(--spacing-lg); }
+	.section-split__heading h2 { margin-bottom: 0; }
+	.section-split__content p { font-size: var(--fs-body); color: var(--c-gray-700); line-height: 1.7; margin: 0; }
+	.clinic-address { font-size: var(--fs-body); color: var(--c-gray-500); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+	.clinic-address svg { color: var(--c-primary); flex-shrink: 0; }
+
+	/* Blockquote */
+	.intro-quote { max-width: 800px; margin: 0 auto; text-align: center; padding: 3rem 3rem 2.5rem; position: relative; border: none; background: white; border-radius: 0; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1); }
+	.intro-quote::before { content: "\201C"; position: absolute; top: 0.5rem; left: 50%; transform: translateX(-50%); font-size: 5rem; font-family: var(--ff-head); color: var(--c-primary); opacity: 0.15; line-height: 1; pointer-events: none; }
+	.intro-quote p { font-family: var(--ff-head); font-weight: 400; font-size: 1.15rem; color: var(--c-gray-700); line-height: 1.8; margin: 0; font-style: italic; position: relative; }
+
+	/* Feature image */
+	.feature-image { margin-bottom: var(--spacing-lg); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
+	.feature-image img { width: 100%; height: auto; display: block; max-height: 450px; object-fit: cover; }
+
+	/* Feature cards grid */
+	.feature-cards {
+		display: grid; grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem; margin-bottom: var(--spacing-lg);
 	}
-
-	.hero-subtitle {
-		color: rgba(255, 255, 255, 0.95);
-		font-size: var(--fs-h3);
-		font-family: var(--ff-head);
-		margin: 0;
-		font-weight: 600;
+	.feature-card {
+		padding: 2rem; border-radius: var(--border-radius);
+		background: white; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+		transition: var(--transition);
 	}
+	.feature-card:hover { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transform: translateY(-2px); }
+	.feature-card__icon { margin-bottom: 1rem; color: var(--c-primary); }
+	.feature-card h3 { font-size: var(--fs-card-title); margin-bottom: 0.5rem; }
+	.feature-card p { font-size: var(--fs-small); color: var(--c-gray-700); line-height: 1.6; margin: 0; }
 
-	/* Section Styles */
-	.section {
-		padding: var(--spacing-xl) 0;
-	}
+	/* Content rows */
+	.content-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: center; margin-bottom: var(--spacing-lg); }
+	.content-row.reverse .content-row__image { order: -1; }
+	.content-row__image { border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); }
+	.content-row__image img { width: 100%; height: auto; display: block; aspect-ratio: 5/4; object-fit: cover; }
+	.content-row__text p { font-size: var(--fs-body); color: var(--c-gray-700); line-height: 1.7; margin-bottom: 1.25rem; }
+	.content-row__text p:last-child { margin-bottom: 0; }
 
-	.section-light {
-		background: var(--c-bg);
-	}
-
-	.section h2 {
-		font-size: var(--fs-h2);
-		font-family: var(--ff-head);
-		color: var(--c-ink);
+	/* Photo mosaic (asymmetric 5-photo grid) */
+	.photo-mosaic {
+		display: grid;
+		grid-template-columns: 1.4fr 0.6fr;
+		grid-template-rows: auto auto auto;
+		gap: 0.75rem;
 		margin-bottom: var(--spacing-lg);
-		text-align: center;
-		font-weight: 700;
-		padding-bottom: 1rem;
-		border-bottom: 3px solid var(--c-primary);
-		display: inline-block;
-		width: auto;
 	}
+	.photo-mosaic__wide { grid-column: 1; grid-row: 1 / 2; }
+	.photo-mosaic__tall { grid-column: 2; grid-row: 1 / 3; }
+	.photo-mosaic__square:nth-of-type(3) { grid-column: 1; grid-row: 2; }
+	.photo-mosaic__square:nth-of-type(4) { grid-column: 2; grid-row: 3; }
+	.photo-mosaic__wide-bottom { grid-column: 1; grid-row: 3; }
+	.photo-mosaic > div { overflow: hidden; border-radius: var(--border-radius); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+	.photo-mosaic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+	.photo-mosaic__wide img, .photo-mosaic__wide-bottom img { aspect-ratio: 16/9; }
+	.photo-mosaic__tall img { aspect-ratio: 3/4; }
+	.photo-mosaic__square img { aspect-ratio: 1/1; }
 
-	.container > h2 {
-		display: block;
-		text-align: center;
-		margin-left: auto;
-		margin-right: auto;
-		width: fit-content;
+	/* Detail strip with captions */
+	.detail-strip {
+		display: grid; grid-template-columns: repeat(4, 1fr);
+		gap: 1rem; margin-top: var(--spacing-sm);
 	}
-
-	.section-intro {
-		text-align: center;
-		font-size: 1.125rem;
-		color: var(--c-gray-700);
-		margin-bottom: var(--spacing-lg);
-		max-width: 700px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.content-block {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-	.content-block p {
-		font-size: var(--fs-body);
-		color: var(--c-gray-700);
-		line-height: 1.7;
-		margin-bottom: 1.5rem;
-	}
-
-	.intro-text {
-		margin-bottom: var(--spacing-md);
-	}
-
-	/* Simple List */
-	.simple-list {
-		list-style: none;
-		padding: 0;
-		margin: 2rem 0;
-	}
-
-	.simple-list li {
-		position: relative;
-		padding-left: 2rem;
-		margin-bottom: 1rem;
-		font-size: var(--fs-body);
-		color: var(--c-gray-700);
-		line-height: 1.7;
-	}
-
-	.simple-list li::before {
-		content: "✓";
-		position: absolute;
-		left: 0;
-		color: var(--c-primary);
-		font-weight: 700;
-		font-size: 1.5rem;
-	}
-
-	/* Why Choose Items */
-	.why-choose-item {
-		margin-bottom: 2.5rem;
-	}
-
-	.why-choose-item:last-child {
-		margin-bottom: 0;
-	}
-
-	.why-choose-item h3 {
-		font-size: 1.25rem;
-		font-family: var(--ff-body);
-		color: var(--c-primary);
-		margin-top: 0;
-		margin-bottom: 0.75rem;
-		font-weight: 700;
-		text-transform: uppercase;
+	.detail-strip__item { text-align: center; }
+	.detail-strip__item > :first-child { aspect-ratio: 4/3; overflow: hidden; border-radius: var(--border-radius); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+	.detail-strip__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+	.detail-strip__caption {
+		font-family: var(--ff-body); font-size: var(--fs-small); font-weight: 500;
+		color: var(--c-gray-500); margin-top: 0.75rem; text-transform: uppercase;
 		letter-spacing: 0.5px;
 	}
 
-	.why-choose-item p {
-		font-size: var(--fs-body);
-		color: var(--c-gray-700);
-		line-height: 1.7;
-		margin: 0;
-	}
+	/* Dark section overrides */
+	.section--dark h2 { color: #fff; }
+	.section--dark h3 { color: #fff; }
+	.section--dark .content-row__text p { color: rgba(255, 255, 255, 0.85); }
+	.section--dark .content-row__text p strong { color: #fff; }
+	.section--dark .section-split__content p { color: rgba(255, 255, 255, 0.85); }
+	.section--dark .clinic-address { color: rgba(255, 255, 255, 0.7); }
+	.section--dark .clinic-address svg { color: rgba(255, 255, 255, 0.5); }
+	.section--dark .feature-card { background: rgba(255, 255, 255, 0.08); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15); }
+	.section--dark .feature-card:hover { background: rgba(255, 255, 255, 0.12); }
+	.section--dark .feature-card__icon { color: rgba(255, 255, 255, 0.7); }
+	.section--dark .feature-card h3 { color: #fff; }
+	.section--dark .feature-card p { color: rgba(255, 255, 255, 0.75); }
+	.section--dark .detail-strip__caption { color: rgba(255, 255, 255, 0.6); }
 
-	/* Treatments List */
-	.treatments-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
+	/* CTA */
+	.cta-section { background: var(--c-primary); color: white; }
+	.cta-section h2 { color: white; }
+	.cta-box { text-align: center; max-width: 700px; margin: 0 auto; }
+	.cta-box > p { color: rgba(255, 255, 255, 0.9); font-size: var(--fs-body); line-height: 1.7; margin-bottom: 1.5rem; }
+	.cta-box > p:last-of-type { margin-bottom: 2rem; }
+	.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+	.cta-section .btn-primary { background: #fff; color: var(--c-ink); border-color: #fff; }
+	.cta-section .btn-primary:hover { background: transparent; color: #fff; }
+	.cta-section .btn-secondary { background: transparent; color: #fff; border-color: #fff; }
+	.cta-section .btn-secondary:hover { background: #fff; color: var(--c-ink); }
 
-	.treatments-list li {
-		margin-bottom: 2.5rem;
-	}
-
-	.treatments-list h3 {
-		font-size: 1.125rem;
-		font-family: var(--ff-body);
-		color: var(--c-ink);
-		margin-bottom: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		display: flex;
-		align-items: flex-start;
-		gap: 0.75rem;
-	}
-
-	.treatments-list h3::before {
-		content: "•";
-		color: var(--c-primary);
-		font-weight: 700;
-		font-size: 2rem;
-		line-height: 1.125rem;
-		flex-shrink: 0;
-	}
-
-	.treatments-list h3 span {
-		border-bottom: 2px solid var(--c-primary);
-		padding-bottom: 0.5rem;
-	}
-
-	.treatments-list p {
-		font-size: var(--fs-body);
-		color: var(--c-gray-700);
-		line-height: 1.7;
-		margin: 0 0 0.5rem 0;
-		padding-left: 2.75rem;
-	}
-
-	.treatments-list p:last-child {
-		margin-bottom: 0;
-	}
-
-	/* Gallery Section */
-	.gallery-section {
-		background: white;
-	}
-
-	.photo-grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 1rem;
-		margin-top: var(--spacing-md);
-	}
-
-	.photo-item {
-		aspect-ratio: 4/3;
-		overflow: hidden;
-		border-radius: var(--border-radius);
-		cursor: pointer;
-		transition: var(--transition);
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	}
-
-	.photo-item:hover {
-		transform: translateY(-4px);
-		box-shadow: var(--shadow-md);
-	}
-
-	.photo-item img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: var(--transition);
-	}
-
-	.photo-item:hover img {
-		transform: scale(1.05);
-	}
-
-	/* Modal */
-	.modal {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.95);
-		z-index: 9999;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 0.3s ease;
-	}
-
-	.modal.active {
-		opacity: 1;
-		pointer-events: auto;
-	}
-
-	.modal-content {
-		max-width: 90vw;
-		max-height: 90vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.modal-content img {
-		max-width: 100%;
-		max-height: 90vh;
-		object-fit: contain;
-		display: block;
-		border-radius: var(--border-radius);
-	}
-
-	.modal-close,
-	.modal-prev,
-	.modal-next {
-		position: fixed;
-		background: rgba(255, 255, 255, 0.9);
-		border: none;
-		width: 48px;
-		height: 48px;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-		transition: var(--transition);
-		z-index: 10000;
-	}
-
-	.modal-close:hover,
-	.modal-prev:hover,
-	.modal-next:hover {
-		background: white;
-		transform: scale(1.1);
-	}
-
-	.modal-close {
-		top: 2rem;
-		right: 2rem;
-	}
-
-	.modal-prev {
-		left: 2rem;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	.modal-next {
-		right: 2rem;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	.modal-prev:hover {
-		transform: translateY(-50%) scale(1.1);
-	}
-
-	.modal-next:hover {
-		transform: translateY(-50%) scale(1.1);
-	}
-
-	.modal-close svg,
-	.modal-prev svg,
-	.modal-next svg {
-		color: var(--c-ink);
-	}
-
-	/* CTA Section */
-	.cta-section {
-		background: var(--c-primary);
-		color: white;
-	}
-
-	.cta-box {
-		text-align: center;
-		max-width: 700px;
-		margin: 0 auto;
-	}
-
-	.cta-box h2 {
-		color: white;
-		border-bottom-color: rgba(255, 255, 255, 0.3);
-		font-size: var(--fs-h2);
-		margin-bottom: 1.5rem;
-	}
-
-	.cta-box > p {
-		color: white;
-		font-size: var(--fs-body);
-		margin-bottom: 2rem;
-	}
-
-	.cta-buttons {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
+	/* FAQ */
+	.faq-section { background: #f8f9fb; }
+	.faq-accordion { max-width: 900px; margin: var(--spacing-lg) auto 0; }
+	.faq-item { background: white; border: 2px solid var(--c-gray-200); border-radius: var(--border-radius); margin-bottom: 1rem; overflow: hidden; transition: var(--transition); }
+	.faq-item:hover { border-color: var(--c-primary); }
+	.faq-item.active { border-color: var(--c-primary); box-shadow: var(--shadow-md); }
+	.faq-question { width: 100%; background: transparent; border: none; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; text-align: left; font-size: var(--fs-body); font-family: var(--ff-head); font-weight: 600; color: var(--c-ink); transition: var(--transition); }
+	.faq-question:hover { color: var(--c-primary); }
+	.faq-question span { flex: 1; }
+	.faq-icon { flex-shrink: 0; transition: transform 0.3s ease; color: var(--c-primary); }
+	.faq-item.active .faq-icon { transform: rotate(180deg); }
+	.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.5rem; }
+	.faq-item.active .faq-answer { max-height: 500px; padding: 0 1.5rem 1.5rem; }
+	.faq-answer p { font-size: var(--fs-body); color: var(--c-gray-700); line-height: 1.7; margin: 0; }
 
 	/* Responsive */
-	@media (max-width: 1200px) {
-		.photo-grid {
-			grid-template-columns: repeat(4, 1fr);
-		}
-	}
-
 	@media (max-width: 1024px) {
-		.photo-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
+		.feature-cards { grid-template-columns: repeat(3, 1fr); }
+		.photo-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+		.photo-mosaic > div { grid-column: auto !important; grid-row: auto !important; }
+		.photo-mosaic__wide-bottom { grid-column: 1 / -1 !important; }
+		.detail-strip { grid-template-columns: repeat(2, 1fr); }
 	}
 
-	/* ====== Solo móvil ≤768px ====== */
 	@media (max-width: 768px) {
-		.page-hero {
-			padding: 3rem 0 2rem;
-		}
-
-		.page-hero h1 {
-			font-size: 2rem;
-		}
-
-		.hero-subtitle {
-			font-size: 1.125rem;
-		}
-
-		.photo-grid {
-			grid-template-columns: repeat(2, 1fr);
-			gap: 0.75rem;
-		}
-
-		.modal-close {
-			top: 1rem;
-			right: 1rem;
-			width: 40px;
-			height: 40px;
-		}
-
-		.modal-prev,
-		.modal-next {
-			width: 40px;
-			height: 40px;
-		}
-
-		.modal-prev {
-			left: 1rem;
-		}
-
-		.modal-next {
-			right: 1rem;
-		}
-
-		/* CTA al ancho del contenido (no 100%) */
-		.cta-buttons {
-			display: flex;
-			flex-direction: row;
-			gap: 1rem;
-			flex-wrap: wrap;
-			align-items: flex-start;
-		}
-
-		.cta-buttons .btn {
-			display: inline-flex !important;
-			width: auto !important;
-			max-width: 100% !important;
-			white-space: nowrap !important;
-			align-self: flex-start;
-			flex: 0 1 auto;
-		}
+		.page-hero { padding: 3.5rem 0 2.5rem; }
+		.page-hero h1 { font-size: 2rem; }
+		.hero-subtitle { font-size: 1.125rem; }
+		.section-split { grid-template-columns: 1fr; gap: var(--spacing-sm); }
+		.section-split__heading h2 { text-align: center; margin-left: auto; margin-right: auto; }
+		.section-split__content p { text-align: center; }
+		.clinic-address { justify-content: center; }
+		.feature-cards { grid-template-columns: 1fr; }
+		.content-row, .content-row.reverse { grid-template-columns: 1fr; gap: var(--spacing-md); }
+		.content-row.reverse .content-row__image { order: 0; }
+		.feature-image img { max-height: 300px; }
+		.photo-mosaic { grid-template-columns: 1fr 1fr; }
+		.photo-mosaic > div { grid-column: auto !important; grid-row: auto !important; }
+		.photo-mosaic__wide { grid-column: 1 / -1 !important; }
+		.photo-mosaic__wide-bottom { grid-column: 1 / -1 !important; }
+		.detail-strip { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+		.intro-quote { padding: 1.5rem 1rem; }
+		.intro-quote::before { font-size: 4rem; }
+		.cta-buttons { flex-direction: row; align-items: flex-start; }
+		.cta-buttons .btn { display: inline-flex !important; width: auto !important; max-width: 100% !important; white-space: nowrap !important; flex: 0 1 auto; }
+		.faq-question { padding: 1.25rem; font-size: 0.95rem; }
 	}
 </style>
-
