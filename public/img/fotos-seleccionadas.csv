@@ -1,0 +1,68 @@
+clinica,tipo,codigo,descripcion
+Pamplona,Espacios,9805,Despacho Pamplona
+Pamplona,Espacios,9802,Scanner
+Pamplona,Espacios,9811,Fachada
+Pamplona,Espacios,9820,Fachada
+Pamplona,Espacios,9825,Fachada
+Pamplona,Espacios,9839,Gabinete
+Pamplona,Espacios,9799,Gabinete
+Pamplona,Espacios,9889,Gabinete
+Pamplona,Espacios,9776,Pasillo / Recepción
+Pamplona,Espacios,9787,Pasillo / Recepción
+Pamplona,Detalles,9745,Fisio dispenser / ultrasonidos
+Pamplona,Detalles,9809,Ozono
+Pamplona,Detalles,9820,Óxido nitroso
+Pamplona,Detalles,9832,Centrifugadora
+Pamplona,Detalles,9856,O2
+Pamplona,Detalles,9857,O2
+Pamplona,Detalles,9841,Logo puerta
+Pamplona,Detalles,9908,Autoclave, ultrasonidos y selladora
+Personal,Personal,9636,Dr. Borrás
+Personal,Personal,9655,Dr. Borrás
+Personal,Personal,9668,Personal (las tres)
+Personal,Personal,9683,Scanner intraoral
+Personal,Personal,9699,Suelo
+Personal,Personal,9711,Trabajando
+Personal,Personal,9719,Trabajando
+Personal,Personal,9718,Trabajando
+Personal,Personal,9753,Trabajando
+Personal,Personal,9772,Trabajando
+Personal,Personal,9778,Trabajando
+Personal,Personal,9785,Scanner con paciente
+Personal,Personal,9808,Amaia
+Personal,Personal,9796,Amaia
+Personal,Personal,9823,Centrifugadora
+Tafalla,Espacios,0032,Ratoncito Pérez
+Tafalla,Espacios,0225,Lámpara quirúrgica sala 3
+Tafalla,Espacios,0575,Escáner extraoral
+Tafalla,Espacios,0542,Gabinete 1
+Tafalla,Espacios,0573,Gabinete 3
+Tafalla,Espacios,0576,Gabinete 3
+Tafalla,Espacios,0580,Gabinete 2
+Tafalla,Espacios,0554,Gabinete 2
+Tafalla,Espacios,0557,Gabinete 2
+Tafalla,Espacios,0589,Ortodoncia
+Tafalla,Espacios,0620,Ortodoncia
+Tafalla,Espacios,0629,Recepción
+Tafalla,Espacios,0627,Recepción
+Tafalla,Espacios,0535,Sala de espera
+Tafalla,Espacios,0537,Sala de espera
+Personal,Personal,0012,Paciente + Ali
+Personal,Personal,0029,Paciente + Pilar
+Personal,Personal,0055,Ali
+Personal,Personal,0065,Inma
+Personal,Personal,0071,Ali + Paule
+Personal,Personal,0080,Ana + Paule
+Personal,Personal,0087,Pilar + paciente
+Personal,Personal,0101,Nati
+Personal,Personal,0115,Ana
+Personal,Personal,0123,Giselle
+Personal,Personal,0131,Pilar + paciente haciendo fotos
+Personal,Personal,0136,Pilar + paciente haciendo fotos
+Personal,Personal,0148,Pilar
+Personal,Personal,0162,Natalia
+Personal,Personal,0186,Ali
+Personal,Personal,0206,Pilar + Ali
+Personal,Personal,0200,Pilar + Ali
+Personal,Personal,0173,Grupal
+Personal,Personal,0175,Grupal
