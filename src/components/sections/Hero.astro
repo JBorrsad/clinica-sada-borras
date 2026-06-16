@@ -220,6 +220,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 <script>
 	const BASE = 'https://pub-146edcb977de463eb79397c4bb7d8d06.r2.dev/';
 	const PRIORITY = [11, 13];
+	const EXCLUDE = [9];
 	const FADE_MS = 600;
 
 	function shuffle(arr: number[]): number[] {
@@ -231,9 +232,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
 	}
 
 	function buildPlaylist(): string[] {
-		const prio = shuffle([...PRIORITY]);
+		const prio = shuffle([...PRIORITY].filter(n => !EXCLUDE.includes(n)));
 		const rest = shuffle(
-			Array.from({ length: 13 }, (_, i) => i + 1).filter(n => !PRIORITY.includes(n))
+			Array.from({ length: 13 }, (_, i) => i + 1)
+				.filter(n => !PRIORITY.includes(n) && !EXCLUDE.includes(n))
 		);
 		return [...prio, ...rest].map(n => `${BASE}video${n}.mp4`);
 	}
